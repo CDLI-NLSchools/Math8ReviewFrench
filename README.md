@@ -1,2 +1,26 @@
-# Math8ReviewFrench
-Banque de questions d'entraînement générées pour Mathématiques 8 (Terre-Neuve-et-Labrador), version française pour l'immersion.
+# Révision de mathématiques 8
+
+Une banque de questions d'entraînement générées pour **Mathématiques 8** (Terre-Neuve-et-Labrador), en français pour les élèves en immersion. Elle repose sur le même châssis que les applications Révision Math 1201, 2200, 2201, 3200, 3201 et 3208, avec une page d'accueil pensée pour les élèves et des appuis supplémentaires pour les plus jeunes. Il s'agit de la version française de l'application Math 8 Review; la banque, les indicateurs et la composition des examens sont identiques, seule la langue change, avec le format français des nombres (virgule décimale, espace comme séparateur de milliers, « 25 % », « 25 $ »). Les réponses numériques tapées acceptent la virgule et le point décimaux.
+
+**Application en ligne :** https://cdli-nlschools.github.io/Math8ReviewFrench/ (une fois GitHub Pages activé)
+
+## Ce qu'elle fait
+
+- Elle s'ouvre sur une page simple pour l'élève : la portée choisie, une ligne qui explique ce qui va se passer et un gros bouton pour commencer. Le constructeur complet se trouve replié sous « Crée ta propre pratique ».
+- Elle tire de nouvelles questions par unité ou par indicateur du programme, avec un mélange de niveaux qui suit les tableaux de spécifications publiés pour 2026-2027 (environ 20 % de niveau 1, 60 % de niveau 2, 20 % de niveau 3).
+- Portée de mi-parcours : unités 1 à 4 (Les racines carrées et le théorème de Pythagore; Les nombres entiers; Les opérations sur les fractions; Les prismes et les cylindres). Portée finale : unités 5 à 8 (Les pourcentages, les rapports et les taux; Les équations linéaires et leur représentation graphique; L'analyse de données et la probabilité; La géométrie).
+- Trois façons de travailler : pratiquer en ligne avec correction au fur et à mesure, imprimer une feuille de pratique (avec espace de travail et corrigé facultatif) ou imprimer un examen de pratique construit selon les tableaux de spécifications (18 points en réponses choisies et 17 points en réponses construites, 35 points en tout, avec un corrigé séparé pour l'enseignant). Les tests d'unité s'impriment à 25 points. Les feuilles et les examens peuvent aussi être téléchargés comme fichier Word avec des équations modifiables, ou copiés pour Google Docs.
+- Chaque question de pratique comprend un indice en deux étapes (la stratégie, puis le premier pas), un bouton « Voir un exemple travaillé » qui montre la même habileté avec d'autres nombres, une rétroaction pour chaque réponse aux questions à choix multiple et une solution détaillée complète. L'exemple travaillé et la solution détaillée sont des boutons bascule : masquer puis réafficher ne change jamais ce qui a été tiré, et le bouton « Voir un autre exemple » dans le panneau de l'exemple est la seule façon d'en obtenir un nouveau (dans une série à code, la suite des exemples se reproduit, bouton par bouton). Le résumé de fin de série liste les indicateurs manqués et propose une série « Pratiquer ce que j'ai manqué ». Un panneau repliable « Formules et notions pour l'unité » se trouve au haut de chaque série.
+- Les examens de pratique offrent une minuterie douce facultative qui compte le temps écoulé et rappelle la durée d'examen d'une heure et demie. Elle ne bloque ni ne soumet jamais rien.
+- L'enseignant peut inscrire un mot ou une courte phrase comme code dans le constructeur (« Les mêmes problèmes pour tout le monde ») : un lien partagé avec ce code donne à chaque élève exactement la même série, mêmes questions, mêmes valeurs, même ordre, exemples travaillés compris. Sans code, chaque élève reçoit une série aléatoire nouvelle.
+- Toute série pratiquée en ligne peut être téléchargée pour Kahoot (.xlsx, dans le format du modèle Kahoot) ou pour Blooket (.csv, dans le format du modèle Blooket), pour jouer les mêmes questions à choix multiple en jeu, avec les mathématiques en texte clair lisible et une limite de temps selon le niveau de la question (20, 30 ou 60 secondes). Les téléchargements se trouvent seulement dans la vue de pratique en ligne; les feuilles et les examens sont des produits imprimés où l'on montre son travail et ne les offrent pas. Les questions à réponse construite ne sont pas exportées, et l'application indique combien ont été laissées de côté.
+
+## Sources et originalité
+
+Les questions sont générées à partir de modèles écrits pour cette banque, à la lumière des résultats d'apprentissage et des indicateurs de Mathématiques 8 (visionneur eNLightenED de T.-N.-L. et feuille de calcul des unités et indicateurs du cours) et des tableaux de spécifications de Mathématiques 7 à 12 pour 2026-2027. Aucun texte de question, scénario ou valeur d'une source n'est reproduit.
+
+La terminologie et les énoncés des indicateurs suivent le programme d'études officiel *Mathématiques 8e année* (immersion française, Terre-Neuve-et-Labrador) partout où le guide a pu être apparié aux indicateurs de la banque. Noter que le guide de 8e année emploie « aire totale » là où celui de 9e année emploie « aire de la surface »; chaque application suit son propre guide.
+
+## État
+
+Brouillon : la banque complète (156 entrées couvrant les 109 indicateurs des huit unités) est construite et n'a pas encore passé l'assurance qualité des enseignants. La version française a été produite le 7 novembre 2026, à la suite de la version française de Mathématiques 9.
