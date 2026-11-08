@@ -752,9 +752,9 @@ E("u1-is-perfect-square", 1, ["3.20"], 1, "gen", function(){
   var k=ri(4,15); var n=k*k+ri(1,2*k-1);
   return mcq("Quelle affirmation sur le nombre "+n+" est correcte ?",
     {t:n+" se trouve entre les carrés "+(k*k)+" et "+((k+1)*(k+1))+", donc ce n'est pas un carré parfait", fb:"Oui : "+n+" est entre deux carrés voisins, donc aucun nombre entier ne le donne au carré."},
-    [{t:n+" est un carré parfait, car il est proche du carré "+(k*k), fb:"Proche n'est pas égal : un carré parfait doit être un nombre entier multiplié par lui-même, exactement."},
+    [{t:n+" est un carré parfait, car il est proche du carré "+(k*k)+", qui est juste en dessous", fb:"Proche n'est pas égal : un carré parfait doit être un nombre entier multiplié par lui-même, exactement."},
      {t:n+" est un carré parfait, car il se termine par un chiffre que les carrés peuvent avoir", fb:"Le dernier chiffre seul ne peut pas le prouver : compare avec les carrés voisins."},
-     {t:n+" se trouve entre les carrés "+((k+1)*(k+1))+" et "+((k+2)*(k+2))+", donc ce n'est pas un carré parfait", fb:"Vérifie l'encadrement : "+n+" est plus petit que "+((k+1)*(k+1))+", donc cette paire est trop haute."}],
+     {t:n+" se trouve entre les carrés "+((k+1)*(k+1))+" et "+((k+2)*(k+2))+", ce n'est pas un carré parfait", fb:"Vérifie l'encadrement : "+n+" est plus petit que "+((k+1)*(k+1))+", donc cette paire est trop haute."}],
     "Les carrés près de "+n+" sont \\("+k+"^{2} = "+(k*k)+"\\) et \\("+(k+1)+"^{2} = "+((k+1)*(k+1))+"\\). Comme "+n+" se trouve entre eux, aucun nombre entier ne le donne au carré. L'affirmation correcte est <b>"+n+" n'est pas un carré parfait</b>.",
     {mode:"no", n:n});
 }, ["Un carré parfait est un nombre entier multiplié par lui-même.", "Écris les carrés près de chaque valeur et vérifie quelles valeurs sont dans la liste."]);
@@ -821,16 +821,16 @@ E("u1-why-approx", 1, ["6.33"], 2, "var", varset([
   function(){
     return mcq("Un élève dit que la valeur exacte de \\(\\sqrt{11}\\) est 3,31662479, la valeur à l'écran de la calculatrice. Pourquoi l'élève a-t-il tort ?",
       {t:"La vraie valeur a des chiffres décimaux qui continuent après les chiffres montrés", fb:"Exact : l'écran montre seulement les premiers chiffres, arrondis."},
-      [{t:"La calculatrice a arrondi le dernier chiffre dans le mauvais sens à l'écran", fb:"Les deux sens d'arrondi coupent quand même la valeur : c'est le point."},
+      [{t:"La calculatrice a arrondi le dernier chiffre dans le mauvais sens à l'écran de la calculatrice", fb:"Les deux sens d'arrondi coupent quand même la valeur : c'est le point."},
        {t:"La valeur exacte de la racine est 3,3, avec une seule décimale", fb:"Les racines ne s'arrêtent pas à une décimale : celle-ci continue."},
-       {t:"L'élève a copié les chiffres de l'écran dans le mauvais ordre", fb:"Les chiffres ont été bien copiés : la valeur elle-même est incomplète."}],
+       {t:"L'élève a copié les chiffres de l'écran dans le mauvais ordre sur sa feuille", fb:"Les chiffres ont été bien copiés : la valeur elle-même est incomplète."}],
       "Le nombre décimal de \\(\\sqrt{11}\\) ne se termine jamais, donc un écran peut montrer seulement ses premiers chiffres, arrondis. L'élève a tort parce que <b>la vraie valeur continue après l'écran</b>.",
       {mode:"sqrt11"});
   },
   function(){
     return mcq("Pour un projet, un élève utilise 4,47 comme valeur de \\(\\sqrt{20}\\). Pourquoi 4,47 est-il appelé une approximation ?",
       {t:"C'est la vraie valeur arrondie à deux décimales, pas la valeur complète", fb:"Exact : 4,47 au carré donne 19,9809, proche de 20 mais pas égal."},
-      [{t:"C'est une approximation parce qu'elle a été trouvée avec une calculatrice", fb:"L'outil ne le décide pas : c'est l'arrondi qui compte."},
+      [{t:"C'est une approximation parce qu'elle a été trouvée avec une calculatrice en classe", fb:"L'outil ne le décide pas : c'est l'arrondi qui compte."},
        {t:"Elle est exacte, car deux décimales suffisent pour le projet", fb:"Suffisant pour un projet peut quand même être arrondi plutôt qu'exact."},
        {t:"C'est une approximation parce que 20 n'a pas de racine carrée du tout", fb:"20 a bien une racine : elle ne se termine simplement jamais et ne se répète pas."}],
       "\\(4,47 \\times 4,47 = 19,9809\\), ce qui est proche de 20 mais pas égal à 20. La valeur 4,47 est <b>une approximation parce que c'est la vraie racine arrondie à deux décimales</b>.",
@@ -892,12 +892,12 @@ E("u1-is-right", 1, ["9.13"], 2, "gen", function(){
   var ansTxt=isRight?"Oui, c'est un triangle rectangle":"Non, ce n'est pas un triangle rectangle";
   var opts=isRight?[
     {t:"Non, ce n'est pas un triangle rectangle", fb:"Vérifie les sommes : les carrés des deux côtés les plus courts s'additionnent pour donner le carré du côté le plus long."},
-    {t:"On ne peut pas le décider à partir des longueurs des côtés", fb:"Les longueurs des côtés suffisent : le théorème donne un test oui ou non."},
-    {t:"Oui, mais seulement si le côté le plus long est dessiné en bas", fb:"La position ne compte pas : seules les longueurs des côtés décident."}
+    {t:"On ne peut pas le décider", fb:"Les longueurs des côtés suffisent : le théorème donne un test oui ou non."},
+    {t:"Oui, si le long côté est en bas", fb:"La position ne compte pas : seules les longueurs des côtés décident."}
   ]:[
     {t:"Oui, c'est un triangle rectangle", fb:"Vérifie les sommes : "+(a*a)+" + "+(b*b)+" donne "+sum+", ce qui n'égale pas "+csq+"."},
-    {t:"On ne peut pas le décider à partir des longueurs des côtés", fb:"Les longueurs des côtés suffisent : le théorème donne un test oui ou non."},
-    {t:"Oui, parce que les côtés sont proches d'un triplet connu", fb:"Proche ne suffit pas : les carrés doivent correspondre exactement."}
+    {t:"On ne peut pas le décider", fb:"Les longueurs des côtés suffisent : le théorème donne un test oui ou non."},
+    {t:"Oui, car les côtés approchent un triplet", fb:"Proche ne suffit pas : les carrés doivent correspondre exactement."}
   ];
   var q=mcq("Un triangle a des côtés de "+a+" cm, "+b+" cm et "+c+" cm, comme montré. Est-ce un triangle rectangle ?", {t:ansTxt, fb:isRight?"Oui : "+(a*a)+" + "+(b*b)+" égale "+csq+".":"Exact : "+(a*a)+" + "+(b*b)+" donne "+sum+", pas "+csq+"."}, opts,
     "Teste le côté le plus long contre les deux autres : \\[ \\begin{aligned} "+a+"^{2} + "+b+"^{2} &= "+(a*a)+" + "+(b*b)+" \\\\ &= "+sum+" \\\\ "+c+"^{2} &= "+csq+" \\end{aligned} \\] "+(isRight?"Les deux valeurs sont égales, donc le triangle <b>est un triangle rectangle</b>.":"Les deux valeurs sont différentes, donc le triangle <b>n'est pas un triangle rectangle</b>."),
@@ -910,8 +910,8 @@ E("u1-only-right", 1, ["9.2"], 2, "var", varset([
   function(){
     return mcq("Un triangle a des côtés de 4 cm, 6 cm et 8 cm. Un élève utilise \\(4^{2} + 6^{2} = 8^{2}\\) pour trouver un côté et obtient une mauvaise réponse. Pourquoi la méthode a-t-elle échoué ?",
       {t:"Le théorème fonctionne seulement pour les triangles rectangles, et ce triangle n'est pas rectangle", fb:"Exact : 16 + 36 donne 52, pas 64, donc le triangle n'a pas d'angle droit."},
-      [{t:"L'élève a additionné les côtés dans le mauvais ordre pour le théorème", fb:"L'ordre de l'addition ne compte pas ici : le triangle lui-même est le problème."},
-       {t:"Le théorème exige des côtés mesurés en mètres, pas en centimètres", fb:"Les unités ne limitent pas le théorème : la forme du triangle le fait."},
+      [{t:"L'élève a additionné les côtés dans le mauvais ordre pour appliquer le théorème de Pythagore à ce triangle", fb:"L'ordre de l'addition ne compte pas ici : le triangle lui-même est le problème."},
+       {t:"Le théorème exige des côtés mesurés en mètres, pas en centimètres, pour fonctionner dans ce cas", fb:"Les unités ne limitent pas le théorème : la forme du triangle le fait."},
        {t:"L'élève aurait dû utiliser les deux côtés les plus longs comme cathètes", fb:"Échanger les côtés ne peut pas le corriger : le triangle n'est pas rectangle."}],
       "\\(4^{2} + 6^{2} = 52\\), alors que \\(8^{2} = 64\\). Les valeurs sont différentes, donc le triangle n'a pas d'angle droit, et le théorème ne s'applique pas. La méthode a échoué parce que <b>le théorème fonctionne seulement pour les triangles rectangles</b>.",
       {mode:"not-right"});
@@ -921,16 +921,16 @@ E("u1-only-right", 1, ["9.2"], 2, "var", varset([
       {t:"Il relie les côtés des triangles rectangles seulement", fb:"Exact : la relation est vraie exactement quand le triangle a un angle droit."},
       [{t:"Il relie les côtés de chaque triangle, rectangle ou non", fb:"Teste un triangle 2, 3, 4 : 4 + 9 n'est pas 16, donc il échoue là."},
        {t:"Il relie les côtés des triangles équilatéraux seulement", fb:"Un triangle équilatéral n'a pas d'angle droit, donc le théorème ne peut pas s'appliquer."},
-       {t:"Il relie les côtés des triangles dessinés avec l'angle droit en haut", fb:"La position ne compte pas : avoir un angle droit est ce qui compte."}],
+       {t:"Il relie les côtés des triangles avec l'angle droit en haut", fb:"La position ne compte pas : avoir un angle droit est ce qui compte."}],
       "Pour tout triangle sans angle droit, les carrés ne correspondent pas, comme \\(2^{2} + 3^{2} = 13 \\ne 16 = 4^{2}\\) le montre. L'affirmation correcte est <b>il relie les côtés des triangles rectangles seulement</b>.",
       {mode:"statement"});
   },
   function(){
     return mcq("Un triangle a des côtés de 5 cm, 5 cm et 9 cm. Un élève lui applique le test des carrés. Que montre le test ?",
       {t:"Le test montre qu'il n'est pas rectangle, car 25 + 25 n'égale pas 81", fb:"Exact : le test lui-même montre que le triangle n'a pas d'angle droit."},
-      [{t:"Le théorème ne peut pas être utilisé parce que deux côtés ont la même longueur", fb:"Des cathètes égales sont possibles dans un triangle rectangle : les carrés sont le test."},
-       {t:"Le théorème ne peut pas être utilisé parce que les côtés sont des nombres impairs", fb:"Les côtés impairs sont possibles : 9, 12, 15 utilise des côtés impairs et est rectangle."},
-       {t:"Le théorème ne peut pas être utilisé parce que le triangle est trop grand", fb:"La taille ne compte pas : seule la relation des carrés compte."}],
+      [{t:"Le théorème ne peut pas servir, car deux côtés ont la même longueur", fb:"Des cathètes égales sont possibles dans un triangle rectangle : les carrés sont le test."},
+       {t:"Le théorème ne peut pas servir, car les côtés sont des nombres impairs", fb:"Les côtés impairs sont possibles : 9, 12, 15 utilise des côtés impairs et est rectangle."},
+       {t:"Le théorème ne peut pas servir, car le triangle est trop grand", fb:"La taille ne compte pas : seule la relation des carrés compte."}],
       "\\(5^{2} + 5^{2} = 50\\), alors que \\(9^{2} = 81\\). Comme les valeurs sont différentes, le triangle n'est pas rectangle, donc <b>le théorème ne s'applique pas à lui comme triangle rectangle</b>.",
       {mode:"isosceles"});
   }
@@ -982,9 +982,9 @@ E("u1-right-test-decide", 1, ["9.13"], 3, "gen", function(){
   if(mode==="swap"){
     var tb=pick([[3,4,5],[5,12,13],[8,15,17],[7,24,25]]);
     var ks=ri(1,4); var sa=tb[0]*ks, sb=tb[1]*ks, sc2=tb[2]*ks;
-    var optsS=[{t:"Oui, car le côté le plus long a été mis au carré en premier dans le travail", fb:"L'ordre d'écriture ne compte pas : ce qui compte est que la somme correspond."},
-               {t:"Non, car un triangle rectangle doit avoir trois côtés différents", fb:"Les cathètes peuvent être égales dans certains triangles rectangles, et ici le test des carrés réussit."},
-               {t:"Non, car les côtés forment un triplet seulement sans mise à l'échelle", fb:"Mettre un triplet à l'échelle par "+ks+" garde la relation des carrés vraie."}];
+    var optsS=[{t:"Oui, car le long côté a été mis au carré en premier", fb:"L'ordre d'écriture ne compte pas : ce qui compte est que la somme correspond."},
+               {t:"Non, les côtés doivent différer", fb:"Les cathètes peuvent être égales dans certains triangles rectangles, et ici le test des carrés réussit."},
+               {t:"Non, car un triplet mis à l'échelle ne compte pas", fb:"Mettre un triplet à l'échelle par "+ks+" garde la relation des carrés vraie."}];
     var sunit=pick(["cm","m"]);
     return mcq("Un triangle a des côtés de "+sa+" "+sunit+", "+sb+" "+sunit+" et "+sc2+" "+sunit+". Un élève le teste en calculant \\("+sb+"^{2} + "+sa+"^{2}\\) et en le comparant avec \\("+sc2+"^{2}\\). Le triangle est-il rectangle ?", {t:"Oui, c'est un triangle rectangle", fb:"Exact : "+(sa*sa)+" + "+(sb*sb)+" égale "+(sc2*sc2)+"."}, optsS,
       "Additionne les carrés des deux côtés les plus courts : \\[ \\begin{aligned} "+sa+"^{2} + "+sb+"^{2} &= "+(sa*sa+sb*sb)+" \\\\ "+sc2+"^{2} &= "+(sc2*sc2)+" \\end{aligned} \\] Les valeurs correspondent, donc le triangle <b>est un triangle rectangle</b>.",
@@ -998,8 +998,8 @@ E("u1-right-test-decide", 1, ["9.13"], 3, "gen", function(){
     var ansTxt=isR?"Oui, il est rectangle":"Non, il n'est pas rectangle";
     var other=isR?"Non, il n'est pas rectangle":"Oui, il est rectangle";
     var opts=[{t:other, fb:"Calcule les deux côtés : "+(a*a)+" + "+(b*b)+" donne "+(a*a+b*b)+" et "+c+" au carré donne "+(c*c)+"."},
-              {t:"Il est rectangle seulement s'il est dessiné avec une marque d'angle droit", fb:"Les longueurs seules décident : le test des carrés n'a pas besoin d'une marque de dessin."},
-              {t:"On ne peut pas décider car les côtés sont presque un triplet", fb:"Presque peut se décider : les carrés correspondent exactement ou non."}];
+              {t:"Seulement avec une marque d'angle droit", fb:"Les longueurs seules décident : le test des carrés n'a pas besoin d'une marque de dessin."},
+              {t:"On ne peut pas décider, presque un triplet", fb:"Presque peut se décider : les carrés correspondent exactement ou non."}];
     var cunit=pick(["m","cm"]);
     return mcq("Un triangle a des côtés de "+a+" "+cunit+", "+b+" "+cunit+" et "+c+" "+cunit+". Un camarade dit qu'il doit être rectangle parce que ses côtés sont proches d'un triplet connu. Décide si c'est un triangle rectangle.", {t:ansTxt, fb:"Exact : "+(a*a)+" + "+(b*b)+" donne "+(a*a+b*b)+", et "+c+" au carré donne "+(c*c)+"."}, opts,
       "Applique le test exactement : \\[ \\begin{aligned} "+a+"^{2} + "+b+"^{2} &= "+(a*a+b*b)+" \\\\ "+c+"^{2} &= "+(c*c)+" \\end{aligned} \\] "+(isR?"Les valeurs correspondent, donc c'est <b>un triangle rectangle</b>.":"Les valeurs ne correspondent pas, donc ce n'est <b>pas un triangle rectangle</b>, même s'il est proche d'un triplet."),
@@ -1007,9 +1007,9 @@ E("u1-right-test-decide", 1, ["9.13"], 3, "gen", function(){
   }
   var t2=pick([[3,4,5],[5,12,13],[8,15,17],[7,24,25]]);
   var kk2=ri(1,4); var a2=t2[0]*kk2, b2=t2[1]*kk2, c2=t2[2]*kk2;
-  var opts2=[{t:"L'affirmation est fausse : le côté le plus long doit être mis au carré seul", fb:"Mettre un côté plus court au carré seul ne prouve rien sur le triangle."},
-             {t:"L'affirmation est fausse : les côtés doivent être additionnés avant d'être mis au carré", fb:"Additionner d'abord donne une valeur différente, pas le test du théorème."},
-             {t:"L'affirmation est juste : tout carré qui correspond prouve un angle droit", fb:"Un seul carré qui correspond n'est pas le test : la somme doit correspondre."}];
+  var opts2=[{t:"L'affirmation est fausse : le côté le plus long doit être mis au carré tout seul dans le test complet du théorème", fb:"Mettre un côté plus court au carré seul ne prouve rien sur le triangle."},
+             {t:"L'affirmation est fausse : les côtés doivent être additionnés avant d'être mis au carré dans le test du théorème", fb:"Additionner d'abord donne une valeur différente, pas le test du théorème."},
+             {t:"L'affirmation est juste : tout carré qui correspond prouve que le triangle a un angle droit dans ce test du théorème", fb:"Un seul carré qui correspond n'est pas le test : la somme doit correspondre."}];
   return mcq("Pour tester si un triangle de côtés "+a2+", "+b2+" et "+c2+" est rectangle, un élève vérifie seulement que \\("+b2+"^{2} = "+(b2*b2)+"\\) et affirme que cela prouve un angle droit. Juge l'affirmation.",
     {t:"L'affirmation est fausse : les deux carrés les plus courts doivent s'additionner pour donner le carré le plus long", fb:"Exact : "+(a2*a2)+" + "+(b2*b2)+" égale "+(c2*c2)+", et c'est ce test complet qui le prouve."}, opts2,
     "Le test complet compare une somme avec le carré le plus long : \\[ \\begin{aligned} "+a2+"^{2} + "+b2+"^{2} &= "+(a2*a2)+" + "+(b2*b2)+" \\\\ &= "+(c2*c2)+" = "+c2+"^{2} \\end{aligned} \\] Un seul carré ne prouve rien. L'affirmation est <b>fausse : les deux carrés les plus courts doivent s'additionner pour donner le carré le plus long</b>.",
@@ -1022,7 +1022,7 @@ E("u1-best-estimate", 1, ["6.30"], 3, "gen", function(){
   var vals=[u1r1(best-0.4), best, u1r1(best+0.4), u1r1(best+0.8)];
   var uniq=[]; vals.forEach(function(v){if(v>0&&uniq.indexOf(v)<0){uniq.push(v);}});
   while(uniq.length<4){uniq.push(u1r1(best+uniq.length));}
-  var opts=uniq.filter(function(v){return v!==best;}).slice(0,3).map(function(v){return {t:fmtD(v), fb:"Mets-le au carré : "+fmtD(v)+" au carré donne "+fmtD(Math.round(v*v*100)/100)+", plus loin de "+n+" que le meilleur choix."};});
+  var opts=uniq.filter(function(v){return v!==best;}).slice(0,3).map(function(v){return {t:fmtDF(v,1), fb:"Mets-le au carré : "+fmtD(v)+" au carré donne "+fmtD(Math.round(v*v*100)/100)+", plus loin de "+n+" que le meilleur choix."};});
   var q=mcq("Quelle valeur est la meilleure estimation de \\(\\sqrt{"+n+"}\\), avec une décimale ?", {t:fmtD(best), fb:"Oui : "+fmtD(best)+" au carré donne "+fmtD(Math.round(best*best*100)/100)+", le plus proche de "+n+"."}, opts,
     "Encadre d'abord la racine, puis essaie les dixièmes proches : \\[ \\begin{aligned} \\sqrt{"+n+"} &\\approx "+fmtD(root)+" \\\\ &\\approx "+fmtD(best)+" \\end{aligned} \\] La meilleure estimation est <b>"+fmtD(best)+"</b>.",
     {n:n, best:best});
@@ -1207,9 +1207,9 @@ E("u2-mult-context-match", 2, ["6.19"], 2, "gen", function () {
     },
     {
       ok: "Un plongeur descend de " + r + " mètres de plus chaque minute pendant " + n + " minutes. Le changement total de profondeur du plongeur.",
-      opp: "Un plongeur monte de " + r + " mètres chaque minute pendant " + n + " minutes. Le changement total de profondeur du plongeur.",
-      add: "Un plongeur est à " + r + " mètres sous la surface, puis il descend de " + n + " mètres de plus. La profondeur finale du plongeur.",
-      div: "Un plongeur descend de " + (r * n) + " mètres par étapes égales sur " + n + " minutes. La descente à chaque minute."
+      opp: "Un plongeur monte de " + r + " mètres de plus chaque minute pendant " + n + " minutes. Le changement total de profondeur du plongeur.",
+      add: "Un plongeur est à " + r + " mètres sous la surface, puis il descend de " + n + " mètres de plus. La profondeur finale du plongeur sous l'eau.",
+      div: "Un plongeur descend de " + (r * n) + " mètres par étapes égales sur " + n + " minutes. La descente du plongeur à chaque minute, en mètres."
     },
     {
       ok: "Maya retire " + r + " $ de son compte chaque semaine pendant " + n + " semaines. Le changement total de son solde.",
@@ -1267,21 +1267,21 @@ E("u2-div-context-match", 2, ["6.23"], 2, "gen", function () {
   var scens = [
     {
       ok: "Une baisse de température de " + total + " degrés se fait également sur " + n + " heures. La baisse à chaque heure.",
-      mult: "La température baisse de " + per + " degrés chaque heure pendant " + n + " heures. La baisse totale.",
-      add: "La température est de " + (-total) + " degrés et elle monte de " + n + " degrés. La température finale.",
+      mult: "La température baisse de " + per + " degrés chaque heure pendant " + n + " heures. La baisse totale de température.",
+      add: "La température est de " + (-total) + " degrés et elle monte de " + n + " degrés. La nouvelle température finale.",
       opp: "Une hausse de température de " + total + " degrés se fait également sur " + n + " heures. La hausse à chaque heure."
     },
     {
       ok: "Une dette de " + total + " $ est remboursée en " + n + " paiements hebdomadaires égaux. Le changement de la dette à chaque paiement.",
-      mult: "Un paiement de " + per + " $ est fait chaque semaine pendant " + n + " semaines. Le total payé.",
-      add: "Une dette de " + total + " $ augmente de " + n + " $ en frais. La nouvelle dette.",
-      opp: "Un compte d'épargne augmente de " + total + " $ répartis également sur " + n + " semaines. L'augmentation à chaque semaine."
+      mult: "Un paiement de " + per + " $ est fait chaque semaine pendant " + n + " semaines pour rembourser la dette. Le total payé.",
+      add: "Une dette de " + total + " $ augmente de " + n + " $ en frais supplémentaires. La nouvelle dette totale.",
+      opp: "Un compte d'épargne augmente de " + total + " $ répartis également sur " + n + " semaines complètes. L'augmentation du compte à chaque semaine."
     },
     {
       ok: "L'altitude d'un randonneur baisse de " + total + " m par montants égaux sur " + n + " sections du sentier. Le changement d'altitude sur chaque section.",
-      mult: "Un randonneur baisse de " + per + " m d'altitude sur chacune des " + n + " sections du sentier. La baisse totale.",
-      add: "Un randonneur à " + (-total) + " m par rapport au début du sentier monte de " + n + " m. La nouvelle position du randonneur.",
-      opp: "L'altitude d'un randonneur monte de " + total + " m par montants égaux sur " + n + " sections du sentier. Le changement sur chaque section."
+      mult: "Un randonneur baisse de " + per + " m d'altitude sur chacune des " + n + " sections du sentier. La baisse totale d'altitude sur tout le sentier.",
+      add: "Un randonneur à " + (-total) + " m par rapport au début du sentier monte de " + n + " m. La nouvelle position du randonneur sur le sentier, à la fin.",
+      opp: "L'altitude d'un randonneur monte de " + total + " m par montants égaux sur " + n + " sections du sentier. Le changement d'altitude sur chaque section du sentier."
     }
   ];
   var s = pick(scens);
@@ -1482,9 +1482,9 @@ E("u2-context-reasoning-var", 2, ["6.19", "6.23"], 3, "var", varset([
     return mcq(prompt,
       { t: "Un gardien laisse entrer 5 buts à chacun de 4 matchs. Le changement total de la différence de buts de l'équipe.", fb: "Exact. Un changement négatif de 5 se répète 4 fois." },
       [
-        { t: "Un gardien laisse entrer 5 buts dans un match et 4 buts dans le suivant. Le total des buts laissés entrer.", fb: "Cela combine deux montants différents et séparés, ce qui est une addition." },
-        { t: "Une équipe perd 20 points en tout, partagés également sur 4 matchs. Les points perdus à chaque match.", fb: "Cela partage un total en parts égales, ce qui est une division." },
-        { t: "Un joueur marque 5 buts à chacun de 4 matchs. Le total des buts marqués.", fb: "Ce changement est positif, donc il utiliserait un premier facteur positif." }
+        { t: "Un gardien laisse entrer 5 buts dans un match et 4 buts dans le suivant. Le total des buts laissés entrer dans les deux matchs.", fb: "Cela combine deux montants différents et séparés, ce qui est une addition." },
+        { t: "Une équipe perd 20 points en tout, partagés également sur 4 matchs. Les points perdus par l'équipe à chaque match.", fb: "Cela partage un total en parts égales, ce qui est une division." },
+        { t: "Un joueur marque 5 buts à chacun de 4 matchs. Le total des buts marqués par le joueur.", fb: "Ce changement est positif, donc il utiliserait un premier facteur positif." }
       ],
       solution, { mode: "var-mult-context" });
   },
@@ -1494,9 +1494,9 @@ E("u2-context-reasoning-var", 2, ["6.19", "6.23"], 3, "var", varset([
     return mcq(prompt,
       { t: "Un randonneur baisse de 36 m d'altitude par montants égaux sur 6 sections du sentier. Le changement sur chaque section.", fb: "Exact. Un total est partagé en 6 parts égales." },
       [
-        { t: "Un randonneur baisse de 6 m d'altitude sur chacune de 36 sections du sentier. La baisse totale.", fb: "Cela répète un changement plusieurs fois, ce qui est une multiplication." },
-        { t: "Un randonneur à -36 m monte de 6 m. La nouvelle position du randonneur.", fb: "Cela combine deux montants séparés, ce qui est une addition." },
-        { t: "Un randonneur monte de 36 m d'altitude par montants égaux sur 6 sections du sentier. Le changement sur chaque section.", fb: "Ce changement total est positif, donc son quotient serait positif." }
+        { t: "Un randonneur baisse de 6 m d'altitude sur chacune de 36 sections du sentier. La baisse totale d'altitude.", fb: "Cela répète un changement plusieurs fois, ce qui est une multiplication." },
+        { t: "Un randonneur à -36 m par rapport au début monte de 6 m sur le sentier. La nouvelle position du randonneur sur le sentier.", fb: "Cela combine deux montants séparés, ce qui est une addition." },
+        { t: "Un randonneur monte de 36 m d'altitude par montants égaux sur 6 sections du sentier. Le changement d'altitude sur chaque section.", fb: "Ce changement total est positif, donc son quotient serait positif." }
       ],
       solution, { mode: "var-div-context" });
   },
@@ -1625,7 +1625,7 @@ E("u3-estimate-product-benchmark", 3, ["6.7"], 1, "gen", function () {
     P = { n1: n1, d1: d1, n2: n2, d2: d2, p: p, bi: bi };
   }
   if (!P) P = { n1: 3, d1: 4, n2: 2, d2: 3, p: 0.5, bi: 1 };
-  var labels = ["0", "\\(" + FR(1, 2) + "\\)", "1", "2"];
+  var labels = ["0", "\\(" + FR(1, 2) + "\\)", "\\(" + FR(2, 2) + "\\)", "2"];
   var correct = labels[P.bi];
   var distractors = labels.filter(function (l, i) { return i !== P.bi; }).map(function (l) {
     var fb = l === "2" ? "Un produit de deux fractions plus petites que 1 est plus petit que 1, donc il ne peut pas être près de 2." : "Compare d'abord chaque facteur avec \\(" + FR(1, 2) + "\\) : le produit est plus près d'un autre repère.";
@@ -1929,14 +1929,14 @@ E("u3-successive-fractions", 3, ["6.15", "6.16"], 3, "gen", function () {
     P = { a: a, b: b, M: M, spent1: spent1, left1: left1, spent2: spent2, left2: left2, wrong1: wrong1, wrong3: wrong3 };
   }
   if (!P) P = { a: 2, b: 3, M: 36, spent1: 18, left1: 18, spent2: 6, left2: 12, wrong1: 6, wrong3: 30 };
-  var prompt = "Maya a " + P.M + " $. Elle dépense " + u3disp(1, P.a) + " de son argent pour un livre. Ensuite, elle dépense " + u3disp(1, P.b) + " de ce qui reste pour un jeu. Combien d'argent lui reste-t-il ?";
+  var prompt = "Maya a " + P.M + " $. Elle dépense " + u3disp(1, P.a) + " de son argent pour un livre. Ensuite, elle dépense " + u3disp(1, P.b) + " de ce qui reste pour un jeu. Combien d'argent, en dollars, lui reste-t-il ?";
   var solution = "Fais une étape à la fois, car la deuxième fraction agit sur ce qui reste : \\[ \\begin{aligned} " + P.M + " \\times " + FR(1, P.a) + " &= " + P.spent1 + " \\\\ " + P.M + " - " + P.spent1 + " &= " + P.left1 + " \\\\ " + P.left1 + " \\times " + FR(1, P.b) + " &= " + P.spent2 + " \\\\ " + P.left1 + " - " + P.spent2 + " &= " + P.left2 + " \\end{aligned} \\] Donc il lui reste <b>" + P.left2 + " $</b>.";
   return mcq(prompt,
-    { t: P.left2 + " $", fb: "Exact. La deuxième fraction est prise sur le montant qui reste après le premier achat." },
+    { t: "" + P.left2, fb: "Exact. La deuxième fraction est prise sur le montant qui reste après le premier achat." },
     [
-      { t: P.wrong1 + " $", fb: "Cela prend les deux fractions sur le total de " + P.M + " $, mais la deuxième fraction agit sur ce qui reste." },
-      { t: P.left1 + " $", fb: "C'est le montant qui reste après le livre seulement; l'achat du jeu doit encore être enlevé." },
-      { t: P.wrong3 + " $", fb: "Cela soustrait seulement la deuxième dépense du montant total et oublie le livre." }
+      { t: "" + P.wrong1, fb: "Cela prend les deux fractions sur le total de " + P.M + " $, mais la deuxième fraction agit sur ce qui reste." },
+      { t: "" + P.left1, fb: "C'est le montant qui reste après le livre seulement; l'achat du jeu doit encore être enlevé." },
+      { t: "" + P.wrong3, fb: "Cela soustrait seulement la deuxième dépense du montant total et oublie le livre." }
     ],
     solution, { mode: "successive-frac", a: P.a, b: P.b, M: P.M });
 }, ["La deuxième fraction porte sur le montant qui reste, pas sur le montant de départ.", "Trouve ce qui reste après la première dépense avant d'appliquer la deuxième fraction."]);
@@ -2300,7 +2300,7 @@ E("u4-net-build-parts", 4, ["10.12"], 2, "gen", function(){
     return mcq("Marcus découpe des pièces plates pour construire un prisme droit à base rectangulaire à partir d'un développement. Le prisme mesure "+lr+" cm de long, "+wr+" cm de large et "+hr+" cm de haut. De quel ensemble de pièces le développement a-t-il besoin ?",
       {t:"6 rectangles en 3 paires correspondantes", fb:"Oui : chaque paire forme deux faces opposées du prisme."},
       [{t:"6 rectangles tous de la même taille", fb:"Six rectangles égaux formeraient un cube : un prisme rectangulaire général a 3 paires différentes."},
-       {t:"4 rectangles et 2 carrés", fb:"Cet ensemble fonctionne seulement pour un prisme spécial : le développement complet est 6 rectangles en paires."},
+       {t:"4 rectangles et 2 carrés de la même taille", fb:"Cet ensemble fonctionne seulement pour un prisme spécial : le développement complet est 6 rectangles en paires."},
        {t:"5 rectangles et 1 triangle", fb:"Un prisme rectangulaire n'a aucune face triangulaire."}],
       "Un prisme droit à base rectangulaire a 6 faces, et les faces opposées correspondent, donc son développement a besoin de <b>6 rectangles en 3 paires correspondantes</b>.",
       {mode:"rect-parts"});
@@ -2576,41 +2576,41 @@ E("u5-context-extreme-percent", 5, ["3.1"], 1, "var", varset([
   function () {
     var sol = "Un pourcentage de plus de 100 % compare un nouveau montant à un total antérieur, et le nouveau montant est plus grand : \\[ \\begin{aligned} 145 \\% &> 100 \\% \\end{aligned} \\] Un contexte qui convient est donc : <b>le traversier a transporté, en juillet cette année, 145 % du nombre de passagers transportés en juillet l'an passé</b>.";
     return mcq("Quelle situation peut être décrite par un pourcentage de 145 % ?", { t: "Le traversier a transporté, en juillet cette année, 145 % du nombre de passagers transportés en juillet l'an passé.", fb: "Exact : le nouveau total est comparé à celui de juillet l'an passé et il est plus grand que ce total." }, [
-      { t: "Un élève a mangé 145 % d'un sandwich à l'heure du midi.", fb: "Un sandwich est le tout qui peut être mangé, donc la part mangée ne peut pas dépasser 100 % de ce tout." },
-      { t: "Une classe a 145 % de ses élèves absents aujourd'hui.", fb: "Les élèves absents font partie de la classe, donc cette part ne peut pas dépasser 100 %." },
-      { t: "Un réservoir est rempli d'eau à 145 % de sa capacité.", fb: "La capacité est le réservoir entier, donc l'eau dedans ne peut pas dépasser 100 % de la capacité." }
+      { t: "Un élève a mangé 145 % d'un sandwich entier qu'il avait apporté pour son repas à l'heure du midi à l'école de son quartier.", fb: "Un sandwich est le tout qui peut être mangé, donc la part mangée ne peut pas dépasser 100 % de ce tout." },
+      { t: "Une classe a 145 % de ses élèves inscrits de la classe sur la liste qui sont absents de l'école aujourd'hui.", fb: "Les élèves absents font partie de la classe, donc cette part ne peut pas dépasser 100 %." },
+      { t: "Un réservoir d'eau de la ville est rempli d'eau fraîche à 145 % de sa capacité maximale aujourd'hui même.", fb: "La capacité est le réservoir entier, donc l'eau dedans ne peut pas dépasser 100 % de la capacité." }
     ], sol, { mode: "ctx-145" });
   },
   function () {
     var sol = "Un pourcentage entre 0 % et 1 % décrit une très petite part d'un grand tout : \\[ \\begin{aligned} 0 \\% < 0,4 \\% &< 1 \\% \\end{aligned} \\] Un contexte qui convient est donc : <b>environ 0,4 % des gens d'une ville sont nés un 29 février</b>.";
     return mcq("Quelle situation peut être décrite par un pourcentage de 0,4 % ?", { t: "Environ 0,4 % des gens d'une ville sont nés un 29 février.", fb: "Exact : c'est une très petite part d'un grand groupe, bien en dessous de 1 %." }, [
-      { t: "Un joueur a marqué sur 0,4 % de 200 tirs au but cette saison.", fb: "Cela donnerait moins d'un but sur 200 tirs, et ici les buts sont des nombres entiers." },
+      { t: "Un joueur a marqué sur 0,4 % de 200 tirs cette saison.", fb: "Cela donnerait moins d'un but sur 200 tirs, et ici les buts sont des nombres entiers." },
       { t: "Un sondage de 10 élèves a trouvé que 0,4 % préfèrent l'hiver.", fb: "Avec seulement 10 élèves, la plus petite part pour un élève est 10 %, pas 0,4 %." },
-      { t: "Une recette donne 0,4 % comme part de farine dans une pincée de 10 g d'un mélange d'épices.", fb: "Cette part est bien trop petite pour un ingrédient principal mesuré dans une pincée de 10 g dans ce contexte." }
+      { t: "Une recette donne 0,4 % de farine dans une pincée de 10 g d'épices.", fb: "Cette part est bien trop petite pour un ingrédient principal mesuré dans une pincée de 10 g dans ce contexte." }
     ], sol, { mode: "ctx-04" });
   },
   function () {
     var sol = "Une croissance comparée à une valeur antérieure peut dépasser le tout antérieur : \\[ \\begin{aligned} 212 \\% &> 100 \\% \\end{aligned} \\] Un contexte qui convient est donc : <b>le nombre de membres du club de jardinage cette année égale 212 % du nombre d'il y a trois ans</b>.";
     return mcq("Quelle situation peut être décrite par un pourcentage de 212 % ?", { t: "Le nombre de membres du club de jardinage cette année égale 212 % du nombre d'il y a trois ans.", fb: "Exact : le nombre de membres est comparé à un total antérieur et il a plus que doublé." }, [
-      { t: "Un gardien de but a arrêté 212 % des tirs dans un match.", fb: "Les arrêts font partie des tirs reçus, donc cette part ne peut pas dépasser 100 %." },
-      { t: "Une tarte a 212 % de ses pointes servies au souper.", fb: "Les pointes servies font partie d'une seule tarte, donc la part ne peut pas dépasser 100 %." },
-      { t: "La batterie d'un téléphone est chargée à 212 % sur son écran.", fb: "Une charge complète est 100 % sur l'écran, donc la charge montrée ne peut pas la dépasser." }
+      { t: "Un gardien de but a arrêté 212 % des tirs dirigés vers son but dans un match de hockey.", fb: "Les arrêts font partie des tirs reçus, donc cette part ne peut pas dépasser 100 %." },
+      { t: "Une tarte a 212 % de ses pointes qui ont été servies aux invités pendant le souper.", fb: "Les pointes servies font partie d'une seule tarte, donc la part ne peut pas dépasser 100 %." },
+      { t: "La batterie d'un téléphone cellulaire est chargée à 212 % selon ce qui est montré sur son écran.", fb: "Une charge complète est 100 % sur l'écran, donc la charge montrée ne peut pas la dépasser." }
     ], sol, { mode: "ctx-212" });
   },
   function () {
     var sol = "Un pourcentage sous 1 % convient à un événement rare dans un très grand groupe : \\[ \\begin{aligned} 0 \\% < 0,75 \\% &< 1 \\% \\end{aligned} \\] Un contexte qui convient est donc : <b>environ 0,75 % des billets d'un grand tirage provincial ont été vendus dans une petite communauté</b>.";
     return mcq("Quelle situation peut être décrite par un pourcentage de 0,75 % ?", { t: "Environ 0,75 % des billets d'un grand tirage provincial ont été vendus dans une petite communauté.", fb: "Exact : une petite communauté compte pour une très petite part d'un très grand total." }, [
-      { t: "Une classe de 8 élèves a 0,75 % de ses élèves absents aujourd'hui.", fb: "Avec 8 élèves, un élève absent donne déjà 12,5 %, bien au-dessus de 0,75 %." },
-      { t: "Une pizza de 4 pointes a 0,75 % de ses pointes qui restent.", fb: "Ici les pointes sont entières, et une pointe sur quatre donne 25 %, pas une part sous 1 %." },
-      { t: "Une équipe a gagné 0,75 % des 12 matchs joués ce mois-ci.", fb: "Les victoires sont des matchs entiers, et une victoire sur 12 matchs donne déjà plus de 8 %." }
+      { t: "Une classe de 8 élèves a 0,75 % de ses élèves inscrits qui sont absents de l'école aujourd'hui ce matin.", fb: "Avec 8 élèves, un élève absent donne déjà 12,5 %, bien au-dessus de 0,75 %." },
+      { t: "Une pizza de 4 pointes a 0,75 % de ses pointes entières qui restent après le repas du midi.", fb: "Ici les pointes sont entières, et une pointe sur quatre donne 25 %, pas une part sous 1 %." },
+      { t: "Une équipe a gagné 0,75 % des 12 matchs de hockey joués par l'équipe pendant ce mois-ci.", fb: "Les victoires sont des matchs entiers, et une victoire sur 12 matchs donne déjà plus de 8 %." }
     ], sol, { mode: "ctx-075" });
   },
   function () {
     var sol = "Un prix comparé à son prix antérieur peut dépasser le tout d'origine : \\[ \\begin{aligned} 108 \\% &> 100 \\% \\end{aligned} \\] Un contexte qui convient est donc : <b>ce mois-ci, le prix d'un laissez-passer de sentier égale 108 % de son prix du mois passé</b>.";
     return mcq("Quelle situation peut être décrite par un pourcentage de 108 % ?", { t: "Ce mois-ci, le prix d'un laissez-passer de sentier égale 108 % de son prix du mois passé.", fb: "Exact : le nouveau prix est comparé à l'ancien prix et il est un peu plus grand." }, [
-      { t: "Un coureur a terminé 108 % d'un parcours de course de 10 km.", fb: "Le parcours est le trajet entier, donc la part terminée dans la course ne peut pas dépasser 100 % de ce trajet." },
-      { t: "Un sondage dit que 108 % d'une classe a choisi l'art comme matière préférée.", fb: "Les élèves qui choisissent l'art font partie de la classe, donc la part ne peut pas dépasser 100 %." },
-      { t: "Une cruche contient en ce moment 108 % de son volume en jus.", fb: "Le volume de la cruche est l'espace entier, donc le jus dedans ne peut pas dépasser 100 %." }
+      { t: "Un coureur a terminé 108 % d'un parcours de course de 10 km chronométré.", fb: "Le parcours est le trajet entier, donc la part terminée dans la course ne peut pas dépasser 100 % de ce trajet." },
+      { t: "Un sondage dit que 108 % d'une classe entière a choisi l'art comme matière préférée à l'école.", fb: "Les élèves qui choisissent l'art font partie de la classe, donc la part ne peut pas dépasser 100 %." },
+      { t: "Une cruche contient en ce moment 108 % de son volume entier en jus de fruits frais.", fb: "Le volume de la cruche est l'espace entier, donc le jus dedans ne peut pas dépasser 100 %." }
     ], sol, { mode: "ctx-108" });
   }
 ]), ["Demande-toi si le pourcentage compare avec un montant antérieur, qui peut être dépassé, ou prend une part d'un seul tout, qui ne peut pas l'être.", "Décide d'abord si le pourcentage est au-dessus de 100 % ou sous 1 %, puis associe-le à une comparaison ou à une très petite part."]);
@@ -2631,10 +2631,11 @@ E("u5-percent-convert", 5, ["3.5"], 1, "gen", function () {
   var it = pick(pool), pval = it.pn / it.pd;
   if (Math.random() < 0.5) {
     var dec = pval / 100;
+    var dpK = (fmtD(dec, 4).split(",")[1] || "").length;
     var cands = [
-      { t: fmtD(pval / 10, 4), fb: "Cela divise par 10 seulement ; un pourcentage est sur 100, donc divise par 100." },
-      { t: fmtD(pval / 1000, 4), fb: "Cela divise par 1000, une position trop loin ; un pourcentage est sur 100." },
-      { t: fmtD(pval, 4), fb: "C'est le nombre du pourcentage lui-même ; il faut encore le diviser par 100." },
+      { t: fmtDF(pval / 10, dpK), fb: "Cela divise par 10 seulement ; un pourcentage est sur 100, donc divise par 100." },
+      { t: fmtDF(pval / 1000, dpK + 1), fb: "Cela divise par 1000, une position trop loin ; un pourcentage est sur 100." },
+      { t: fmtDF(pval, dpK + 1), fb: "C'est le nombre du pourcentage lui-même ; il faut encore le diviser par 100." },
       { t: fmtD(pval * 100, 2), fb: "Cela multiplie par 100, ce qui sert à changer un nombre décimal en pourcentage." }
     ];
     var ds = u5pick3(fmtD(dec, 4), cands);
@@ -2660,10 +2661,11 @@ E("u5-percent-convert", 5, ["3.5"], 1, "gen", function () {
 E("u5-decimal-convert", 5, ["3.6"], 1, "gen", function () {
   if (Math.random() < 0.5) {
     var k = ri(1, 2500), v = k / 1000, pct = v * 100;
+    var dpP = (fmtD(pct, 2).split(",")[1] || "").length;
     var cands = [
-      { t: fmtD(pct / 10, 2) + " %", fb: "Cela déplace la virgule d'une position seulement ; un pourcentage demande deux positions." },
-      { t: fmtD(pct * 10, 1) + " %", fb: "Cela déplace la virgule de trois positions, une de trop." },
-      { t: fmtD(v, 3) + " %", fb: "Cela garde la valeur décimale et ajoute seulement un signe de pourcentage ; la valeur doit être multipliée par 100." },
+      { t: fmtDF(pct / 10, 3) + " %", fb: "Cela déplace la virgule d'une position seulement ; un pourcentage demande deux positions." },
+      { t: fmtDF(pct * 10, dpP) + " %", fb: "Cela déplace la virgule de trois positions, une de trop." },
+      { t: fmtDF(v, 3) + " %", fb: "Cela garde la valeur décimale et ajoute seulement un signe de pourcentage ; la valeur doit être multipliée par 100." },
       { t: fmtD(pct / 100, 3) + " %", fb: "Cela divise par 100, ce qui sert à changer un pourcentage en nombre décimal." }
     ];
     var ds = u5pick3(fmtD(pct, 2) + " %", cands);
@@ -2699,20 +2701,25 @@ E("u5-fraction-convert", 5, ["3.7"], 1, "gen", function () {
   if ((n * 1000) % d !== 0 || n % d === 0) { n = 3; d = 8; }
   var val = n / d, pct = val * 100;
   if (Math.random() < 0.5) {
+    var dpV = (fmtD(val, 3).split(",")[1] || "").length;
+    var dpM = Math.max(3, dpV + 1);
     var cands = [
-      { t: fmtD(val * 10, 3), fb: "C'est dix fois trop grand ; divise le numérateur par le dénominateur, comme ils sont écrits." },
-      { t: fmtD(val / 10, 4), fb: "C'est dix fois trop petit ; divise le numérateur par le dénominateur, comme ils sont écrits." },
-      { t: fmtD(d / n, 3), fb: "Cela divise le dénominateur par le numérateur, ce qui renverse la fraction." },
+      { t: fmtDF(val * 10, dpV), fb: "C'est dix fois trop grand ; divise le numérateur par le dénominateur, comme ils sont écrits." },
+      { t: fmtDF(val / 10, dpM), fb: "C'est dix fois trop petit ; divise le numérateur par le dénominateur, comme ils sont écrits." },
+      { t: fmtDF(d / n, dpM), fb: "Cela divise le dénominateur par le numérateur, ce qui renverse la fraction." },
       { t: fmtD(Math.floor(val), 0) + "," + fmtD(n, 0), fb: "Cela écrit le numérateur après la virgule au lieu de diviser." }
     ];
     var ds = u5pick3(fmtD(val, 3), cands);
     var sol = "Une fraction veut dire le numérateur divisé par le dénominateur : \\[ \\begin{aligned} " + FR(n, d) + " &= " + n + " \\div " + d + " \\\\ &= " + fmtD(val, 3) + " \\end{aligned} \\] Donc la forme décimale est <b>" + fmtD(val, 3) + "</b>.";
     return mcq("Exprime \\(" + FR(n, d) + "\\) sous forme décimale.", { t: fmtD(val, 3), fb: "Exact : diviser le numérateur par le dénominateur donne le nombre décimal." }, ds, sol, { mode: "frac-dec", n: n, d: d });
   }
+  var dpV2 = (fmtD(val, 3).split(",")[1] || "").length;
+  var dpP2 = (fmtD(pct, 2).split(",")[1] || "").length;
+  var dpM2 = Math.max(dpP2 + 1, dpV2);
   var cands2 = [
-    { t: fmtD(pct / 10, 2) + " %", fb: "Cela déplace la virgule d'une position seulement après la division ; un pourcentage demande deux positions." },
-    { t: fmtD(pct * 10, 1) + " %", fb: "Cela déplace la virgule d'une position de trop après la division." },
-    { t: fmtD(val, 3) + " %", fb: "C'est la forme décimale avec un signe de pourcentage ajouté ; la valeur doit encore être multipliée par 100." },
+    { t: fmtDF(pct / 10, dpM2) + " %", fb: "Cela déplace la virgule d'une position seulement après la division ; un pourcentage demande deux positions." },
+    { t: fmtDF(pct * 10, dpP2) + " %", fb: "Cela déplace la virgule d'une position de trop après la division." },
+    { t: fmtDF(val, dpM2) + " %", fb: "C'est la forme décimale avec un signe de pourcentage ajouté ; la valeur doit encore être multipliée par 100." },
     { t: fmtD(d / n * 100, 1) + " %", fb: "Cela renverse la fraction avant la conversion, donc le pourcentage est beaucoup trop grand." }
   ];
   var ds2 = u5pick3(fmtD(pct, 2) + " %", cands2);
@@ -2780,8 +2787,8 @@ E("u5-grid-fractional-percent", 5, ["3.2"], 2, "gen", function () {
     : (base === 0 ? "Ombrer " + compW + " d'un carré" : "Ombrer " + base + " carrés entiers et " + compW + " d'un autre carré");
   var thirdFb = f.v === 0.5 ? "Cela partage la moitié entre deux carrés, ce qui ombre un carré entier au total au lieu de la moitié d'un carré." : "Cela ombre le reste du dernier carré au lieu de la partie fractionnaire nommée par le pourcentage.";
   var cands = [
-    { t: base === 0 ? "Ombrer un carré entier" : "Ombrer " + (base + 1) + " carrés entiers", fb: "Cela arrondit le pourcentage au prochain carré entier et perd la partie fractionnaire." },
-    { t: base === 0 ? "Ombrer aucun carré" : "Ombrer " + base + " carrés entiers seulement", fb: "Cela enlève la partie fractionnaire du pourcentage ; une partie d'un autre carré est encore nécessaire." },
+    { t: base === 0 ? "Ombrer un carré entier, et aucun autre carré" : "Ombrer " + (base + 1) + " carrés entiers, sans partie d'un autre carré", fb: "Cela arrondit le pourcentage au prochain carré entier et perd la partie fractionnaire." },
+    { t: base === 0 ? "Ombrer aucun carré de la grille" : "Ombrer " + base + " carrés entiers seulement, et aucun autre carré", fb: "Cela enlève la partie fractionnaire du pourcentage ; une partie d'un autre carré est encore nécessaire." },
     { t: third, fb: thirdFb }
   ];
   var ds = u5pick3(corr, cands);
@@ -2795,10 +2802,10 @@ E("u5-grid-over-100", 5, ["3.3"], 2, "gen", function () {
   var gw = grids === 1 ? "une grille entière" : "deux grilles entières";
   var corr = "Ombrer " + gw + " et " + extra + " carrés d'une autre grille";
   var cands = [
-    { t: "Ombrer " + extra + " carrés d'une grille", fb: "Cela montre seulement la partie après les grilles entières ; les grilles entières elles-mêmes doivent aussi être ombrées." },
-    { t: grids === 1 ? "Ombrer deux grilles entières" : "Ombrer trois grilles entières", fb: "Cela arrondit aux grilles entières seulement et ajoute des carrés que le pourcentage ne demande pas." },
+    { t: "Ombrer " + extra + " carrés d'une grille, sans ombrer de grille entière", fb: "Cela montre seulement la partie après les grilles entières ; les grilles entières elles-mêmes doivent aussi être ombrées." },
+    { t: grids === 1 ? "Ombrer deux grilles entières, sans partie d'une autre grille" : "Ombrer trois grilles entières, sans partie d'une autre grille", fb: "Cela arrondit aux grilles entières seulement et ajoute des carrés que le pourcentage ne demande pas." },
     { t: "Ombrer " + gw + " et " + (100 - extra) + " carrés d'une autre grille", fb: "Cela ombre le complément sur la dernière grille au lieu des carrés de plus nommés par le pourcentage." },
-    { t: "Ombrer " + p + " carrés d'une grille", fb: "Une grille contient seulement 100 carrés, donc un pourcentage aussi grand demande plus d'une grille." }
+    { t: "Ombrer " + p + " carrés sur une seule et même grille", fb: "Une grille contient seulement 100 carrés, donc un pourcentage aussi grand demande plus d'une grille." }
   ];
   var ds = u5pick3(corr, cands);
   var sol = "Chaque grille contient 100 carrés, donc compte d'abord les centaines entières : \\[ \\begin{aligned} " + p + " \\% &= " + (grids * 100) + " \\% + " + extra + " \\% \\end{aligned} \\] Donc la représentation est : <b>" + corr + "</b>.";
@@ -2987,9 +2994,11 @@ E("u5-ratio-as-percent", 5, ["3.11"], 2, "gen", function () {
   if (a * 2 === T) a += 1;
   var b = T - a;
   var pct = a * 100 / T, comp = 100 - pct;
+  var c1t = fmtD(u5r2(a / b * 100), 1) + " %";
+  var c2t = (c1t.indexOf(",") >= 0) ? fmtDF(comp, 1) + " %" : fmtD(comp, 1) + " %";
   var cands = [
-    { t: fmtD(u5r2(a / b * 100), 1) + " %", fb: "Cela divise la première partie par la deuxième partie. Un pourcentage de l'entier divise la première partie par le total." },
-    { t: fmtD(comp, 1) + " %", fb: "C'est le pourcentage du deuxième groupe. La question demande le premier groupe." },
+    { t: c1t, fb: "Cela divise la première partie par la deuxième partie. Un pourcentage de l'entier divise la première partie par le total." },
+    { t: c2t, fb: "C'est le pourcentage du deuxième groupe. La question demande le premier groupe." },
     { t: fmtD(a, 0) + " %", fb: "Cela utilise le nombre lui-même comme pourcentage. Il faut d'abord comparer le nombre au total." },
     { t: fmtD(pct / 10, 2) + " %", fb: "C'est dix fois trop petit. On multiplie la fraction de l'entier par 100 pour obtenir un pourcentage." }
   ];
@@ -3048,24 +3057,24 @@ E("u5-context-for-ratio-ab", 5, ["3.15"], 2, "var", varset([
     var sol = "Un rapport compare deux quantités distinctes de même nature : \\[ \\begin{aligned} " + FR(3, 4) + " &\\text{ comme rapport veut dire } 3 \\text{ pour } 4 \\end{aligned} \\] Donc le contexte de rapport est <b>un bac avec 3 stylos rouges pour chaque 4 stylos bleus</b>.";
     return mcq("Dans quel contexte \\(" + FR(3, 4) + "\\) représente-t-il un rapport ?", { t: "Un bac contient 3 stylos rouges pour chaque 4 stylos bleus.", fb: "Exact : deux groupes distincts, les stylos rouges et les stylos bleus, sont comparés entre eux." }, [
       { t: "Trois des 4 tranches d'une pizza ont du fromage.", fb: "C'est une partie d'une pizza entière, une fraction partie à entier, pas une comparaison de deux groupes." },
-      { t: "Une classe partage 3 pizzas également entre 4 élèves.", fb: "C'est une situation de partage par division, pas une comparaison de deux groupes." },
+      { t: "Une classe partage 3 pizzas également entre 4 élèves de la classe.", fb: "C'est une situation de partage par division, pas une comparaison de deux groupes." },
       { t: "Une voiture parcourt 3 km en 4 minutes sur une route.", fb: "Cela compare deux unités différentes, la distance et le temps, donc c'est une situation de taux." }
     ], sol, { mode: "ctx-ratio-34" });
   },
   function () {
     var sol = "Les deux nombres doivent nommer deux groupes comparés : \\[ \\begin{aligned} " + FR(5, 3) + " &\\text{ comme rapport veut dire } 5 \\text{ pour } 3 \\end{aligned} \\] Donc le contexte de rapport est <b>une étagère avec 5 romans pour chaque 3 bandes dessinées</b>.";
     return mcq("Dans quel contexte \\(" + FR(5, 3) + "\\) représente-t-il un rapport ?", { t: "Une étagère contient 5 romans pour chaque 3 bandes dessinées.", fb: "Exact : les romans et les bandes dessinées sont deux groupes distincts comparés." }, [
-      { t: "Cinq des 3 pages assignées ont été lues hier soir.", fb: "Une partie ne peut pas être 5 de 3 pages de cette façon. Ici, les nombres ne comparent pas deux groupes." },
-      { t: "Un groupe partage 5 barres granola entre 3 amis.", fb: "C'est une division de partage, pas une comparaison de deux groupes." },
-      { t: "Un tuyau remplit 5 L en 3 minutes.", fb: "Cela compare les litres et les minutes, deux unités différentes, donc c'est une situation de taux." }
+      { t: "Cinq des 3 pages assignées pour les devoirs ont été lues hier soir.", fb: "Une partie ne peut pas être 5 de 3 pages de cette façon. Ici, les nombres ne comparent pas deux groupes." },
+      { t: "Un groupe partage 5 barres granola entre 3 amis du groupe.", fb: "C'est une division de partage, pas une comparaison de deux groupes." },
+      { t: "Un tuyau remplit 5 L en 3 minutes à la piscine.", fb: "Cela compare les litres et les minutes, deux unités différentes, donc c'est une situation de taux." }
     ], sol, { mode: "ctx-ratio-53" });
   },
   function () {
     var sol = "Les victoires et les défaites sont deux résultats distincts comparés : \\[ \\begin{aligned} " + FR(7, 2) + " &\\text{ comme rapport veut dire } 7 \\text{ pour } 2 \\end{aligned} \\] Donc le contexte de rapport est <b>une équipe avec 7 victoires pour chaque 2 défaites</b>.";
     return mcq("Dans quel contexte \\(" + FR(7, 2) + "\\) représente-t-il un rapport ?", { t: "Une équipe a 7 victoires pour chaque 2 défaites cette saison.", fb: "Exact : les victoires et les défaites sont deux nombres distincts comparés entre eux." }, [
-      { t: "Sept des 2 périodes d'un match ont été sans point.", fb: "Une partie ne peut pas être 7 de 2 périodes de cette façon. Ici, les nombres ne comparent pas deux groupes." },
+      { t: "Sept des 2 périodes d'un match de hockey ont été sans point du tout.", fb: "Une partie ne peut pas être 7 de 2 périodes de cette façon. Ici, les nombres ne comparent pas deux groupes." },
       { t: "Sept joueurs partagent 2 bouteilles d'eau à l'entraînement.", fb: "C'est une situation de partage, pas une comparaison de deux groupes." },
-      { t: "Une surfaceuse couvre 7 m en 2 secondes.", fb: "Cela compare les mètres et les secondes, deux unités différentes, donc c'est une situation de taux." }
+      { t: "Une surfaceuse couvre 7 m en 2 secondes sur la glace.", fb: "Cela compare les mètres et les secondes, deux unités différentes, donc c'est une situation de taux." }
     ], sol, { mode: "ctx-ratio-72" });
   },
   function () {
@@ -3073,13 +3082,13 @@ E("u5-context-for-ratio-ab", 5, ["3.15"], 2, "var", varset([
     return mcq("Dans quel contexte \\(" + FR(2, 5) + "\\) représente-t-il un rapport ?", { t: "Un jardin a 2 rosiers pour chaque 5 parcelles de tulipes.", fb: "Exact : deux groupes distincts de plantes sont comparés entre eux." }, [
       { t: "Deux des 5 rangées du jardin sont plantées de roses.", fb: "C'est une partie d'un jardin entier, une fraction partie à entier." },
       { t: "Deux jardiniers partagent 5 arrosoirs.", fb: "C'est une situation de partage, pas une comparaison de deux groupes." },
-      { t: "La pluie tombe de 2 cm en 5 heures pendant une tempête.", fb: "Cela compare les centimètres et les heures, deux unités différentes, donc c'est une situation de taux." }
+      { t: "La pluie tombe de 2 cm en 5 heures pendant une tempête d'automne.", fb: "Cela compare les centimètres et les heures, deux unités différentes, donc c'est une situation de taux." }
     ], sol, { mode: "ctx-ratio-25" });
   },
   function () {
     var sol = "Deux types de chansons dans la même liste sont comparés entre eux : \\[ \\begin{aligned} " + FR(4, 9) + " &\\text{ comme rapport veut dire } 4 \\text{ pour } 9 \\end{aligned} \\] Donc le contexte de rapport est <b>une liste avec 4 chansons rock pour chaque 9 chansons pop</b>.";
     return mcq("Dans quel contexte \\(" + FR(4, 9) + "\\) représente-t-il un rapport ?", { t: "Une liste contient 4 chansons rock pour chaque 9 chansons pop.", fb: "Exact : les chansons rock et les chansons pop sont deux groupes distincts comparés." }, [
-      { t: "Quatre des 9 chansons d'un album sont des chansons rock.", fb: "C'est une partie d'un album entier, une fraction partie à entier." },
+      { t: "Quatre des 9 chansons d'un album de musique sont des chansons rock.", fb: "C'est une partie d'un album entier, une fraction partie à entier." },
       { t: "Quatre chanteurs partagent 9 microphones sur scène.", fb: "C'est une situation de partage, pas une comparaison de deux groupes." },
       { t: "Un haut-parleur joue 4 chansons en 9 minutes.", fb: "Cela compare les chansons et les minutes, deux unités différentes, donc c'est une situation de taux." }
     ], sol, { mode: "ctx-ratio-49" });
@@ -3205,41 +3214,41 @@ E("u5-why-rate-not-percent", 5, ["3.18"], 2, "var", varset([
   function () {
     var sol = "Un pourcentage compare une partie avec un entier mesuré de la même façon, alors qu'un taux garde deux unités différentes : \\[ \\begin{aligned} 60 \\text{ km/h} &\\text{ compare km et h} \\end{aligned} \\] Donc la raison est que <b>un taux compare deux unités différentes, et un pourcentage compare une partie avec un entier de même nature</b>.";
     return mcq("Une vitesse est notée 60 km/h. Pourquoi ce taux ne peut-il pas s'écrire comme un pourcentage ?", { t: "Il compare deux unités différentes, les kilomètres et les heures, alors qu'un pourcentage compare une partie avec un entier de même nature.", fb: "Exact : les deux quantités ont des unités différentes, donc il n'y a pas un seul entier dont on peut prendre un pourcentage." }, [
-      { t: "Le nombre 60 est trop grand pour être un pourcentage.", fb: "Les pourcentages peuvent avoir n'importe quelle taille, même plus de 100 %. La taille du nombre n'est pas le problème." },
-      { t: "Un pourcentage doit toujours s'écrire d'abord comme une fraction.", fb: "La forme d'écriture n'est pas le problème. Les pourcentages et les taux comparent des types de quantités différents." },
-      { t: "Les vitesses sont mesurées avec des instruments, et les pourcentages ne le sont pas.", fb: "La façon de mesurer une valeur ne décide pas de son type. Ce sont les unités comparées qui le décident." }
+      { t: "Le nombre 60 est trop grand pour être un pourcentage, parce qu'un pourcentage ne peut jamais dépasser le nombre 100 dans une situation.", fb: "Les pourcentages peuvent avoir n'importe quelle taille, même plus de 100 %. La taille du nombre n'est pas le problème." },
+      { t: "Un pourcentage doit toujours s'écrire d'abord comme une fraction avant de pouvoir être utilisé, et un taux ne s'écrit jamais de cette façon.", fb: "La forme d'écriture n'est pas le problème. Les pourcentages et les taux comparent des types de quantités différents." },
+      { t: "Les vitesses sont mesurées avec des instruments comme des compteurs de vitesse, et les pourcentages ne sont mesurés avec aucun instrument.", fb: "La façon de mesurer une valeur ne décide pas de son type. Ce sont les unités comparées qui le décident." }
     ], sol, { mode: "why-speed" });
   },
   function () {
     var sol = "Les litres et les kilomètres sont des mesures différentes, même si 100 apparaît dans le taux : \\[ \\begin{aligned} 8 \\text{ L}/100 \\text{ km} &\\text{ compare L et km} \\end{aligned} \\] Donc ce n'est pas 8 %, parce que <b>le 100 du taux compte des kilomètres, pas un entier mesuré en litres</b>.";
     return mcq("Une voiture consomme du carburant à 8 L/100 km. Pourquoi ce taux n'est-il pas la même chose que 8 % ?", { t: "Le taux compare les litres avec les kilomètres, deux unités différentes, alors qu'un pourcentage compare une partie avec un entier de même nature.", fb: "Exact : le 100 appartient aux kilomètres, donc le taux n'est pas une partie sur 100 d'un seul entier." }, [
-      { t: "La consommation de carburant est toujours plus grande que 8 % dans les vraies voitures.", fb: "La taille des vraies valeurs de consommation n'est pas le point. Ce sont les unités comparées qui décident du type." },
-      { t: "Un pourcentage ne peut jamais contenir le nombre 100.", fb: "Les pourcentages sont basés sur 100. Le problème est ce que le 100 mesure dans ce taux." },
-      { t: "Les taux écrits avec une barre oblique peuvent toujours être renommés comme pourcentages.", fb: "Une barre oblique seule ne fait pas un pourcentage. Les deux côtés doivent mesurer le même type d'entier." }
+      { t: "La consommation de carburant est toujours plus grande que 8 % dans les vraies voitures qui roulent chaque jour sur les routes de la province.", fb: "La taille des vraies valeurs de consommation n'est pas le point. Ce sont les unités comparées qui décident du type." },
+      { t: "Un pourcentage ne peut jamais contenir le nombre 100, et ce taux a le nombre 100 en plein milieu, donc il ne peut pas en être un dans ce cas.", fb: "Les pourcentages sont basés sur 100. Le problème est ce que le 100 mesure dans ce taux." },
+      { t: "Les taux écrits avec une barre oblique peuvent toujours être renommés comme pourcentages, peu importe les deux quantités que le taux compare entre elles ici.", fb: "Une barre oblique seule ne fait pas un pourcentage. Les deux côtés doivent mesurer le même type d'entier." }
     ], sol, { mode: "why-fuel" });
   },
   function () {
     var sol = "Les dollars et les heures mesurent des choses différentes, donc aucun entier unique n'existe pour un pourcentage : \\[ \\begin{aligned} 15 \\text{ dollars/h} &\\text{ compare dollars et heures} \\end{aligned} \\] Donc la raison est que <b>un pourcentage demande une partie et un entier dans la même unité, et ce taux a deux unités différentes</b>.";
     return mcq("Un salaire est noté 15 $/h. Pourquoi ce taux ne peut-il pas s'écrire comme un pourcentage ?", { t: "Il compare les dollars avec les heures, deux unités différentes, alors qu'un pourcentage compare une partie avec un entier mesuré de la même façon.", fb: "Exact : le salaire et le temps sont des mesures différentes, donc le salaire est un taux, pas une part d'un seul entier." }, [
-      { t: "Les salaires sont payés en argent, et les pourcentages ne peuvent pas toucher à l'argent.", fb: "Les pourcentages touchent souvent à l'argent, comme une taxe sur un prix. Ici, le problème est l'association des unités." },
-      { t: "La valeur 15 est un nombre entier, et les pourcentages doivent être des décimales.", fb: "Les pourcentages peuvent être des nombres entiers. La forme du nombre n'est pas le problème." },
-      { t: "Un salaire horaire reste le même chaque semaine, et les pourcentages doivent changer.", fb: "Le fait qu'une valeur change n'a rien à voir avec le fait qu'elle soit un pourcentage." }
+      { t: "Les salaires sont payés en argent, et les pourcentages ne peuvent jamais toucher à l'argent, donc un salaire ne peut jamais être un pourcentage du tout.", fb: "Les pourcentages touchent souvent à l'argent, comme une taxe sur un prix. Ici, le problème est l'association des unités." },
+      { t: "La valeur 15 est un nombre entier, et les pourcentages doivent toujours être des nombres décimaux avec une virgule pour être des pourcentages.", fb: "Les pourcentages peuvent être des nombres entiers. La forme du nombre n'est pas le problème." },
+      { t: "Un salaire horaire reste le même chaque semaine, et les pourcentages doivent changer chaque semaine pour rester des pourcentages dans ce cas.", fb: "Le fait qu'une valeur change n'a rien à voir avec le fait qu'elle soit un pourcentage." }
     ], sol, { mode: "why-wage" });
   },
   function () {
     var sol = "Les battements et les minutes sont des unités différentes, donc le nombre par minute est un taux : \\[ \\begin{aligned} 72 \\text{ battements/min} &\\text{ compare battements et minutes} \\end{aligned} \\] Donc la raison est que <b>un taux relie deux unités différentes, et un pourcentage est une part d'un entier en une seule unité</b>.";
     return mcq("Un rythme cardiaque au repos est de 72 battements/min. Pourquoi ce taux ne peut-il pas s'écrire comme un pourcentage ?", { t: "Il compare les battements avec les minutes, deux unités différentes, alors qu'un pourcentage est une partie sur 100 d'un seul entier.", fb: "Exact : il n'y a pas un seul entier mesuré en battements dont le taux serait une part." }, [
-      { t: "Les rythmes cardiaques touchent à la santé, et les pourcentages sont seulement pour les matières scolaires.", fb: "Les pourcentages sont aussi utilisés en santé. Ce sont les unités comparées qui décident du type." },
-      { t: "Le nombre 72 n'a pas de partie décimale, et les pourcentages en demandent une.", fb: "Les pourcentages peuvent être des nombres entiers. La forme du nombre n'est pas le problème." },
-      { t: "Un pourcentage doit décrire quelque chose qui dure exactement une minute.", fb: "Les pourcentages n'ont pas d'exigence de temps. Le problème est les deux unités différentes du taux." }
+      { t: "Les rythmes cardiaques touchent à la santé, et les pourcentages sont seulement pour les matières scolaires de tous les jours à l'école.", fb: "Les pourcentages sont aussi utilisés en santé. Ce sont les unités comparées qui décident du type." },
+      { t: "Le nombre 72 n'a pas de partie décimale, et les pourcentages demandent toujours une partie décimale après la virgule dans le nombre.", fb: "Les pourcentages peuvent être des nombres entiers. La forme du nombre n'est pas le problème." },
+      { t: "Un pourcentage doit décrire quelque chose qui dure exactement une minute, parce que le taux est compté par minute dans le taux.", fb: "Les pourcentages n'ont pas d'exigence de temps. Le problème est les deux unités différentes du taux." }
     ], sol, { mode: "why-heart" });
   },
   function () {
     var sol = "Un prix par kilogramme relie l'argent à la masse, deux mesures différentes : \\[ \\begin{aligned} 4 \\text{ dollars/kg} &\\text{ compare dollars et kilogrammes} \\end{aligned} \\] Donc la raison est que <b>le taux compare deux unités différentes, et un pourcentage compare une partie avec un entier de même nature</b>.";
     return mcq("Le fromage coûte 4 $/kg. Pourquoi ce taux ne peut-il pas s'écrire comme un pourcentage ?", { t: "Il compare les dollars avec les kilogrammes, deux unités différentes, alors qu'un pourcentage compare une partie avec un entier de même nature.", fb: "Exact : l'argent et la masse sont des mesures différentes, donc le prix est un taux, pas une part d'un entier." }, [
-      { t: "Les prix par kilogramme sont toujours moins que 100, et les pourcentages ne le sont pas.", fb: "Les pourcentages peuvent être sous 100, égaux à 100, ou plus que 100. La taille n'est pas le problème." },
-      { t: "Un pourcentage ne peut pas être utilisé dans une épicerie.", fb: "Les pourcentages sont utilisés dans les magasins pour les réductions et la taxe. Ici, le problème est l'association des unités." },
-      { t: "Le taux utilise une barre oblique, et les pourcentages n'utilisent jamais de symboles.", fb: "Les pourcentages utilisent le symbole %. Le symbole utilisé ne décide pas du type." }
+      { t: "Les prix par kilogramme sont toujours moins que 100, et les pourcentages ne sont pas moins que 100, donc un prix ne peut pas être un pourcentage.", fb: "Les pourcentages peuvent être sous 100, égaux à 100, ou plus que 100. La taille n'est pas le problème." },
+      { t: "Un pourcentage ne peut pas être utilisé dans une épicerie pour acheter des aliments comme du fromage au comptoir de l'épicerie du quartier.", fb: "Les pourcentages sont utilisés dans les magasins pour les réductions et la taxe. Ici, le problème est l'association des unités." },
+      { t: "Le taux utilise une barre oblique, et les pourcentages n'utilisent jamais de symboles dans leur écriture habituelle des nombres.", fb: "Les pourcentages utilisent le symbole %. Le symbole utilisé ne décide pas du type." }
     ], sol, { mode: "why-cheese" });
   }
 ]), ["Compare ce que chaque idée relie : un pourcentage relie une partie à un entier de même nature, un taux relie deux unités différentes.", "Nomme d'abord les deux unités du taux, puis demande si un pourcentage pourrait comparer ces deux mêmes choses."]);
@@ -3290,26 +3299,26 @@ E("u5-successive-percents", 5, ["6.2"], 3, "gen", function () {
     var P = pick([100, 150, 200, 300, 350, 400]), d1 = pick([10, 20, 25, 30]), d2 = pick([10, 20, 25].filter(function (x) { return x !== d1; }));
     var fin = u5r2(P * (1 - d1 / 100) * (1 - d2 / 100));
     var cands = [
-      { t: fmtDF(u5r2(P * (1 - (d1 + d2) / 100)), 2) + " $", fb: "Cela additionne les deux réductions en une seule. La deuxième réduction agit sur le prix déjà réduit, pas sur le prix complet." },
-      { t: fmtDF(u5r2(P * (1 - d1 / 100)), 2) + " $", fb: "Cela applique seulement la première réduction. La deuxième réduction doit encore être retirée de ce prix." },
-      { t: fmtDF(u5r2(P * (1 - d2 / 100)), 2) + " $", fb: "Cela applique seulement la deuxième réduction. La première réduction vient avant elle." }
+      { t: fmtDF(u5r2(P * (1 - (d1 + d2) / 100)), 2), fb: "Cela additionne les deux réductions en une seule. La deuxième réduction agit sur le prix déjà réduit, pas sur le prix complet." },
+      { t: fmtDF(u5r2(P * (1 - d1 / 100)), 2), fb: "Cela applique seulement la première réduction. La deuxième réduction doit encore être retirée de ce prix." },
+      { t: fmtDF(u5r2(P * (1 - d2 / 100)), 2), fb: "Cela applique seulement la deuxième réduction. La première réduction vient avant elle." }
     ];
-    var ds = u5pick3(fmtDF(fin, 2) + " $", cands);
+    var ds = u5pick3(fmtDF(fin, 2), cands);
     var mid = u5r2(P * (1 - d1 / 100));
     var sol = "Chaque réduction agit sur le prix laissé par l'étape précédente : \\[ \\begin{aligned} \\text{après la première réduction} &= " + fmtDF(P, 2) + " \\times " + fmtD(1 - d1 / 100, 2) + " = " + fmtDF(mid, 2) + " \\\\ \\text{prix final} &= " + fmtDF(mid, 2) + " \\times " + fmtD(1 - d2 / 100, 2) + " = " + fmtDF(fin, 2) + " \\end{aligned} \\] Donc le prix final est <b>" + fmtDF(fin, 2) + " $</b>.";
-    return mcq("Un vélo coûte " + fmtDF(P, 2) + " $. Il est d'abord réduit de " + d1 + " %, puis le prix de solde est réduit d'un autre " + d2 + " % à la caisse. Quel est le prix final ?", { t: fmtDF(fin, 2) + " $", fb: "Exact : la deuxième réduction est retirée du prix réduit, étape par étape." }, ds, sol, { mode: "two-discounts", p: P, d1: d1, d2: d2 });
+    return mcq("Un vélo coûte " + fmtDF(P, 2) + " $. Il est d'abord réduit de " + d1 + " %, puis le prix de solde est réduit d'un autre " + d2 + " % à la caisse. Quel est le prix final, en dollars ?", { t: fmtDF(fin, 2), fb: "Exact : la deuxième réduction est retirée du prix réduit, étape par étape." }, ds, sol, { mode: "two-discounts", p: P, d1: d1, d2: d2 });
   }
   var P2 = pick([100, 150, 200, 250, 300, 400]), r = pick([10, 15, 20, 25, 30]);
   var fin2 = u5r2(P2 * (1 - r / 100) * (1 + r / 100));
   var cands2 = [
-    { t: fmtDF(P2, 2) + " $", fb: "Des pourcentages égaux ne s'annulent pas ici. La taxe est calculée sur le prix de solde plus petit, donc le résultat est sous le prix complet." },
-    { t: fmtDF(u5r2(P2 * (1 - r / 100)), 2) + " $", fb: "C'est le prix de solde seulement. La taxe doit encore être ajoutée." },
-    { t: fmtDF(u5r2(P2 * (1 + r / 100)), 2) + " $", fb: "Cela taxe le prix complet et saute la réduction. La réduction vient d'abord." }
+    { t: fmtDF(P2, 2), fb: "Des pourcentages égaux ne s'annulent pas ici. La taxe est calculée sur le prix de solde plus petit, donc le résultat est sous le prix complet." },
+    { t: fmtDF(u5r2(P2 * (1 - r / 100)), 2), fb: "C'est le prix de solde seulement. La taxe doit encore être ajoutée." },
+    { t: fmtDF(u5r2(P2 * (1 + r / 100)), 2), fb: "Cela taxe le prix complet et saute la réduction. La réduction vient d'abord." }
   ];
-  var ds2 = u5pick3(fmtDF(fin2, 2) + " $", cands2);
+  var ds2 = u5pick3(fmtDF(fin2, 2), cands2);
   var mid2 = u5r2(P2 * (1 - r / 100));
   var sol2 = "Le pourcentage de taxe agit sur le prix de solde, qui est plus petit que le prix complet : \\[ \\begin{aligned} \\text{prix de solde} &= " + fmtDF(P2, 2) + " \\times " + fmtD(1 - r / 100, 2) + " = " + fmtDF(mid2, 2) + " \\\\ \\text{prix final} &= " + fmtDF(mid2, 2) + " \\times " + fmtD(1 + r / 100, 2) + " = " + fmtDF(fin2, 2) + " \\end{aligned} \\] Donc le prix final est <b>" + fmtDF(fin2, 2) + " $</b>, pas le prix complet.";
-  return mcq("Un manteau coûte " + fmtDF(P2, 2) + " $. Il est réduit de " + r + " %, puis une taxe de " + r + " % est ajoutée au prix de solde. Quel est le prix final ?", { t: fmtDF(fin2, 2) + " $", fb: "Exact : la taxe est ajoutée au prix réduit, donc elle ajoute moins que ce que la réduction a retiré." }, ds2, sol2, { mode: "discount-tax-equal", p: P2, r: r });
+  return mcq("Un manteau coûte " + fmtDF(P2, 2) + " $. Il est réduit de " + r + " %, puis une taxe de " + r + " % est ajoutée au prix de solde. Quel est le prix final, en dollars ?", { t: fmtDF(fin2, 2), fb: "Exact : la taxe est ajoutée au prix réduit, donc elle ajoute moins que ce que la réduction a retiré." }, ds2, sol2, { mode: "discount-tax-equal", p: P2, r: r });
 }, ["Les pourcentages successifs n'agissent jamais sur le même montant de départ. Chacun agit sur le montant laissé par l'étape précédente.", "Calcule d'abord le montant après le premier changement de pourcentage, et utilise-le comme nouveau montant de départ."]);
 
 // 27. L3, 6.3, CR 2: percent of a percent applied to a quantity.
@@ -3365,8 +3374,8 @@ E("u5-better-buy", 5, ["6.29"], 3, "gen", function () {
   var other = aBetter ? "Paquet B, à " + fmtDF(u2 / 100, 2) + " $ pour chaque " + it.unit : "Paquet A, à " + fmtDF(u1 / 100, 2) + " $ pour chaque " + it.unit;
   var cands = [
     { t: other, fb: "Ce paquet coûte plus pour chaque " + it.unit + ". Compare le prix d'un seul article, pas seulement le prix du paquet." },
-    { t: "Les deux paquets coûtent le même prix pour chaque " + it.unit + ".", fb: "Les prix unitaires sont différents. Divise chaque prix de paquet par son nombre pour voir l'écart." },
-    { t: "Les paquets ne peuvent pas être comparés parce qu'ils contiennent des nombres différents.", fb: "Les nombres différents sont justement la raison d'utiliser les taux unitaires. Le prix d'un seul article peut toujours être comparé." }
+    { t: "Les deux coûtent le même prix pour chaque " + it.unit + ".", fb: "Les prix unitaires sont différents. Divise chaque prix de paquet par son nombre pour voir l'écart." },
+    { t: "Les paquets ne peuvent pas être comparés.", fb: "Les nombres différents sont justement la raison d'utiliser les taux unitaires. Le prix d'un seul article peut toujours être comparé." }
   ];
   var ds = u5pick3(corr, cands);
   var sol = "Compare le prix d'un seul article dans chaque paquet : \\[ \\begin{aligned} \\text{Paquet A} &= " + fmtDF(p1, 2) + " \\div " + c1 + " = " + fmtDF(u1 / 100, 2) + " \\text{ par " + it.unit + "} \\\\ \\text{Paquet B} &= " + fmtDF(p2, 2) + " \\div " + c2 + " = " + fmtDF(u2 / 100, 2) + " \\text{ par " + it.unit + "} \\end{aligned} \\] Le prix unitaire le plus bas gagne, donc le meilleur achat est <b>" + corr + "</b>.";
@@ -3479,8 +3488,9 @@ E("u6-solve-one-step", 6, ["8.4"], 1, "gen", function () {
     var eq = form === "ax" ? fmtD(a) + "x = " + fmtD(b) : "\\frac{x}{" + a + "} = " + fmtD(b);
     var wrong = form === "ax" ? [b * a, b - a, b + a] : [b / a, b - a, b + a];
     var corr = fmtD(solX);
-    var cands = wrong.map(function (w) {
-      return { t: fmtD(w), fb: form === "ax" ? "Cela utilise la mauvaise opération. Pour défaire la multiplication par " + a + ", divise les deux côtés par " + a + "." : "Cela utilise la mauvaise opération. Pour défaire la division par " + a + ", multiplie les deux côtés par " + a + "." };
+    var dpA = (fmtD(wrong[0]).split(",")[1] || "").length;
+    var cands = wrong.map(function (w, wi) {
+      return { t: (form === "xa" && wi === 1 && dpA > 0) ? fmtDF(w, dpA) : fmtD(w), fb: form === "ax" ? "Cela utilise la mauvaise opération. Pour défaire la multiplication par " + a + ", divise les deux côtés par " + a + "." : "Cela utilise la mauvaise opération. Pour défaire la division par " + a + ", multiplie les deux côtés par " + a + "." };
     });
     var ds = u6pick3(corr, cands);
     if (!ds) continue;
@@ -3615,9 +3625,9 @@ E("u6-identify-error", 6, ["8.6"], 2, "gen", function () {
     var sol2 = "Chaque terme doit être traité de la même façon. Il est plus simple de soustraire d'abord : \\[ \\begin{aligned} " + fmtD(a2) + "x + " + fmtD(b2) + " &= " + fmtD(c2) + " \\\\ " + fmtD(a2) + "x &= " + fmtD(c2 - b2) + " \\\\ x &= " + fmtD(x2) + " \\end{aligned} \\] Donc l'erreur est <b>" + corr2 + "</b>";
     return mcq(prompt2, { t: corr2, fb: "Exact. Diviser seulement certains termes par " + fmtD(a2) + " change l'équation." },
       [
-        { t: "L'élève a soustrait " + fmtD(b2) + " d'un seul côté.", fb: "L'élève n'a jamais soustrait " + fmtD(b2) + ". Regarde quels termes ont été divisés dans la première ligne." },
-        { t: "L'élève a utilisé la mauvaise variable dans la réponse finale.", fb: "La variable est x partout. Le problème est dans la façon dont les termes ont été divisés." },
-        { t: "Il n'y a pas d'erreur ; la réponse de l'élève est correcte.", fb: "Vérifie par remplacement : " + fmtD(a2) + "(" + fmtD(c2 / a2 - b2) + ") + " + fmtD(b2) + " n'égale pas " + fmtD(c2) + "." }
+        { t: "L'élève a soustrait " + fmtD(b2) + " d'un seul côté de l'équation au lieu de le soustraire des deux côtés.", fb: "L'élève n'a jamais soustrait " + fmtD(b2) + ". Regarde quels termes ont été divisés dans la première ligne." },
+        { t: "L'élève a utilisé la mauvaise variable dans la réponse finale de son travail.", fb: "La variable est x partout. Le problème est dans la façon dont les termes ont été divisés." },
+        { t: "Il n'y a pas d'erreur ; la réponse de l'élève est correcte et son travail est bien fait.", fb: "Vérifie par remplacement : " + fmtD(a2) + "(" + fmtD(c2 / a2 - b2) + ") + " + fmtD(b2) + " n'égale pas " + fmtD(c2) + "." }
       ], sol2, { mode: "identify-error-divide", a: a2, b: b2 });
   }
   var a3 = ri(2, 6), b3 = ri(2, 9), x3 = ri(2, 10), c3 = a3 * (x3 + b3);
@@ -3626,9 +3636,9 @@ E("u6-identify-error", 6, ["8.6"], 2, "gen", function () {
   var sol3 = "La distributivité multiplie chaque terme dans les parenthèses : \\[ \\begin{aligned} " + fmtD(a3) + "(x + " + fmtD(b3) + ") &= " + fmtD(c3) + " \\\\ " + fmtD(a3) + "x + " + fmtD(a3 * b3) + " &= " + fmtD(c3) + " \\end{aligned} \\] Donc l'erreur est <b>" + corr3 + "</b>";
   return mcq(prompt3, { t: corr3, fb: "Exact. Le nombre devant les parenthèses multiplie les deux termes à l'intérieur." },
     [
-      { t: "L'élève a additionné " + fmtD(a3) + " et " + fmtD(b3) + " au lieu de multiplier.", fb: "Aucune addition de " + fmtD(a3) + " et " + fmtD(b3) + " n'apparaît. Un terme des parenthèses a été multiplié et l'autre non." },
-      { t: "L'élève aurait dû diviser les deux côtés par " + fmtD(b3) + " d'abord.", fb: "Diviser par " + fmtD(a3) + " d'abord serait un bon début ; diviser par " + fmtD(b3) + " n'est pas le problème dans ce travail." },
-      { t: "Il n'y a pas d'erreur ; développer les parenthèses donne cette ligne.", fb: "Développer donne " + fmtD(a3) + "x + " + fmtD(a3 * b3) + ", et non " + fmtD(a3) + "x + " + fmtD(b3) + "." }
+      { t: "L'élève a additionné " + fmtD(a3) + " et " + fmtD(b3) + " au lieu de multiplier les termes des parenthèses.", fb: "Aucune addition de " + fmtD(a3) + " et " + fmtD(b3) + " n'apparaît. Un terme des parenthèses a été multiplié et l'autre non." },
+      { t: "L'élève aurait dû diviser les deux côtés par " + fmtD(b3) + " d'abord, avant de développer les parenthèses.", fb: "Diviser par " + fmtD(a3) + " d'abord serait un bon début ; diviser par " + fmtD(b3) + " n'est pas le problème dans ce travail." },
+      { t: "Il n'y a pas d'erreur ; développer les parenthèses donne cette ligne dans ce travail.", fb: "Développer donne " + fmtD(a3) + "x + " + fmtD(a3 * b3) + ", et non " + fmtD(a3) + "x + " + fmtD(b3) + "." }
     ], sol3, { mode: "identify-error-distribute", a: a3, b: b3 });
 }, ["Compare la première ligne de l'élève avec l'équation de départ, terme par terme.", "Demande-toi ce que l'élève a fait à chaque terme, et si la même chose a été faite à chaque terme."]);
 
@@ -3801,10 +3811,10 @@ E("u6-verify-conclusion", 6, ["8.3"], 3, "gen", function () {
     var lhs = a * claim + b;
     var corr = "La vérification donne un côté gauche de " + fmtD(lhs) + ", et non " + fmtD(c) + ", donc x = " + claim + " n'est pas la solution ; la solution est x = " + fmtD(xt) + ".";
     var ds = u6pick3(corr, [
-      { t: "La vérification donne un côté gauche de " + fmtD(lhs) + ", qui correspond à " + fmtD(c) + ", donc x = " + claim + " est la solution.", fb: "Compare les deux côtés : le côté gauche donne " + fmtD(lhs) + " et le côté droit est " + fmtD(c) + ". Ils ne sont pas égaux." },
+      { t: "La vérification donne un côté gauche de " + fmtD(lhs) + ", qui correspond à " + fmtD(c) + ", donc x = " + claim + " est la solution dans ce travail.", fb: "Compare les deux côtés : le côté gauche donne " + fmtD(lhs) + " et le côté droit est " + fmtD(c) + ". Ils ne sont pas égaux." },
       { t: "La vérification donne un côté gauche de " + fmtD(c) + ", donc x = " + claim + " est la solution ; aucun autre travail n'est nécessaire.", fb: "Cela donne le côté droit comme résultat de la vérification sans faire le remplacement. Calcule d'abord " + fmtD(a) + "(" + claim + ") + " + fmtD(b) + "." },
-      { t: "Le remplacement ne peut pas vérifier cette équation, donc l'affirmation doit être acceptée telle quelle.", fb: "Le remplacement vérifie n'importe quelle équation : mets la valeur affirmée à la place de x et compare les deux côtés." },
-      { t: "La vérification donne un côté gauche de " + fmtD(lhs + a) + ", donc la solution est x = " + fmtD(claim) + " après tout.", fb: "Revérifie la multiplication : " + fmtD(a) + " fois " + claim + " donne " + fmtD(a * claim) + ", et ajouter " + fmtD(b) + " donne " + fmtD(lhs) + "." }
+      { t: "Le remplacement ne peut pas vérifier cette équation, donc l'affirmation doit être acceptée telle quelle, sans vérification.", fb: "Le remplacement vérifie n'importe quelle équation : mets la valeur affirmée à la place de x et compare les deux côtés." },
+      { t: "La vérification donne un côté gauche de " + fmtD(lhs + a) + ", donc la solution est x = " + fmtD(claim) + " après tout dans ce calcul de vérification.", fb: "Revérifie la multiplication : " + fmtD(a) + " fois " + claim + " donne " + fmtD(a * claim) + ", et ajouter " + fmtD(b) + " donne " + fmtD(lhs) + "." }
     ]);
     if (!ds) continue;
     var sol = "Remplace la valeur affirmée et compare les côtés : \\[ \\begin{aligned} " + fmtD(a) + "x + " + fmtD(b) + " &= " + fmtD(a) + "(" + claim + ") + " + fmtD(b) + " \\\\ &= " + fmtD(lhs) + " \\\\ " + fmtD(lhs) + " &\\ne " + fmtD(c) + " \\end{aligned} \\] Résoudre l'équation donne \\(x = " + fmtD(xt) + "\\), car \\(" + fmtD(a) + "(" + fmtD(xt) + ") + " + fmtD(b) + " = " + fmtD(c) + "\\). Donc la conclusion correcte est <b>" + corr + "</b>";
@@ -3814,7 +3824,7 @@ E("u6-verify-conclusion", 6, ["8.3"], 3, "gen", function () {
   }
   return mcq("Un élève affirme que \\(x = 5\\) est la solution de \\(3x + 2 = 14\\) et la vérifie par remplacement. Quelle conclusion est correcte ?",
     { t: "La vérification donne un côté gauche de 17, et non 14, donc x = 5 n'est pas la solution ; la solution est x = 4.", fb: "Exact. 3(5) + 2 = 17, ce qui n'égale pas 14." },
-    [{ t: "La vérification donne un côté gauche de 17, qui correspond à 14, donc x = 5 est la solution.", fb: "17 et 14 ne sont pas égaux, donc l'affirmation échoue." }, { t: "La vérification donne un côté gauche de 14, donc x = 5 est la solution ; aucun autre travail n'est nécessaire.", fb: "Calcule 3(5) + 2 : cela donne 17, et non 14." }, { t: "Le remplacement ne peut pas vérifier cette équation, donc l'affirmation doit être acceptée telle quelle.", fb: "Le remplacement vérifie n'importe quelle équation." }],
+    [{ t: "La vérification donne un côté gauche de 17, qui correspond à 14, donc x = 5 est la solution dans ce travail.", fb: "17 et 14 ne sont pas égaux, donc l'affirmation échoue." }, { t: "La vérification donne un côté gauche de 14, donc x = 5 est la solution ; aucun autre travail n'est nécessaire dans ce travail.", fb: "Calcule 3(5) + 2 : cela donne 17, et non 14." }, { t: "Le remplacement ne peut pas vérifier cette équation, donc l'affirmation doit être acceptée telle quelle.", fb: "Le remplacement vérifie n'importe quelle équation." }],
     "Remplace : \\[ \\begin{aligned} 3x + 2 &= 3(5) + 2 \\\\ &= 17 \\\\ 17 &\\ne 14 \\end{aligned} \\] Donc la conclusion correcte est <b>x = 5 n'est pas la solution ; la solution est x = 4</b>.", { mode: "verify-conclusion-fallback" });
 }, ["Une vérification par remplacement compare le côté gauche calculé avec le côté droit.", "Fais le remplacement toi-même d'abord, puis juge chaque conclusion avec tes nombres."]);
 /* TRANSLATOR NOTES
@@ -3898,9 +3908,9 @@ E("u7-same-data-two-graphs", 7, ["11.1"], 1, "var", varset([
   function(){
     return mcq("Soixante élèves ont choisi un repas chaud. Les mêmes résultats sont montrés dans un diagramme circulaire et dans un diagramme à bandes. Quel énoncé compare bien les deux diagrammes ?",
       {t:"Le diagramme circulaire montre chaque choix comme une part des 60 repas, tandis que le diagramme à bandes rend le nombre exact de chaque choix plus facile à comparer", fb:"Exact : un diagramme circulaire met l'accent sur les parts d'un tout, et un diagramme à bandes met l'accent sur les valeurs exactes, catégorie par catégorie."},
-      [{t:"Le diagramme circulaire montre le nombre exact de chaque choix, tandis que le diagramme à bandes montre chaque choix comme une part du tout", fb:"C'est l'inverse : les parts d'un tout appartiennent au diagramme circulaire, et les nombres exacts appartiennent au diagramme à bandes."},
-       {t:"Le diagramme à bandes montre comment les choix ont changé pendant l'année scolaire, tandis que le diagramme circulaire montre le nombre pour chaque choix", fb:"Aucun des deux diagrammes ne montre un changement dans le temps ici ; les données sont un seul ensemble de choix de repas, pas une série dans le temps."},
-       {t:"Le diagramme circulaire compare les choix de deux classes différentes, tandis que le diagramme à bandes montre le total d'une seule classe", fb:"Les deux diagrammes montrent les mêmes 60 élèves ; comparer deux groupes demanderait un diagramme à bandes doubles."}],
+      [{t:"Le diagramme circulaire montre le nombre exact de chaque choix, tandis que le diagramme à bandes montre chaque choix comme une part du tout entier", fb:"C'est l'inverse : les parts d'un tout appartiennent au diagramme circulaire, et les nombres exacts appartiennent au diagramme à bandes."},
+       {t:"Le diagramme à bandes montre comment les choix ont changé pendant l'année scolaire, tandis que le diagramme circulaire montre le nombre exact pour chaque choix de repas", fb:"Aucun des deux diagrammes ne montre un changement dans le temps ici ; les données sont un seul ensemble de choix de repas, pas une série dans le temps."},
+       {t:"Le diagramme circulaire compare les choix de deux classes différentes, tandis que le diagramme à bandes montre seulement le total des choix d'une seule classe", fb:"Les deux diagrammes montrent les mêmes 60 élèves ; comparer deux groupes demanderait un diagramme à bandes doubles."}],
       "Pour les mêmes données, chaque diagramme met en valeur une information différente : le diagramme circulaire montre les <b>parts du tout</b>, tandis que le diagramme à bandes montre les <b>nombres exacts, faciles à comparer</b>.",
       {mode:"compare-lunch"});
   },
@@ -3908,26 +3918,26 @@ E("u7-same-data-two-graphs", 7, ["11.1"], 1, "var", varset([
     return mcq("Le nombre de traversées de traversier chaque mois pendant un an est montré dans un diagramme à lignes brisées et dans un diagramme à bandes. Quel énoncé compare bien les deux diagrammes ?",
       {t:"Le diagramme à lignes brisées montre bien la tendance à la hausse et à la baisse pendant l'année, tandis que le diagramme à bandes rend la lecture du nombre pour un seul mois plus facile", fb:"Exact : un diagramme à lignes brisées met l'accent sur la tendance dans le temps, et des bandes séparées mettent l'accent sur les valeurs de chaque mois."},
       [{t:"Le diagramme à lignes brisées montre chaque mois comme une part de l'année entière, tandis que le diagramme à bandes montre la tendance à la hausse et à la baisse", fb:"Les parts d'un tout appartiennent au diagramme circulaire, et la tendance dans le temps appartient au diagramme à lignes brisées."},
-       {t:"Le diagramme à bandes relie les mois pour prouver que les traversées ont causé la tendance, tandis que le diagramme à lignes brisées cache le nombre de chaque mois", fb:"Un diagramme à lignes brisées ne prouve pas une cause, et ses points se trouvent quand même aux nombres de chaque mois."},
-       {t:"Le diagramme à lignes brisées compare deux trajets de traversier côte à côte, tandis que le diagramme à bandes montre seulement le trajet le plus occupé", fb:"Les deux diagrammes montrent le même trajet ; une comparaison côte à côte de deux trajets demanderait un diagramme à bandes doubles."}],
+       {t:"Le diagramme à bandes relie les mois pour prouver que les traversées ont causé la tendance, tandis que le diagramme à lignes brisées cache le nombre exact de chaque mois de l'année", fb:"Un diagramme à lignes brisées ne prouve pas une cause, et ses points se trouvent quand même aux nombres de chaque mois."},
+       {t:"Le diagramme à lignes brisées compare deux trajets de traversier côte à côte, tandis que le diagramme à bandes montre seulement le trajet le plus occupé parmi tous les trajets de l'année", fb:"Les deux diagrammes montrent le même trajet ; une comparaison côte à côte de deux trajets demanderait un diagramme à bandes doubles."}],
       "Pour les mêmes données, le diagramme à lignes brisées met en valeur <b>la tendance du changement pendant l'année</b>, tandis que le diagramme à bandes met en valeur <b>la valeur de chaque mois</b>.",
       {mode:"compare-ferry"});
   },
   function(){
     return mcq("Les membres des clubs sont montrés dans un diagramme à bandes doubles, avec une bande pour la 7e année et une pour la 8e année dans chaque club, et dans un diagramme à bandes simple des totaux des clubs. Quel énoncé compare bien les deux diagrammes ?",
       {t:"Le diagramme à bandes doubles compare les deux années dans chaque club, tandis que le diagramme à bandes simple montre les totaux des clubs mais cache la répartition de chaque total par année", fb:"Exact : les bandes jumelées gardent la répartition par année visible, et une seule bande de total perd cette répartition."},
-      [{t:"Le diagramme à bandes simple compare les deux années dans chaque club, tandis que le diagramme à bandes doubles montre seulement les totaux des clubs", fb:"C'est l'inverse : les bandes jumelées portent la comparaison des années, et les bandes simples portent seulement les totaux."},
-       {t:"Le diagramme à bandes doubles montre chaque club comme une part de tous les membres, tandis que le diagramme à bandes simple montre un changement dans le temps", fb:"Les parts d'un tout appartiennent au diagramme circulaire, et aucun de ces diagrammes ne montre un changement dans le temps."},
-       {t:"Le diagramme à bandes simple est trompeur parce que ses totaux sont inventés, tandis que le diagramme à bandes doubles utilise les vrais nombres", fb:"Les deux diagrammes utilisent les mêmes vrais nombres ; ils mettent simplement en valeur des comparaisons différentes."}],
+      [{t:"Le diagramme à bandes simple compare les deux années dans chaque club de l'école, tandis que le diagramme à bandes doubles montre seulement les totaux des clubs dans le diagramme des totaux", fb:"C'est l'inverse : les bandes jumelées portent la comparaison des années, et les bandes simples portent seulement les totaux."},
+       {t:"Le diagramme à bandes doubles montre chaque club comme une part de tous les membres, tandis que le diagramme à bandes simple montre un changement dans le temps au fil des mois de l'année", fb:"Les parts d'un tout appartiennent au diagramme circulaire, et aucun de ces diagrammes ne montre un changement dans le temps."},
+       {t:"Le diagramme à bandes simple est trompeur parce que ses totaux sont inventés, tandis que le diagramme à bandes doubles utilise les vrais nombres de membres pour chaque club et chaque année", fb:"Les deux diagrammes utilisent les mêmes vrais nombres ; ils mettent simplement en valeur des comparaisons différentes."}],
       "Pour les mêmes données, le diagramme à bandes doubles met en valeur <b>la comparaison entre la 7e année et la 8e année dans chaque club</b>, tandis que le diagramme à bandes simple met en valeur <b>les totaux des clubs seulement</b>.",
       {mode:"compare-clubs"});
   },
   function(){
     return mcq("Les livres empruntés en une semaine sont montrés dans un pictogramme, où un symbole de livre vaut 10 livres, et dans un diagramme à bandes. Quel énoncé compare bien les deux diagrammes ?",
       {t:"Le pictogramme attire l'oeil et donne une idée rapide de la grandeur, tandis que le diagramme à bandes donne les valeurs exactes plus facilement quand les nombres ne sont pas des multiples de 10", fb:"Exact : les images sont attrayantes mais obligent à utiliser des parties de symboles, tandis qu'un axe gradué de diagramme à bandes lit les valeurs exactes clairement."},
-      [{t:"Le pictogramme donne les valeurs exactes plus facilement, tandis que le diagramme à bandes ne peut montrer que des grandeurs approximatives", fb:"C'est l'inverse : les parties de symboles rendent les valeurs du pictogramme approximatives, et l'axe du diagramme à bandes donne les valeurs exactes."},
-       {t:"Le diagramme à bandes montre chaque classe comme une part de tous les livres empruntés, tandis que le pictogramme montre le changement pendant la semaine", fb:"Les parts d'un tout appartiennent au diagramme circulaire, et aucun diagramme ici n'est fait pour montrer un changement dans le temps."},
-       {t:"Le pictogramme compare deux semaines différentes côte à côte, tandis que le diagramme à bandes montre seulement la semaine la plus lente", fb:"Les deux diagrammes montrent la même semaine ; une comparaison côte à côte demanderait un diagramme à bandes doubles."}],
+      [{t:"Le pictogramme donne les valeurs exactes plus facilement pour chaque classe de la bibliothèque, tandis que le diagramme à bandes ne peut montrer que des grandeurs approximatives seulement", fb:"C'est l'inverse : les parties de symboles rendent les valeurs du pictogramme approximatives, et l'axe du diagramme à bandes donne les valeurs exactes."},
+       {t:"Le diagramme à bandes montre chaque classe de l'école comme une part de tous les livres empruntés, tandis que le pictogramme montre le changement pendant la semaine d'école de la bibliothèque municipale", fb:"Les parts d'un tout appartiennent au diagramme circulaire, et aucun diagramme ici n'est fait pour montrer un changement dans le temps."},
+       {t:"Le pictogramme compare deux semaines différentes côte à côte, tandis que le diagramme à bandes montre seulement la semaine la plus lente de la bibliothèque cette année-là au complet", fb:"Les deux diagrammes montrent la même semaine ; une comparaison côte à côte demanderait un diagramme à bandes doubles."}],
       "Pour les mêmes données, le pictogramme met en valeur <b>une idée rapide et accrocheuse de la grandeur</b>, tandis que le diagramme à bandes met en valeur <b>les valeurs exactes</b>.",
       {mode:"compare-books"});
   }
@@ -3938,7 +3948,7 @@ E("u7-choose-graph-basic", 7, ["11.3"], 1, "var", varset([
     return mcq("Une classe note la température extérieure chaque heure pendant une journée d'école et veut montrer comment elle a changé. Quel diagramme est le meilleur choix ?",
       {t:"Diagramme à lignes brisées, parce que les données montrent un changement dans le temps", fb:"Exact : des points reliés dans l'ordre du temps rendent les hausses et les baisses faciles à suivre."},
       [{t:"Diagramme circulaire, parce que les données montrent un changement dans le temps", fb:"Un diagramme circulaire montre les parts d'un tout, pas comment une valeur bouge d'heure en heure."},
-       {t:"Pictogramme, parce que les données montrent un changement dans le temps", fb:"Un pictogramme compare des quantités avec des images ; il ne suit pas bien un changement dans le temps."},
+       {t:"Pictogramme, parce que les données montrent un changement dans le temps pendant toute la journée d'école", fb:"Un pictogramme compare des quantités avec des images ; il ne suit pas bien un changement dans le temps."},
        {t:"Diagramme à bandes doubles, parce que les données montrent un changement dans le temps", fb:"Un diagramme à bandes doubles compare deux groupes ; il n'y a qu'un seul relevé de température ici."}],
       "Les données recueillies dans le temps sont mieux montrées avec un <b>diagramme à lignes brisées</b>, parce que les points reliés montrent le changement directement.",
       {mode:"choose-temperature"});
@@ -3955,7 +3965,7 @@ E("u7-choose-graph-basic", 7, ["11.3"], 1, "var", varset([
   function(){
     return mcq("Un enseignant veut comparer combien d'élèves se sont inscrits à chacun de cinq clubs du midi différents. Quel diagramme est le meilleur choix ?",
       {t:"Diagramme à bandes, parce que des catégories séparées sont comparées par leur nombre", fb:"Exact : une bande par club rend les nombres faciles à comparer d'un coup d'oeil."},
-      [{t:"Diagramme circulaire, parce que des catégories séparées sont comparées par leur nombre", fb:"Un diagramme circulaire met l'accent sur les parts d'un tout ; l'enseignant demandait une comparaison de nombres."},
+      [{t:"Diagramme circulaire, parce que des catégories sont comparées par leur nombre", fb:"Un diagramme circulaire met l'accent sur les parts d'un tout ; l'enseignant demandait une comparaison de nombres."},
        {t:"Diagramme à lignes brisées, parce que des catégories séparées sont comparées par leur nombre", fb:"Un diagramme à lignes brisées montre un changement dans le temps ; les catégories de clubs n'ont pas d'ordre dans le temps."},
        {t:"Diagramme à bandes doubles, parce que des catégories séparées sont comparées par leur nombre", fb:"Un diagramme à bandes doubles demande deux groupes à comparer ; on donne un seul nombre par club."}],
       "Comparer des nombres entre des catégories séparées est le travail d'un <b>diagramme à bandes</b>, avec une bande par club.",
@@ -3974,8 +3984,8 @@ E("u7-choose-graph-basic", 7, ["11.3"], 1, "var", varset([
     return mcq("Une bibliothécaire fait une affiche pour de jeunes enfants qui montre combien d'albums, de bandes dessinées et de romans ont été empruntés, et elle veut montrer les quantités avec des images. Quel diagramme est le meilleur choix ?",
       {t:"Pictogramme, parce que les symboles imagés rendent les quantités faciles et rapides à saisir", fb:"Exact : les symboles conviennent à un jeune public et donnent une idée immédiate de la plus grande quantité."},
       [{t:"Diagramme à lignes brisées, parce que les symboles imagés rendent les quantités faciles et rapides à saisir", fb:"Un diagramme à lignes brisées montre un changement dans le temps ; ce sont trois catégories séparées."},
-       {t:"Diagramme circulaire, parce que les symboles imagés rendent les quantités faciles et rapides à saisir", fb:"Un diagramme circulaire montre les parts d'un tout avec des tranches, pas avec des symboles imagés."},
-       {t:"Diagramme à bandes doubles, parce que les symboles imagés rendent les quantités faciles et rapides à saisir", fb:"Un diagramme à bandes doubles compare deux groupes ; un seul ensemble de quantités est montré."}],
+       {t:"Diagramme circulaire, parce que les symboles rendent les quantités faciles à saisir", fb:"Un diagramme circulaire montre les parts d'un tout avec des tranches, pas avec des symboles imagés."},
+       {t:"Diagramme à bandes doubles, parce que les symboles rendent les quantités faciles à saisir", fb:"Un diagramme à bandes doubles compare deux groupes ; un seul ensemble de quantités est montré."}],
       "Des quantités montrées avec des symboles imagés pour un jeune public demandent un <b>pictogramme</b>.",
       {mode:"choose-poster"});
   }
@@ -4018,18 +4028,18 @@ E("u7-advantages-disadvantages", 7, ["11.2"], 2, "var", varset([
   function(){
     return mcq("Une gérante a besoin du nombre exact de billets vendus dans chacune de six sections de places, pour comparer les sections avec précision. Quel énoncé donne un avantage et un désavantage d'utiliser un diagramme circulaire pour ces données ?",
       {t:"Avantage : il montre d'un coup d'oeil la part de chaque section dans les ventes totales. Désavantage : les nombres exacts sont difficiles à lire à partir de la taille des tranches", fb:"Exact : les tranches mettent l'accent sur les parts, mais les nombres précis sont justement ce que les tranches montrent mal."},
-      [{t:"Avantage : il montre clairement le nombre exact dans chaque section. Désavantage : il ne peut pas montrer les parts des ventes totales du tout", fb:"Les deux moitiés sont inversées : les tranches sont faibles pour les nombres exacts et fortes pour les parts."},
-       {t:"Avantage : il montre comment les ventes ont changé pendant la saison. Désavantage : il utilise trop de couleurs pour six sections", fb:"Un diagramme circulaire ne montre pas du tout un changement dans le temps, donc l'avantage énoncé est faux."},
-       {t:"Avantage : il compare deux saisons différentes côte à côte. Désavantage : les nombres exacts sont difficiles à lire à partir de la taille des tranches", fb:"Un seul diagramme circulaire contient un seul ensemble de parts ; comparer deux saisons demanderait deux diagrammes ou des bandes jumelées."}],
+      [{t:"Avantage : il montre clairement le nombre exact dans chaque section. Désavantage : il ne peut pas montrer les parts des ventes totales du tout, même approximativement", fb:"Les deux moitiés sont inversées : les tranches sont faibles pour les nombres exacts et fortes pour les parts."},
+       {t:"Avantage : il montre comment les ventes de billets ont changé pendant toute la saison de spectacles. Désavantage : il utilise trop de couleurs différentes pour six sections de places assises", fb:"Un diagramme circulaire ne montre pas du tout un changement dans le temps, donc l'avantage énoncé est faux."},
+       {t:"Avantage : il compare deux saisons différentes de ventes côte à côte. Désavantage : les nombres exacts de billets sont difficiles à lire à partir de la taille des tranches du diagramme", fb:"Un seul diagramme circulaire contient un seul ensemble de parts ; comparer deux saisons demanderait deux diagrammes ou des bandes jumelées."}],
       "Un diagramme circulaire est fort pour les <b>parts d'un tout</b> et faible pour les <b>valeurs exactes</b>, donc il convient mal à ces données de billets quand les nombres précis comptent.",
       {mode:"adv-circle"});
   },
   function(){
     return mcq("Des classes notent des nombres de recyclage de 37, 52 et 48 objets pour un pictogramme où un symbole vaut 10 objets. Quel énoncé donne un avantage et un désavantage du pictogramme ici ?",
       {t:"Avantage : les symboles attirent l'oeil et sont faciles à saisir pour de jeunes élèves. Désavantage : des nombres comme 37 demandent des parties de symboles, donc les valeurs exactes sont difficiles à montrer", fb:"Exact : les images attirent les lecteurs, mais les valeurs entre les multiples de 10 obligent à utiliser des parties de symboles maladroites."},
-      [{t:"Avantage : il donne des valeurs exactes pour chaque nombre. Désavantage : les symboles sont ennuyeux et difficiles à saisir pour de jeunes élèves", fb:"Les deux moitiés sont inversées : les parties de symboles rendent les valeurs inexactes, et les symboles sont la partie attrayante."},
-       {t:"Avantage : il montre la part de chaque classe dans tout le recyclage. Désavantage : des parties de symboles sont nécessaires pour des nombres comme 37", fb:"Un pictogramme compare des quantités avec des symboles ; les parts d'un tout sont le travail du diagramme circulaire."},
-       {t:"Avantage : les symboles attirent l'oeil. Désavantage : il ne peut pas être utilisé quand il y a trois catégories", fb:"Trois catégories vont très bien dans un pictogramme ; la vraie faiblesse est les parties de symboles pour les nombres entre deux multiples."}],
+      [{t:"Avantage : il donne des valeurs exactes pour chaque nombre affiché. Désavantage : les symboles sont ennuyeux et difficiles à saisir pour de jeunes élèves de l'école élémentaire du quartier", fb:"Les deux moitiés sont inversées : les parties de symboles rendent les valeurs inexactes, et les symboles sont la partie attrayante."},
+       {t:"Avantage : il montre la part de chaque classe de l'école dans tout le recyclage. Désavantage : des parties de symboles sont nécessaires pour des nombres comme 37 dans les données de recyclage", fb:"Un pictogramme compare des quantités avec des symboles ; les parts d'un tout sont le travail du diagramme circulaire."},
+       {t:"Avantage : les symboles attirent l'oeil des jeunes élèves. Désavantage : il ne peut pas être utilisé quand il y a trois catégories bien différentes dans les données du recyclage des classes de l'école élémentaire", fb:"Trois catégories vont très bien dans un pictogramme ; la vraie faiblesse est les parties de symboles pour les nombres entre deux multiples."}],
       "Un pictogramme est fort pour <b>l'attrait visuel</b> et faible pour <b>les valeurs exactes qui tombent entre les pas des symboles</b>.",
       {mode:"adv-pictograph"});
   },
@@ -4038,25 +4048,25 @@ E("u7-advantages-disadvantages", 7, ["11.2"], 2, "var", varset([
       {t:"Avantage : les points sont rapides à placer dans l'ordre. Désavantage : relier les points suggère un changement d'un parfum à l'autre qui n'existe pas", fb:"Exact : les parfums n'ont pas d'ordre dans le temps, donc la ligne reliée invente une tendance entre des catégories sans lien."},
       [{t:"Avantage : il montre clairement la part de chaque parfum dans la classe. Désavantage : relier les points suggère un changement qui n'existe pas", fb:"Les parts d'un tout sont montrées par un diagramme circulaire, pas par des points sur un diagramme à lignes brisées."},
        {t:"Avantage : les points sont rapides à placer dans l'ordre. Désavantage : un diagramme à lignes brisées ne peut jamais être tracé pour des données de catégories", fb:"Un diagramme à lignes brisées peut être tracé, mais c'est un mauvais choix ici parce que la ligne suggère une fausse tendance."},
-       {t:"Avantage : il compare deux classes parfum par parfum. Désavantage : l'axe a besoin d'une échelle pour les nombres", fb:"Une seule classe est montrée, donc il n'y a pas de comparaison de deux groupes dans ce diagramme."}],
+       {t:"Avantage : il compare deux classes différentes parfum par parfum. Désavantage : l'axe a besoin d'une échelle pour les nombres des élèves", fb:"Une seule classe est montrée, donc il n'y a pas de comparaison de deux groupes dans ce diagramme."}],
       "Un diagramme à lignes brisées est fait pour le <b>changement dans le temps</b> ; l'utiliser sur des catégories sans lien crée une <b>fausse suggestion de tendance</b>.",
       {mode:"adv-line"});
   },
   function(){
     return mcq("Une bibliothécaire utilise un diagramme à bandes doubles pour comparer les emprunts de livres cette année et l'an passé dans huit genres. Quel énoncé donne un avantage et un désavantage de ce choix ?",
       {t:"Avantage : les deux années sont côte à côte dans chaque genre, donc les changements sont faciles à repérer. Désavantage : avec huit genres, le diagramme devient chargé et plus difficile à lire", fb:"Exact : les bandes jumelées excellent pour comparer deux groupes, et beaucoup de catégories rendent les paires encombrées."},
-      [{t:"Avantage : il montre la part de chaque genre dans tous les emprunts. Désavantage : avec huit genres, le diagramme devient chargé", fb:"Les bandes jumelées comparent des nombres ; les parts d'un tout sont le travail du diagramme circulaire."},
-       {t:"Avantage : les deux années sont côte à côte dans chaque genre. Désavantage : un diagramme à bandes doubles ne peut pas montrer des nombres, seulement des parts", fb:"Les bandes jumelées montrent des nombres sur une échelle comme tout diagramme à bandes ; le désavantage donné ici est faux."},
-       {t:"Avantage : il suit les emprunts de façon continue entre les deux années. Désavantage : les genres n'ont pas d'ordre dans le temps", fb:"Les bandes ne suivent rien de façon continue ; la comparaison côte à côte est l'avantage."}],
+      [{t:"Avantage : il montre la part de chaque genre de livre dans tous les emprunts de la bibliothèque. Désavantage : avec huit genres, le diagramme devient chargé et plus difficile à lire pour les lecteurs", fb:"Les bandes jumelées comparent des nombres ; les parts d'un tout sont le travail du diagramme circulaire."},
+       {t:"Avantage : les deux années sont côte à côte dans chaque genre. Désavantage : un diagramme à bandes doubles ne peut pas montrer des nombres, seulement des parts des emprunts de la bibliothèque", fb:"Les bandes jumelées montrent des nombres sur une échelle comme tout diagramme à bandes ; le désavantage donné ici est faux."},
+       {t:"Avantage : il suit les emprunts de livres de façon continue entre les deux années. Désavantage : les genres de livres n'ont pas d'ordre dans le temps dans ce diagramme de la bibliothèque", fb:"Les bandes ne suivent rien de façon continue ; la comparaison côte à côte est l'avantage."}],
       "Un diagramme à bandes doubles est fort pour <b>comparer deux groupes dans chaque catégorie</b> et faible quand <b>beaucoup de catégories le rendent chargé</b>.",
       {mode:"adv-doublebar"});
   },
   function(){
     return mcq("Un club météo utilise un diagramme à bandes pour montrer la pluie mensuelle sur trois années complètes, en espérant que les lecteurs verront la tendance à long terme. Quel énoncé donne un avantage et un désavantage de ce choix ?",
       {t:"Avantage : le total de chaque mois peut être lu exactement sur l'échelle. Désavantage : 36 bandes séparées rendent la tendance générale plus difficile à suivre qu'avec une ligne", fb:"Exact : les bandes donnent des valeurs mensuelles exactes, mais une longue suite de bandes cache le fil de la tendance."},
-      [{t:"Avantage : les bandes se relient en une tendance lisse. Désavantage : les totaux mensuels ne peuvent pas être lus sur l'échelle", fb:"Les deux moitiés sont fausses : les bandes restent séparées, et leurs totaux se lisent directement sur l'échelle."},
-       {t:"Avantage : la part de chaque mois dans la pluie de l'année est claire. Désavantage : 36 bandes rendent la tendance difficile à suivre", fb:"Les parts d'un tout appartiennent au diagramme circulaire ; ces bandes montrent des quantités mensuelles."},
-       {t:"Avantage : le total de chaque mois se lit exactement. Désavantage : les diagrammes à bandes n'ont pas le droit de montrer plus d'une année", fb:"Les diagrammes à bandes peuvent montrer n'importe quel nombre de mois ; la vraie faiblesse est la lecture d'une tendance sur une longue suite."}],
+      [{t:"Avantage : les bandes séparées se relient en une tendance lisse et continue. Désavantage : les totaux mensuels de pluie ne peuvent pas être lus sur l'échelle du diagramme", fb:"Les deux moitiés sont fausses : les bandes restent séparées, et leurs totaux se lisent directement sur l'échelle."},
+       {t:"Avantage : la part de chaque mois dans la pluie totale de l'année est claire pour les lecteurs. Désavantage : 36 bandes séparées rendent la tendance générale difficile à suivre", fb:"Les parts d'un tout appartiennent au diagramme circulaire ; ces bandes montrent des quantités mensuelles."},
+       {t:"Avantage : le total de chaque mois se lit exactement sur l'échelle. Désavantage : les diagrammes à bandes n'ont pas le droit de montrer plus d'une année complète de données mensuelles de pluie", fb:"Les diagrammes à bandes peuvent montrer n'importe quel nombre de mois ; la vraie faiblesse est la lecture d'une tendance sur une longue suite."}],
       "Un diagramme à bandes est fort pour les <b>valeurs exactes</b> et faible pour <b>montrer une tendance sur une longue période</b>, où un diagramme à lignes brisées fonctionne mieux.",
       {mode:"adv-bar-rain"});
   }
@@ -4066,9 +4076,9 @@ E("u7-misleading-format", 7, ["11.4"], 2, "var", varset([
   function(){
     var q = mcq("Une affiche d'aréna utilise ce diagramme à bandes pour affirmer que la patinoire Sud est beaucoup plus occupée que la patinoire Nord. Quel élément du format du diagramme peut mener les lecteurs à mal interpréter les données ?",
       {t:"L'axe vertical commence à 80 au lieu de 0, donc une petite différence de fréquentation semble grande", fb:"Exact : les deux bandes sont mesurées à partir de 80, donc les hauteurs visibles exagèrent l'écart entre 92 et 96."},
-      [{t:"Les deux bandes ont des largeurs différentes, donc la bande plus large semble plus importante", fb:"Les bandes ont la même largeur ; la distorsion vient de l'endroit où l'axe commence."},
-       {t:"Les catégories sont listées dans le mauvais ordre, donc la plus petite valeur vient en premier", fb:"L'ordre des catégories ne déforme pas la taille ici ; c'est l'axe qui commence à 80 qui le fait."},
-       {t:"Le diagramme n'a pas de titre, donc les lecteurs ne peuvent pas dire ce qui est mesuré", fb:"Un titre aiderait, mais les valeurs se lisent quand même clairement ; l'élément trompeur est l'axe qui commence à 80."}],
+      [{t:"Les deux bandes ont des largeurs différentes, donc la bande plus large semble plus importante du diagramme", fb:"Les bandes ont la même largeur ; la distorsion vient de l'endroit où l'axe commence."},
+       {t:"Les catégories sont listées dans le mauvais ordre, donc la plus petite valeur vient en premier dans la liste", fb:"L'ordre des catégories ne déforme pas la taille ici ; c'est l'axe qui commence à 80 qui le fait."},
+       {t:"Le diagramme n'a pas de titre, donc les lecteurs ne peuvent pas dire ce qui est mesuré ici", fb:"Un titre aiderait, mais les valeurs se lisent quand même clairement ; l'élément trompeur est l'axe qui commence à 80."}],
       "Quand un axe vertical commence au-dessus de zéro, les hauteurs des bandes ne correspondent plus aux valeurs. Commencer à <b>80</b> fait paraître 96 beaucoup plus grand que 92, ce qui est l'élément trompeur.",
       {mode:"mislead-truncated"});
     q.figure = u7bars(["Nord", "Sud"], [92, 96], 80, 100);
@@ -4077,9 +4087,9 @@ E("u7-misleading-format", 7, ["11.4"], 2, "var", varset([
   function(){
     return mcq("Un diagramme à lignes brisées des usagers quotidiens d'autobus marque son axe vertical 0, 10, 15, puis 40 usagers. Quel élément du format du diagramme peut mener les lecteurs à mal interpréter les données ?",
       {t:"Les intervalles de l'axe vertical sont inégaux, donc des pas égaux sur la page représentent des quantités différentes", fb:"Exact : des sauts de 10, 5 et 25 sur un même axe étirent certains changements et en écrasent d'autres."},
-      [{t:"La ligne est tracée dans une couleur foncée, donc les lecteurs remarquent le point le plus haut en premier", fb:"La couleur de la ligne ne change pas les valeurs ; c'est l'espacement inégal de l'échelle qui le fait."},
-       {t:"Le diagramme place les jours le long du bas, donc les fins de semaine semblent moins importantes", fb:"Placer les jours dans l'ordre est normal pour un changement dans le temps ; l'espacement de l'échelle est le problème."},
-       {t:"Le point le plus haut est étiqueté, donc les lecteurs peuvent penser que c'est la moyenne", fb:"Étiqueter un point ne déforme pas l'échelle ; les intervalles inégaux, oui."}],
+      [{t:"La ligne est tracée dans une couleur foncée, donc les lecteurs remarquent le point le plus haut en premier lieu", fb:"La couleur de la ligne ne change pas les valeurs ; c'est l'espacement inégal de l'échelle qui le fait."},
+       {t:"Le diagramme place les jours le long du bas du diagramme, donc les fins de semaine semblent moins importantes dans le diagramme", fb:"Placer les jours dans l'ordre est normal pour un changement dans le temps ; l'espacement de l'échelle est le problème."},
+       {t:"Le point le plus haut est étiqueté, donc les lecteurs peuvent penser que c'est la moyenne des données du diagramme", fb:"Étiqueter un point ne déforme pas l'échelle ; les intervalles inégaux, oui."}],
       "Une échelle doit utiliser des pas égaux. Des <b>intervalles inégaux</b> sur l'axe étirent et écrasent les changements, donc l'image représente mal les données.",
       {mode:"mislead-intervals"});
   },
@@ -4087,26 +4097,26 @@ E("u7-misleading-format", 7, ["11.4"], 2, "var", varset([
     return mcq("Un organisme de bienfaisance dessine ses parts de dépenses dans un diagramme circulaire 3D, avec les tranches de devant penchées vers le lecteur. Quel élément du format du diagramme peut mener les lecteurs à mal interpréter les données ?",
       {t:"L'effet 3D fait paraître les tranches de devant plus grandes que des tranches de même part à l'arrière", fb:"Exact : la pente et la profondeur ajoutent de l'aire qui n'a rien à voir avec la part que chaque tranche représente."},
       [{t:"Les tranches sont rangées de la plus grande à la plus petite, donc la première tranche reçoit le plus d'attention", fb:"Ranger les tranches est un choix normal et ne change pas leurs tailles relatives."},
-       {t:"Le diagramme utilise des pourcentages au lieu de montants en dollars, donc les dépenses totales sont cachées", fb:"Les pourcentages sont une façon juste de montrer des parts ; la distorsion visuelle vient de la pente 3D."},
-       {t:"Le nom de l'organisme est imprimé au-dessus du diagramme, donc les lecteurs font confiance aux tranches trop vite", fb:"La confiance dans la source n'est pas une distorsion de format ; l'effet 3D change la grandeur apparente des tranches."}],
+       {t:"Le diagramme utilise des pourcentages au lieu de montants, donc les dépenses totales sont cachées", fb:"Les pourcentages sont une façon juste de montrer des parts ; la distorsion visuelle vient de la pente 3D."},
+       {t:"Le nom de l'organisme est imprimé au-dessus, donc les lecteurs font confiance aux tranches trop vite", fb:"La confiance dans la source n'est pas une distorsion de format ; l'effet 3D change la grandeur apparente des tranches."}],
       "Dans un diagramme circulaire, l'aire d'une tranche doit correspondre à sa part. Un <b>effet 3D</b> ajoute une fausse aire aux tranches de devant, donc les lecteurs jugent mal les parts.",
       {mode:"mislead-3d"});
   },
   function(){
     return mcq("Dans un pictogramme des animaux de compagnie possédés, le symbole pour les chiens est dessiné deux fois plus haut et deux fois plus large que le symbole pour les chats, et un symbole vaut 10 animaux dans les deux rangées. Quel élément peut mener les lecteurs à mal interpréter les données ?",
       {t:"Les symboles de chiens couvrent environ quatre fois l'aire, donc les chiens semblent beaucoup plus nombreux que les nombres le disent", fb:"Exact : doubler la hauteur et la largeur multiplie l'aire par quatre, même si un symbole veut toujours dire 10 animaux."},
-      [{t:"Les rangées sont empilées verticalement, donc la rangée du haut est lue en premier", fb:"L'ordre de lecture ne change pas les quantités ; l'aire des symboles fait la distorsion ici."},
-       {t:"Un symbole vaut 10 animaux, donc les petits nombres demandent des parties de symboles", fb:"Les parties de symboles sont une vraie faiblesse des pictogrammes, mais la distorsion ici est la taille inégale des symboles."},
-       {t:"Le diagramme liste les chiens avant les chats, donc les lecteurs favorisent la première catégorie", fb:"L'ordre des catégories ne gonfle pas un nombre ; les symboles surdimensionnés, oui."}],
+      [{t:"Les rangées sont empilées verticalement dans le diagramme, donc la rangée du haut est lue en premier par les lecteurs du pictogramme", fb:"L'ordre de lecture ne change pas les quantités ; l'aire des symboles fait la distorsion ici."},
+       {t:"Un symbole vaut 10 animaux, donc les petits nombres demandent des parties de symboles pour être montrés dans le diagramme des animaux", fb:"Les parties de symboles sont une vraie faiblesse des pictogrammes, mais la distorsion ici est la taille inégale des symboles."},
+       {t:"Le diagramme liste les chiens avant les chats, donc les lecteurs favorisent la première catégorie listée dans le diagramme des animaux de compagnie", fb:"L'ordre des catégories ne gonfle pas un nombre ; les symboles surdimensionnés, oui."}],
       "Les symboles d'un pictogramme doivent tous avoir la même taille. Rendre un symbole <b>plus grand dans les deux sens</b> multiplie son aire et représente mal le nombre.",
       {mode:"mislead-symbols"});
   },
   function(){
     var q = mcq("Une affiche d'école utilise ce diagramme à bandes pour suggérer que la vente de pâtisseries a grandi beaucoup plus vite que la foire du livre. Quel élément du format du diagramme peut mener les lecteurs à mal interpréter les données ?",
       {t:"L'axe vertical commence à 40 au lieu de 0, donc l'écart entre les deux totaux semble beaucoup plus grand qu'il l'est", fb:"Exact : mesurées à partir de 40, les hauteurs visibles des bandes sont 14 et 22, un rapport beaucoup plus grand que 54 contre 62."},
-      [{t:"La bande de la foire du livre est ombrée, donc les lecteurs pensent qu'elle a rapporté plus d'argent", fb:"Les deux bandes utilisent le même ombrage ; la distorsion vient de l'axe qui commence à 40."},
-       {t:"Les totaux sont écrits au-dessus des bandes, donc les lecteurs sautent l'axe complètement", fb:"Les étiquettes de valeurs aident en fait la précision ; l'élément trompeur est l'axe tronqué."},
-       {t:"Seulement deux événements sont montrés, donc les lecteurs ne peuvent pas les comparer équitablement", fb:"Deux catégories se comparent équitablement sur un axe correct ; commencer l'axe à 40 est la distorsion."}],
+      [{t:"La bande de la foire du livre est ombrée, donc les lecteurs pensent qu'elle a rapporté plus d'argent dans l'affiche", fb:"Les deux bandes utilisent le même ombrage ; la distorsion vient de l'axe qui commence à 40."},
+       {t:"Les totaux sont écrits au-dessus des bandes, donc les lecteurs sautent l'axe complètement pour la lecture des données", fb:"Les étiquettes de valeurs aident en fait la précision ; l'élément trompeur est l'axe tronqué."},
+       {t:"Seulement deux événements sont montrés, donc les lecteurs ne peuvent pas les comparer équitablement sur un même axe", fb:"Deux catégories se comparent équitablement sur un axe correct ; commencer l'axe à 40 est la distorsion."}],
       "Les hauteurs des bandes doivent être mesurées à partir de zéro pour correspondre aux valeurs. Un axe qui commence à <b>40</b> exagère la différence entre 54 et 62.",
       {mode:"mislead-truncated2"});
     q.figure = u7bars(["Vente de pâtisseries", "Foire du livre"], [54, 62], 40, 70);
@@ -4169,8 +4179,8 @@ E("u7-false-conclusion", 7, ["11.6"], 2, "var", varset([
   function(){
     return mcq("La pluie à une station météo était de 30 mm en avril, 22 mm en mai et 18 mm en juin. Quelle conclusion va contre ces données ?",
       {t:"La pluie a augmenté régulièrement pendant le printemps", fb:"Exact : les valeurs baissent de 30 à 22 à 18, donc la pluie a diminué, pas augmenté."},
-      [{t:"Avril a été le plus humide des trois mois", fb:"Cela correspond aux données : 30 mm en avril est la plus grande valeur."},
-       {t:"La pluie de juin était de 12 mm de moins que celle d'avril", fb:"Cela correspond aux données : 30 moins 18 font 12."},
+      [{t:"Avril a été le plus humide des trois mois du printemps", fb:"Cela correspond aux données : 30 mm en avril est la plus grande valeur."},
+       {t:"La pluie de juin était de 12 mm de moins que celle d'avril au printemps", fb:"Cela correspond aux données : 30 moins 18 font 12."},
        {t:"La pluie totale sur les trois mois était de 70 mm", fb:"Cela correspond aux données : 30 plus 22 plus 18 font 70."}],
       "Les quantités baissent mois après mois. La conclusion qui va contre les données est que <b>la pluie a augmenté régulièrement</b>.",
       {mode:"false-rain"});
@@ -4178,9 +4188,9 @@ E("u7-false-conclusion", 7, ["11.6"], 2, "var", varset([
   function(){
     return mcq("Un diagramme à bandes doubles montre les membres des clubs : les échecs comptent 18 élèves de 7e année et 12 de 8e année ; la robotique compte 10 élèves de 7e année et 16 de 8e année. Quelle conclusion va contre ces données ?",
       {t:"La 8e année compte plus de membres que la 7e année dans les deux clubs", fb:"Exact : aux échecs, la 8e année compte 12 élèves, ce qui est moins que la 7e année avec 18, donc l'affirmation échoue pour les échecs."},
-      [{t:"Les échecs comptent plus de membres de 7e année que la robotique", fb:"Cela correspond aux données : 18 est plus grand que 10."},
-       {t:"La robotique compte plus de membres de 8e année que les échecs", fb:"Cela correspond aux données : 16 est plus grand que 12."},
-       {t:"Les deux clubs comptent 56 membres en tout", fb:"Cela correspond aux données : 18 plus 12 plus 10 plus 16 font 56."}],
+      [{t:"Les échecs comptent plus de membres de 7e année que la robotique cette année", fb:"Cela correspond aux données : 18 est plus grand que 10."},
+       {t:"La robotique compte plus de membres de 8e année que les échecs cette année", fb:"Cela correspond aux données : 16 est plus grand que 12."},
+       {t:"Les deux clubs comptent 56 membres en tout à l'école cette année", fb:"Cela correspond aux données : 18 plus 12 plus 10 plus 16 font 56."}],
       "Une affirmation sur les deux clubs doit tenir dans chaque club. Les échecs la brisent, donc la conclusion qui va contre les données est que <b>la 8e année compte plus de membres dans les deux clubs</b>.",
       {mode:"false-clubs"});
   },
@@ -4188,8 +4198,8 @@ E("u7-false-conclusion", 7, ["11.6"], 2, "var", varset([
     return mcq("Quatre élèves rapportent leur temps de pratique et leur résultat de quiz : Ana a pratiqué 3 heures et obtenu 70, Ben a pratiqué 1 heure et obtenu 78, Cora a pratiqué 2 heures et obtenu 74, Dan a pratiqué 4 heures et obtenu 82. Quelle conclusion va contre ces données ?",
       {t:"Plus de pratique donne toujours un résultat plus élevé", fb:"Exact : Ben a pratiqué le moins et a quand même dépassé Ana et Cora, donc plus de pratique ne voulait pas toujours dire un résultat plus élevé ici."},
       [{t:"Dan a pratiqué le plus et a obtenu le résultat le plus élevé", fb:"Cela correspond aux données : 4 heures et 82 sont les deux plus grandes valeurs."},
-       {t:"Ben a obtenu un résultat plus élevé qu'Ana même s'il a pratiqué moins", fb:"Cela correspond directement aux données : 78 bat 70 avec 1 heure contre 3 heures."},
-       {t:"Les quatre résultats vont de 70 à 82", fb:"Cela correspond aux données : le résultat le plus bas est 70 et le plus élevé est 82."}],
+       {t:"Ben a battu Ana même s'il a pratiqué moins", fb:"Cela correspond directement aux données : 78 bat 70 avec 1 heure contre 3 heures."},
+       {t:"Les quatre résultats de quiz des élèves vont de 70 à 82 points", fb:"Cela correspond aux données : le résultat le plus bas est 70 et le plus élevé est 82."}],
       "Un seul contre-exemple brise une affirmation avec « toujours ». Ben a pratiqué le moins et a quand même battu deux camarades, donc la conclusion qui va contre les données est que <b>plus de pratique donne toujours un résultat plus élevé</b>.",
       {mode:"false-practice"});
   }
@@ -4359,36 +4369,36 @@ E("u7-deep-critique", 7, ["11.6", "11.5"], 3, "var", varset([
   function(){
     return mcq("Une publicité de kiosque de jus utilise un diagramme à bandes dont l'axe commence à 90. Les ventes étaient de 94 verres en janvier et 98 verres en février, et la publicité affirme que les ventes ont doublé en février. Quelle critique est entièrement exacte ?",
       {t:"L'axe qui commence à 90 exagère l'écart, et 98 est seulement un peu plus que 94, donc l'affirmation de doublement représente mal les données", fb:"Exact : le défaut de format et la fausse affirmation sont nommés, et chacun est vérifié contre les valeurs."},
-      [{t:"L'axe qui commence à 90 est correct, et l'affirmation de doublement est juste parce que la bande de février semble deux fois plus haute", fb:"L'apparence des bandes est justement le piège : des hauteurs mesurées à partir de 90 ne correspondent pas aux valeurs 94 et 98."},
-       {t:"L'affirmation de doublement est fausse parce que les ventes ont baissé en février, et l'axe devrait commencer à 100 plutôt", fb:"Les ventes ont légèrement augmenté de 94 à 98, et un axe devrait commencer à 0, pas à 100."},
-       {t:"Le seul problème est que les bandes ont des largeurs différentes, donc l'affirmation ne peut pas être jugée du tout", fb:"Aucun problème de largeur n'est décrit ; le début de l'axe et l'affirmation peuvent tous deux être jugés à partir des valeurs."}],
+      [{t:"L'axe qui commence à 90 est correct, et l'affirmation de doublement est juste parce que la bande de février semble deux fois plus haute dans le diagramme", fb:"L'apparence des bandes est justement le piège : des hauteurs mesurées à partir de 90 ne correspondent pas aux valeurs 94 et 98."},
+       {t:"L'affirmation de doublement est fausse parce que les ventes ont baissé en février, et l'axe devrait commencer à 100 plutôt qu'à 0", fb:"Les ventes ont légèrement augmenté de 94 à 98, et un axe devrait commencer à 0, pas à 100."},
+       {t:"Le seul problème est que les bandes ont des largeurs différentes, donc l'affirmation ne peut pas être jugée du tout avec ces valeurs", fb:"Aucun problème de largeur n'est décrit ; le début de l'axe et l'affirmation peuvent tous deux être jugés à partir des valeurs."}],
       "Une critique complète vérifie l'image et les mots : l'<b>axe tronqué</b> exagère, et <b>98 contre 94 est une petite hausse, pas un doublement</b>.",
       {mode:"deep-juice"});
   },
   function(){
     return mcq("Un titre dit que la plupart des élèves veulent un début d'école plus tôt. Son diagramme circulaire 3D montre 45 % pour plus tôt, 35 % pour la même heure et 20 % pour plus tard. Quelle critique est entièrement exacte ?",
       {t:"45 % est la plus grande part mais pas une majorité, et l'effet 3D peut faire paraître la tranche de devant plus grande que sa part", fb:"Exact : la plupart demande plus de 50 %, et la pente ajoute une deuxième distorsion par-dessus l'erreur du titre."},
-      [{t:"Le titre est exact parce que 45 % est la plus grande part, et l'effet 3D ne change aucune taille", fb:"Le plus grand n'est pas la même chose que la plupart, et une pente 3D change la grandeur apparente des tranches."},
-       {t:"Le titre est faux parce que plus tard a l'appui le plus fort, et les diagrammes circulaires ne peuvent pas montrer de pourcentages", fb:"Plus tôt a la plus grande part à 45 %, et les diagrammes circulaires montrent bien les pourcentages quand ils sont tracés à plat."},
-       {t:"Le seul problème est l'ordre des tranches, puisque les pourcentages font 100 comme ils le doivent", fb:"Les pourcentages font bien 100, mais l'affirmation du titre et la distorsion 3D sont les vrais problèmes."}],
+      [{t:"Le titre est exact parce que 45 % est la plus grande part, et l'effet 3D ne change aucune taille dans le diagramme du sondage", fb:"Le plus grand n'est pas la même chose que la plupart, et une pente 3D change la grandeur apparente des tranches."},
+       {t:"Le titre est faux parce que plus tard a l'appui le plus fort, et les diagrammes circulaires ne peuvent pas montrer de pourcentages dans un titre", fb:"Plus tôt a la plus grande part à 45 %, et les diagrammes circulaires montrent bien les pourcentages quand ils sont tracés à plat."},
+       {t:"Le seul problème est l'ordre des tranches, puisque les pourcentages font 100 comme ils le doivent dans ce sondage des élèves", fb:"Les pourcentages font bien 100, mais l'affirmation du titre et la distorsion 3D sont les vrais problèmes."}],
       "Une critique complète vérifie l'affirmation et le format : <b>45 % n'est pas la plupart</b>, et l'<b>effet 3D</b> représente mal la taille des tranches.",
       {mode:"deep-headline"});
   },
   function(){
     return mcq("Une affiche affirme que le recyclage a augmenté pendant tout le trimestre. Son diagramme à lignes brisées montre seulement les semaines 5 à 8, quand les quantités ont augmenté. Le registre de la classe montre que les quantités ont baissé pendant les semaines 1 à 4. Quelle critique est entièrement exacte ?",
       {t:"Le diagramme choisit les semaines qui montent et cache les semaines qui baissent, donc l'affirmation pour tout le trimestre va contre les données complètes", fb:"Exact : l'étendue choisie appuie l'affirmation seulement en laissant de côté les semaines qui la contredisent."},
-      [{t:"L'affirmation est exacte parce que le diagramme monte, et les semaines 1 à 4 sont trop tôt pour compter", fb:"Les semaines 1 à 4 font partie du trimestre, et leur baisse contredit l'affirmation pour tout le trimestre."},
-       {t:"Le seul problème est la couleur de la ligne, puisque les semaines choisies sont tracées avec précision", fb:"Les semaines choisies peuvent être précises, mais omettre les semaines qui baissent est la mauvaise représentation."},
-       {t:"L'affirmation échoue parce que les quantités des semaines 5 à 8 ont en fait baissé, et un diagramme à bandes était exigé", fb:"Les quantités ont augmenté aux semaines 5 à 8 comme énoncé ; aucun type de diagramme n'est exigé, les semaines manquantes sont le problème."}],
+      [{t:"L'affirmation est exacte parce que le diagramme à lignes brisées monte, et les semaines 1 à 4 sont trop tôt pour compter dans le trimestre", fb:"Les semaines 1 à 4 font partie du trimestre, et leur baisse contredit l'affirmation pour tout le trimestre."},
+       {t:"Le seul problème est la couleur de la ligne, puisque les semaines choisies sont tracées avec précision dans le diagramme des semaines choisies", fb:"Les semaines choisies peuvent être précises, mais omettre les semaines qui baissent est la mauvaise représentation."},
+       {t:"L'affirmation échoue parce que les quantités des semaines 5 à 8 ont en fait baissé, et un diagramme à bandes était exigé pour ce travail de critique des données", fb:"Les quantités ont augmenté aux semaines 5 à 8 comme énoncé ; aucun type de diagramme n'est exigé, les semaines manquantes sont le problème."}],
       "Une critique complète vérifie l'affirmation contre toutes les données : <b>montrer seulement les semaines 5 à 8</b> cache la baisse des semaines 1 à 4, donc l'<b>affirmation pour tout le trimestre est incohérente</b> avec le registre.",
       {mode:"deep-recycling"});
   },
   function(){
     return mcq("Une affiche sur les animaux utilise un pictogramme où les symboles de chats sont dessinés beaucoup plus grands que les symboles d'oiseaux, un symbole valant 10 animaux dans chaque rangée. Les nombres sont 40 chats et 30 oiseaux, et l'affiche affirme que les chats sont deux fois plus populaires que les oiseaux. Quelle critique est entièrement exacte ?",
       {t:"Les symboles de chats plus grands exagèrent la différence, et 40 contre 30 n'est pas le double, donc l'affirmation représente mal les données", fb:"Exact : la taille des symboles déforme l'image, et les nombres eux-mêmes réfutent l'affirmation de doublement."},
-      [{t:"L'affirmation est juste parce que les symboles de chats semblent environ deux fois la taille des symboles d'oiseaux", fb:"La taille des symboles est la distorsion, pas une preuve ; la popularité doit être jugée à partir des nombres 40 et 30."},
-       {t:"L'affirmation est fausse parce que les oiseaux sont en fait plus populaires, et tous les pictogrammes sont trompeurs", fb:"Les chats mènent 40 contre 30, donc les oiseaux ne sont pas devant, et un pictogramme avec des symboles égaux est juste."},
-       {t:"Le seul problème est qu'un symbole vaut 10 animaux, ce qui rend les petits nombres difficiles à montrer", fb:"Les parties de symboles sont une faiblesse mineure ici ; les tailles inégales des symboles et la fausse affirmation sont les vrais problèmes."}],
+      [{t:"L'affirmation est juste parce que les symboles de chats semblent environ deux fois la taille des symboles d'oiseaux dans l'affiche", fb:"La taille des symboles est la distorsion, pas une preuve ; la popularité doit être jugée à partir des nombres 40 et 30."},
+       {t:"L'affirmation est fausse parce que les oiseaux sont en fait plus populaires, et tous les pictogrammes sont trompeurs dans tous les cas montrés", fb:"Les chats mènent 40 contre 30, donc les oiseaux ne sont pas devant, et un pictogramme avec des symboles égaux est juste."},
+       {t:"Le seul problème est qu'un symbole vaut 10 animaux, ce qui rend les petits nombres difficiles à montrer dans ce pictogramme", fb:"Les parties de symboles sont une faiblesse mineure ici ; les tailles inégales des symboles et la fausse affirmation sont les vrais problèmes."}],
       "Une critique complète vérifie l'image et les mots : les <b>tailles inégales des symboles</b> exagèrent, et <b>40 n'est pas le double de 30</b>.",
       {mode:"deep-pets"});
   }
@@ -4564,35 +4574,35 @@ E("u8-env-views-var", 8, ["10.18"], 1, "var", varset([
   function () {
     return mcq("Sofia dessine une boîte de céréales posée sur une table de cuisine. Directement du dessus, quelle forme dessine-t-elle pour la vue de dessus ?",
       { t: "Un rectangle, de la taille de la face supérieure de la boîte.", fb: "Exact. En regardant directement vers le bas, on voit la face supérieure dans sa vraie forme." },
-      [{ t: "Un grand rectangle qui montre le devant de la boîte.", fb: "C'est la vue de face; la vue de dessus montre seulement la face supérieure." }, { t: "Un carré de la taille du bout de la boîte.", fb: "Cela ressemble à une vue de côté; la face supérieure est le long rectangle du dessus." }, { t: "Un cercle qui montre toute la boîte à la fois.", fb: "Une vue montre une seule direction; du dessus, on voit la face supérieure." }],
+      [{ t: "Un grand rectangle qui montre le devant de la boîte au complet.", fb: "C'est la vue de face; la vue de dessus montre seulement la face supérieure." }, { t: "Un carré de la taille du bout étroit de la boîte de céréales.", fb: "Cela ressemble à une vue de côté; la face supérieure est le long rectangle du dessus." }, { t: "Un cercle qui montre toute la boîte à la fois sur la table.", fb: "Une vue montre une seule direction; du dessus, on voit la face supérieure." }],
       "Une vue montre la face que tu regardes directement. Du dessus, c'est la face supérieure, donc la vue de dessus est <b>un rectangle, de la taille de la face supérieure de la boîte</b>.",
       { mode: "env-cereal" });
   },
   function () {
     return mcq("Un phare est à peu près un grand cylindre qui devient un peu plus étroit vers le haut. Quelle description convient à sa vue de dessus ?",
       { t: "Un cercle.", fb: "Exact. En regardant directement vers le bas d'un cylindre, on voit un cercle." },
-      [{ t: "Un rectangle haut et étroit.", fb: "Cela convient à la vue de face ou de côté de la tour, pas à la vue du dessus." }, { t: "Un triangle.", fb: "Un triangle conviendrait à un cône ou à une pyramide vu de côté, pas à cette tour vue du dessus." }, { t: "Un long ovale qui montre toute la côte.", fb: "Une vue de l'objet montre l'objet seulement; du dessus, la tour est un cercle." }],
+      [{ t: "Un rectangle.", fb: "Cela convient à la vue de face ou de côté de la tour, pas à la vue du dessus." }, { t: "Un triangle.", fb: "Un triangle conviendrait à un cône ou à une pyramide vu de côté, pas à cette tour vue du dessus." }, { t: "Un long ovale.", fb: "Une vue de l'objet montre l'objet seulement; du dessus, la tour est un cercle." }],
       "Directement du dessus, un cylindre montre sa face supérieure ronde. Donc la vue de dessus est <b>un cercle</b>.",
       { mode: "env-lighthouse" });
   },
   function () {
     return mcq("Marcus dessine la vue de face d'un autobus scolaire stationné face à lui. Que doit montrer sa vue de face ?",
       { t: "Un large rectangle avec le pare-brise, les phares et les roues avant.", fb: "Exact. La vue de face montre la face de l'autobus qui pointe vers lui." },
-      [{ t: "Un long rectangle avec une rangée de fenêtres latérales et deux roues.", fb: "C'est la vue de côté; la vue de face est le bout court de l'autobus." }, { t: "Un rectangle plat de la taille du toit.", fb: "C'est la vue de dessus; la vue de face est debout." }, { t: "L'autobus coupé en deux pour montrer les sièges.", fb: "Un dessin de vue montre la face extérieure, pas une coupe de l'objet." }],
+      [{ t: "Un long rectangle avec une rangée de fenêtres latérales et deux roues.", fb: "C'est la vue de côté; la vue de face est le bout court de l'autobus." }, { t: "Un rectangle plat de la taille du toit de l'autobus au complet.", fb: "C'est la vue de dessus; la vue de face est debout." }, { t: "L'autobus coupé en deux pour montrer les sièges à l'intérieur.", fb: "Un dessin de vue montre la face extérieure, pas une coupe de l'objet." }],
       "La vue de face montre la face qui pointe vers l'observateur, donc elle montre <b>un large rectangle avec le pare-brise, les phares et les roues avant</b>.",
       { mode: "env-bus" });
   },
   function () {
     return mcq("Une tasse est sur une table, son anse pointant vers la droite. Quelle description convient à la vue du côté droit de la tasse ?",
       { t: "Le corps de la tasse avec l'anse qui dépasse de l'autre côté du dessin.", fb: "Exact. De la droite, tu regardes dans le sens de l'anse et tu vois le profil de l'anse." },
-      [{ t: "Un cercle pour le dessus de la tasse.", fb: "C'est la vue de dessus; une vue de côté est debout." }, { t: "Le corps de la tasse sans aucune anse visible.", fb: "Cela convient à la vue du côté gauche; de la droite, l'anse est alignée avec ton regard et elle paraît." }, { t: "Une ligne plate de la largeur de la tasse.", fb: "Ce serait un bord seulement; la vue de côté montre toute la hauteur de la tasse." }],
+      [{ t: "Un cercle pour le dessus de la tasse, vu directement du haut de la table.", fb: "C'est la vue de dessus; une vue de côté est debout." }, { t: "Le corps de la tasse sans aucune anse visible d'aucun côté du dessin.", fb: "Cela convient à la vue du côté gauche; de la droite, l'anse est alignée avec ton regard et elle paraît." }, { t: "Une ligne plate de la largeur de la tasse, sans aucune hauteur visible.", fb: "Ce serait un bord seulement; la vue de côté montre toute la hauteur de la tasse." }],
       "Chaque vue montre l'objet d'une seule direction. Du côté droit, l'anse pointe vers toi, donc la vue est <b>le corps de la tasse avec l'anse qui dépasse de l'autre côté du dessin</b>.",
       { mode: "env-mug" });
   },
   function () {
     return mcq("Priya photographie un traversier directement de face, pendant qu'il arrive au quai. Dans sa photo, qu'arrive-t-il au long côté du traversier ?",
       { t: "Il pointe loin d'elle, donc la photo montre surtout le bout étroit de la proue.", fb: "Exact. Dans une vue de face, la longueur s'éloigne de l'observateur et ne s'étale pas dans l'image." },
-      [{ t: "Il s'étale sur toute la photo et montre chaque fenêtre le long du côté.", fb: "Cela décrit une vue de côté du traversier, pas la vue de face." }, { t: "Il paraît comme un rectangle plat sur le dessus du traversier.", fb: "Cela décrit la vue de dessus; la photo est prise de face." }, { t: "Il double de longueur parce que le traversier bouge.", fb: "Une vue dépend de la direction, pas de la vitesse du traversier." }],
+      [{ t: "Il s'étale sur toute la photo et montre chaque fenêtre le long du côté.", fb: "Cela décrit une vue de côté du traversier, pas la vue de face." }, { t: "Il paraît comme un rectangle plat sur le dessus du traversier, d'un bout à l'autre du pont.", fb: "Cela décrit la vue de dessus; la photo est prise de face." }, { t: "Il double de longueur parce que le traversier bouge sur l'eau en arrivant au quai.", fb: "Une vue dépend de la direction, pas de la vitesse du traversier." }],
       "Dans une vue de face, le sens long de l'objet pointe loin de l'observateur. Donc la photo montre <b>surtout le bout étroit de la proue</b>.",
       { mode: "env-ferry" });
   }
@@ -4635,28 +4645,28 @@ E("u8-env-tess-var", 8, ["10.6"], 1, "var", varset([
   function () {
     return mcq("Quelle description est un dallage que tu peux voir dans l'environnement ? Un dallage couvre une surface sans espaces et sans chevauchements.",
       { t: "Des cellules hexagonales dans un nid d'abeilles, ajustées bord à bord.", fb: "Exact. Les hexagones couvrent la surface complètement, sans espaces." },
-      [{ t: "Des pierres rondes dispersées sur une plage, avec du sable visible entre elles.", fb: "Des espaces de sable paraissent entre les pierres, donc la surface n'est pas couverte complètement." }, { t: "Des bardeaux qui se chevauchent, cloués en rangées sur un toit.", fb: "Les bardeaux se chevauchent, et un dallage n'a aucun chevauchement." }, { t: "Un seul grand tableau accroché à un mur.", fb: "Une seule image ne se répète pas pour couvrir une surface avec un motif de formes." }],
+      [{ t: "Des pierres rondes dispersées sur une plage, avec du sable visible entre elles.", fb: "Des espaces de sable paraissent entre les pierres, donc la surface n'est pas couverte complètement." }, { t: "Des bardeaux qui se chevauchent, cloués en rangées sur un toit.", fb: "Les bardeaux se chevauchent, et un dallage n'a aucun chevauchement." }, { t: "Un seul grand tableau accroché au mur d'une salle de classe de l'école.", fb: "Une seule image ne se répète pas pour couvrir une surface avec un motif de formes." }],
       "Un dallage répète des formes pour couvrir une surface complètement, sans espaces et sans chevauchements. Cela correspond à <b>des cellules hexagonales dans un nid d'abeilles, ajustées bord à bord</b>.",
       { mode: "env-honeycomb" });
   },
   function () {
     return mcq("Un plancher de corridor est couvert de tuiles carrées posées en rangées et en colonnes droites, et les lignes de coulis forment une grille. Comment décrirais-tu ce plancher ?",
       { t: "Un dallage de carrés fait en glissant la tuile de côté et vers le bas.", fb: "Exact. Les carrés couvrent le plancher complètement et se répètent par translation." },
-      [{ t: "Un dallage de cercles fait en tournant une tuile.", fb: "Les tuiles sont des carrés, et des cercles laisseraient des espaces entre eux." }, { t: "Pas un dallage, parce que les lignes de coulis brisent le motif.", fb: "Les lignes de coulis sont simplement les bords des tuiles; les carrés couvrent quand même le plancher sans espaces." }, { t: "Pas un dallage, parce que toutes les tuiles ont la même forme.", fb: "Un dallage peut utiliser une seule forme; utiliser une seule forme est le genre le plus simple." }],
+      [{ t: "Un dallage de cercles fait en tournant une tuile ronde.", fb: "Les tuiles sont des carrés, et des cercles laisseraient des espaces entre eux." }, { t: "Pas un dallage, parce que les lignes de coulis du plancher brisent le motif.", fb: "Les lignes de coulis sont simplement les bords des tuiles; les carrés couvrent quand même le plancher sans espaces." }, { t: "Pas un dallage, parce que toutes les tuiles du plancher ont la même forme.", fb: "Un dallage peut utiliser une seule forme; utiliser une seule forme est le genre le plus simple." }],
       "Les carrés couvrent le plancher sans espaces ni chevauchements et se répètent par glissement, donc le plancher est <b>un dallage de carrés fait en glissant la tuile de côté et vers le bas</b>.",
       { mode: "env-floor" });
   },
   function () {
     return mcq("Les briques d'un mur sont posées en rangées, et chaque rangée est décalée d'une demi-brique. Pourquoi le motif de briques compte-t-il comme un dallage ?",
       { t: "Les rectangles couvrent le mur sans espaces et sans chevauchements, et le motif se répète.", fb: "Exact. Décaler une rangée donne quand même un recouvrement qui se répète, sans espaces." },
-      [{ t: "Parce que les briques sont des matériaux de construction lourds.", fb: "Le poids des pièces n'a rien à voir avec le fait qu'un motif forme un dallage." }, { t: "Parce que chaque brique a une taille différente de ses voisines.", fb: "Les briques ont la même taille; le motif fonctionne parce qu'elles s'ajustent sans espaces." }, { t: "Parce que le mur est à l'extérieur.", fb: "Être à l'extérieur ne décide rien; c'est le recouvrement sans espaces ni chevauchements qui décide." }],
+      [{ t: "Parce que les briques sont des matériaux de construction lourds et solides utilisés pour le mur.", fb: "Le poids des pièces n'a rien à voir avec le fait qu'un motif forme un dallage." }, { t: "Parce que chaque brique a une taille différente de ses voisines dans le mur de l'école.", fb: "Les briques ont la même taille; le motif fonctionne parce qu'elles s'ajustent sans espaces." }, { t: "Parce que le mur est à l'extérieur, du côté de la cour de l'école élémentaire.", fb: "Être à l'extérieur ne décide rien; c'est le recouvrement sans espaces ni chevauchements qui décide." }],
       "Un dallage exige un recouvrement qui se répète, sans espaces ni chevauchements. C'est pourquoi <b>les rectangles qui couvrent le mur sans espaces et sans chevauchements, dans un motif qui se répète</b>, comptent.",
       { mode: "env-brick" });
   },
   function () {
     return mcq("Quel motif trouvé autour d'une école est un dallage ?",
       { t: "Une mosaïque de petites tuiles carrées et triangulaires qui couvre complètement le dessus d'un banc.", fb: "Exact. Les tuiles s'ajustent bord à bord et couvrent tout le dessus du banc." },
-      [{ t: "Des cailloux collés au hasard sur une planche, avec la planche visible entre eux.", fb: "La planche visible entre les cailloux signifie des espaces, donc ce n'est pas un recouvrement complet." }, { t: "Des autocollants placés sur un casier de façon que certains couvrent des parties d'autres.", fb: "Des autocollants qui se couvrent sont des chevauchements, ce qu'un dallage n'a pas." }, { t: "Un tapis en damier dont plusieurs carrés ont été découpés.", fb: "Les carrés découpés sont des espaces dans le recouvrement, donc le tapis ne forme plus un dallage à cet endroit." }],
+      [{ t: "Des cailloux collés au hasard sur une planche de bois, avec la planche visible entre eux.", fb: "La planche visible entre les cailloux signifie des espaces, donc ce n'est pas un recouvrement complet." }, { t: "Des autocollants placés sur un casier de façon que certains couvrent des parties d'autres autocollants.", fb: "Des autocollants qui se couvrent sont des chevauchements, ce qu'un dallage n'a pas." }, { t: "Un tapis en damier dont plusieurs carrés ont été découpés un peu partout dans le motif du tapis.", fb: "Les carrés découpés sont des espaces dans le recouvrement, donc le tapis ne forme plus un dallage à cet endroit." }],
       "Cherche un recouvrement complet, sans espaces ni chevauchements : <b>une mosaïque de petites tuiles carrées et triangulaires qui couvre complètement le dessus d'un banc</b>.",
       { mode: "env-mosaic" });
   }
@@ -4717,7 +4727,7 @@ E("u8-match-object", 8, ["10.9"], 2, "gen", function () {
     var rowName = ti === 0 ? "rangée arrière" : "rangée avant";
     var colName = tj === 0 ? "à l'extrémité gauche" : (tj === 1 ? "au milieu" : "à l'extrémité droite");
     var altRow = ti === 0 ? "rangée avant" : "rangée arrière";
-    var altCol = tj === 0 ? "à l'extrémité droite" : "à l'extrémité gauche";
+    var altCol = tj === 0 ? "à droite" : "à gauche";
     var cell = 15;
     var body = u8T(52, 14, "DESSUS", 11, true) + u8Occ(occ, 25, 24, cell);
     body += u8T(160, 14, "FACE", 11, true) + u8Sil(front, 130, 78, cell);
@@ -4945,7 +4955,7 @@ E("u8-tess-transform", 8, ["10.7"], 2, "gen", function () {
     [
       { t: names[others[0]], fb: "Regarde le point : sa position élimine ce choix. " + desc[mode] },
       { t: names[others[1]], fb: "Regarde le point : sa position élimine ce choix. " + desc[mode] },
-      { t: "Un agrandissement (un changement de taille)", fb: "Les deux tuiles ont exactement la même taille, donc aucun changement de taille n'est en jeu." }
+      { t: "Un agrandissement (taille changée)", fb: "Les deux tuiles ont exactement la même taille, donc aucun changement de taille n'est en jeu." }
     ],
     "Compare le point et les coins des deux tuiles. " + desc[mode] + " Donc la transformation est <b>" + names[mode].toLowerCase() + "</b>.",
     { mode: "tess-transform-" + mode, s: s, gap: gap });
@@ -4958,28 +4968,28 @@ E("u8-create-tess-var", 8, ["10.13"], 2, "var", varset([
   function () {
     return mcq("Un élève crée un dallage à partir de copies d'une tuile carrée. Quel plan fonctionne, et pourquoi ?",
       { t: "Glisser les copies de côté et vers le bas dans une grille; l'aire couverte est le nombre de tuiles fois l'aire d'une tuile.", fb: "Exact. Glisser (translater) des carrés remplit le plan, et le glissement garde l'aire de chaque tuile inchangée." },
-      [{ t: "Tourner chaque copie un peu plus que la précédente pour que le motif s'ouvre en éventail; l'aire grandit quand l'éventail s'étend.", fb: "Ouvrir les tuiles en éventail crée des espaces en coin entre elles, donc le plan n'est pas couvert." }, { t: "Réduire chaque copie légèrement pour qu'elles s'ajustent plus facilement; l'aire totale reste la même.", fb: "Réduire laisse des espaces, et changer la taille des tuiles change l'aire totale couverte." }, { t: "Faire chevaucher chaque copie un peu sur la précédente; les chevauchements gardent l'aire totale la même.", fb: "Les chevauchements couvrent une partie du sol deux fois et ne sont pas permis dans un dallage." }],
+      [{ t: "Tourner chaque copie un peu pour que le motif s'ouvre en éventail; l'aire grandit quand l'éventail s'étend.", fb: "Ouvrir les tuiles en éventail crée des espaces en coin entre elles, donc le plan n'est pas couvert." }, { t: "Réduire chaque copie légèrement pour qu'elles s'ajustent plus facilement; l'aire totale reste la même qu'au départ.", fb: "Réduire laisse des espaces, et changer la taille des tuiles change l'aire totale couverte." }, { t: "Faire chevaucher chaque copie un peu sur la précédente dans le motif; les chevauchements gardent l'aire totale la même qu'au départ.", fb: "Les chevauchements couvrent une partie du sol deux fois et ne sont pas permis dans un dallage." }],
       "Les carrés forment un dallage par translation sur une grille, et les transformations ne changent pas l'aire d'une tuile. Donc le plan qui fonctionne est de <b>glisser les copies de côté et vers le bas dans une grille; l'aire couverte est le nombre de tuiles fois l'aire d'une tuile</b>.",
       { mode: "create-square" });
   },
   function () {
     return mcq("Une classe fait un motif de plancher avec des triangles équilatéraux et des carrés ensemble. Quel énoncé au sujet du dallage fini est vrai ?",
       { t: "À chaque point, les angles totalisent 360 degrés, et l'aire totale est la somme des aires de toutes les tuiles.", fb: "Exact. Des sommes d'angles de 360 gardent le recouvrement sans espaces, et combiner des tuiles additionne leurs aires." },
-      [{ t: "À chaque point, les angles totalisent 180 degrés, parce que les tuiles sont sur un plancher plat.", fb: "Autour d'un point sur un plancher plat, les angles totalisent 360 degrés, pas 180." }, { t: "L'aire totale est l'aire d'un triangle fois l'aire d'un carré.", fb: "Les aires des tuiles combinées s'additionnent; elles ne se multiplient pas." }, { t: "Le motif fonctionne seulement si chaque tuile est tournée du même angle.", fb: "Les tuiles d'un dallage mixte peuvent être tournées de quantités différentes; c'est la somme des angles à chaque point qui compte." }],
+      [{ t: "À chaque point, les angles totalisent 180 degrés, parce que les tuiles sont posées sur un plancher plat de la classe.", fb: "Autour d'un point sur un plancher plat, les angles totalisent 360 degrés, pas 180." }, { t: "L'aire totale est l'aire d'un triangle fois l'aire d'un carré, pour tout le plancher couvert par le dallage.", fb: "Les aires des tuiles combinées s'additionnent; elles ne se multiplient pas." }, { t: "Le motif fonctionne seulement si chaque tuile est tournée du même angle à chaque fois dans le motif.", fb: "Les tuiles d'un dallage mixte peuvent être tournées de quantités différentes; c'est la somme des angles à chaque point qui compte." }],
       "Un dallage exige des sommes d'angles de 360 degrés à chaque point, et les aires s'additionnent quand on combine des formes. Donc <b>à chaque point, les angles totalisent 360 degrés, et l'aire totale est la somme des aires de toutes les tuiles</b>.",
       { mode: "create-mixed" });
   },
   function () {
     return mcq("Quel plan crée un dallage avec des hexagones réguliers et des triangles équilatéraux ?",
       { t: "Entourer chaque hexagone de triangles dans ses espaces, en répétant le groupe par glissement sur le plancher.", fb: "Exact. Les angles d'hexagone de 120 degrés et les angles de triangle de 60 degrés se combinent pour donner 360 à chaque point, et le groupe se répète par translation." },
-      [{ t: "Placer les hexagones en rangée et laisser les espaces vides pour ajouter les triangles plus tard.", fb: "Des espaces vides signifient que la surface n'est pas couverte, donc ce n'est pas encore un dallage." }, { t: "Utiliser seulement des hexagones, mais pousser chaque rangée à moitié dans la rangée au-dessus.", fb: "Pousser les rangées les unes dans les autres crée des chevauchements, ce qu'un dallage ne permet pas." }, { t: "Couper chaque triangle en deux et jeter les moitiés pour que les morceaux s'ajustent aux espaces.", fb: "Jeter des morceaux change les formes et leurs aires; un dallage utilise des tuiles entières qui s'ajustent telles quelles." }],
+      [{ t: "Placer les hexagones en rangée et laisser les espaces vides pour ajouter les triangles plus tard sur le plancher.", fb: "Des espaces vides signifient que la surface n'est pas couverte, donc ce n'est pas encore un dallage." }, { t: "Utiliser seulement des hexagones, mais pousser chaque rangée à moitié dans la rangée au-dessus du motif.", fb: "Pousser les rangées les unes dans les autres crée des chevauchements, ce qu'un dallage ne permet pas." }, { t: "Couper chaque triangle en deux et jeter les moitiés pour que les morceaux s'ajustent aux espaces des hexagones.", fb: "Jeter des morceaux change les formes et leurs aires; un dallage utilise des tuiles entières qui s'ajustent telles quelles." }],
       "Les angles de l'hexagone (120 degrés) et du triangle (60 degrés) se combinent pour donner 360 degrés en un point, et le groupe fini se répète par glissement. Donc le plan est d'<b>entourer chaque hexagone de triangles dans ses espaces, en répétant le groupe par glissement sur le plancher</b>.",
       { mode: "create-hex-tri" });
   },
   function () {
     return mcq("Un élève couvre une page d'un dallage de copies d'une forme de poisson faite plus tôt. Chaque copie a la même taille, et les poissons voisins sont retournés pour que la tête rencontre la queue. Quelle description du dallage est exacte ?",
       { t: "Il est construit avec des réflexions, et son aire totale est le nombre de poissons fois l'aire d'un poisson.", fb: "Exact. Retourner est une réflexion, et les réflexions conservent l'aire." },
-      [{ t: "Il est construit avec des agrandissements, et son aire totale est le double de l'aire d'un poisson.", fb: "Toutes les copies ont la même taille, donc aucun agrandissement n'est utilisé, et le total est le nombre fois une aire." }, { t: "Il est construit avec des rotations seulement, et les réflexions changeraient l'aire de chaque poisson.", fb: "Les poissons sont retournés, ce qui est une réflexion, et une réflexion garde l'aire la même." }, { t: "Ce n'est pas un dallage, à moins que les poissons se chevauchent aussi légèrement.", fb: "Un dallage ne doit avoir aucun chevauchement; des copies retournées qui se rencontrent bord à bord suffisent." }],
+      [{ t: "Il est construit avec des agrandissements, et son aire totale du dallage est le double de l'aire d'un poisson.", fb: "Toutes les copies ont la même taille, donc aucun agrandissement n'est utilisé, et le total est le nombre fois une aire." }, { t: "Il est construit avec des rotations seulement, et les réflexions changeraient l'aire de chaque poisson.", fb: "Les poissons sont retournés, ce qui est une réflexion, et une réflexion garde l'aire la même." }, { t: "Ce n'est pas un dallage, à moins que les poissons se chevauchent aussi légèrement les uns sur les autres.", fb: "Un dallage ne doit avoir aucun chevauchement; des copies retournées qui se rencontrent bord à bord suffisent." }],
       "Retourner une copie est une réflexion, et les réflexions, comme toutes les transformations rigides, conservent l'aire. Donc le dallage est <b>construit avec des réflexions, et son aire totale est le nombre de poissons fois l'aire d'un poisson</b>.",
       { mode: "create-fish" });
   }
@@ -5002,9 +5012,9 @@ E("u8-combo-transform", 8, ["10.8"], 3, "gen", function () {
   var q = mcq("Le diagramme montre deux tuiles voisines dans un dallage. Chaque tuile est un triangle rectangle avec un point près d'un coin. La tuile 2 est retournée par rapport à la tuile 1, et elle est aussi plus haut et plus à droite. Quelle description convient le mieux à la transformation de la tuile 1 à la tuile 2 ?",
     { t: "Une réflexion combinée à une translation (une réflexion glissée).", fb: "Exact. La tuile est reflétée et aussi décalée, donc deux transformations agissent ensemble." },
     [
-      { t: "Une réflexion seule.", fb: "Une réflexion seule placerait la tuile directement de l'autre côté d'un axe miroir, sans décalage supplémentaire le long du motif." },
-      { t: "Une translation seule.", fb: "Une translation garde la tuile dans le même sens; cette tuile est retournée, donc un glissement seul ne peut pas le faire." },
-      { t: "Une rotation seule.", fb: "Un seul tour garderait le sens de la tuile; le point montre que la tuile a été reflétée et aussi déplacée." }
+      { t: "Une réflexion seule, sans aucun déplacement le long du motif.", fb: "Une réflexion seule placerait la tuile directement de l'autre côté d'un axe miroir, sans décalage supplémentaire le long du motif." },
+      { t: "Une translation seule, sans aucun retournement de la tuile.", fb: "Une translation garde la tuile dans le même sens; cette tuile est retournée, donc un glissement seul ne peut pas le faire." },
+      { t: "Une rotation seule, sans aucun retournement de la tuile ici.", fb: "Un seul tour garderait le sens de la tuile; le point montre que la tuile a été reflétée et aussi déplacée." }
     ],
     "Le point montre que la tuile a été reflétée, et sa position montre qu'elle a aussi été décalée de côté et vers le haut. Deux transformations agissent ensemble : <b>une réflexion combinée à une translation (une réflexion glissée)</b>.",
     { mode: "combo-glide", s: s, gap: gap, lift: lift });
@@ -5017,28 +5027,28 @@ E("u8-new-shape-var", 8, ["10.14"], 3, "var", varset([
   function () {
     return mcq("Un carré forme un dallage. Un élève coupe un petit triangle au milieu du côté gauche du carré et colle le même triangle au milieu du côté droit. Qu'est-ce qui est vrai de la nouvelle forme ?",
       { t: "Elle forme encore un dallage par glissement, et son aire est la même que celle du carré.", fb: "Exact. La bosse d'un côté s'ajuste à l'entaille du côté opposé, et déplacer un morceau garde l'aire totale inchangée." },
-      [{ t: "Elle forme encore un dallage, mais son aire est plus grande que celle du carré.", fb: "Le triangle a été déplacé, pas ajouté; aucun nouveau matériau n'a été créé, donc l'aire est inchangée." }, { t: "Elle ne forme plus un dallage, parce que seul le carré d'origine peut couvrir le plan.", fb: "Les formes faites ainsi forment un dallage; la bosse et l'entaille correspondantes sont exactement ce qui fait que les copies s'ajustent." }, { t: "Elle forme un dallage seulement si le triangle coupé est jeté.", fb: "Jeter le morceau laisse une entaille sans rien pour la remplir et réduit l'aire." }],
+      [{ t: "Elle forme encore un dallage, mais son aire est plus grande que celle du carré d'origine.", fb: "Le triangle a été déplacé, pas ajouté; aucun nouveau matériau n'a été créé, donc l'aire est inchangée." }, { t: "Elle ne forme plus un dallage, parce que seul le carré d'origine peut couvrir le plan.", fb: "Les formes faites ainsi forment un dallage; la bosse et l'entaille correspondantes sont exactement ce qui fait que les copies s'ajustent." }, { t: "Elle forme un dallage seulement si le triangle coupé est jeté du carré d'origine.", fb: "Jeter le morceau laisse une entaille sans rien pour la remplir et réduit l'aire." }],
       "Le morceau coupé d'un côté est ajouté au côté opposé, donc les copies s'ajustent, bosse dans entaille, par un glissement, et l'aire est conservée. Donc <b>elle forme encore un dallage par glissement, et son aire est la même que celle du carré</b>.",
       { mode: "new-square-slide" });
   },
   function () {
     return mcq("Un triangle équilatéral forme un dallage. Une élève coupe un petit morceau d'un côté et le colle sur le côté suivant du même triangle, en tournant le morceau pendant qu'elle le déplace. Les copies de la nouvelle forme sont ajustées ensemble en tournant chaque copie d'un tiers de tour complet autour d'un coin. Quel énoncé décrit le résultat ?",
       { t: "La nouvelle forme forme un dallage avec des rotations, et son aire égale l'aire du triangle.", fb: "Exact. Le morceau déplacé correspond à la coupe de la copie voisine sous un tour de 120 degrés, et l'aire est conservée." },
-      [{ t: "La nouvelle forme forme un dallage avec des translations seulement, et son aire est plus petite.", fb: "Déplacer un morceau vers un côté adjacent apparie les copies par rotation, pas par un simple glissement, et aucune aire n'est perdue." }, { t: "La nouvelle forme ne peut pas former un dallage, parce que ce n'est plus un polygone aux côtés droits seulement.", fb: "Les formes qui ne sont pas des polygones peuvent former un dallage; la coupe et le morceau ajouté correspondent entre les copies voisines." }, { t: "La nouvelle forme forme un dallage, mais seulement après que chaque copie est agrandie.", fb: "Toutes les copies gardent la même taille; agrandir ne fait pas partie de la méthode." }],
+      [{ t: "La nouvelle forme forme un dallage avec des translations seulement, et son aire est plus petite.", fb: "Déplacer un morceau vers un côté adjacent apparie les copies par rotation, pas par un simple glissement, et aucune aire n'est perdue." }, { t: "La nouvelle forme ne peut pas former un dallage, car ce n'est plus un polygone.", fb: "Les formes qui ne sont pas des polygones peuvent former un dallage; la coupe et le morceau ajouté correspondent entre les copies voisines." }, { t: "La nouvelle forme forme un dallage seulement après que chaque copie est agrandie.", fb: "Toutes les copies gardent la même taille; agrandir ne fait pas partie de la méthode." }],
       "Couper un morceau d'un côté et l'ajouter au côté adjacent apparie les copies sous un tour de 120 degrés, et déplacer un morceau conserve l'aire. Donc <b>la nouvelle forme forme un dallage avec des rotations, et son aire égale l'aire du triangle</b>.",
       { mode: "new-triangle-rotate" });
   },
   function () {
     return mcq("Un élève veut transformer un parallélogramme qui forme un dallage en une nouvelle forme qui forme un dallage. Quelle méthode fonctionne ?",
       { t: "Couper une courbe du côté du haut et coller la même courbe sur le côté du bas, puis répéter les copies par glissement.", fb: "Exact. Les côtés opposés d'un parallélogramme s'apparient par un glissement, donc la courbe et sa copie s'ajustent ensemble et l'aire est conservée." },
-      [{ t: "Couper une courbe du côté du haut et la jeter, puis répéter les copies par glissement.", fb: "Jeter le morceau laisse un espace qu'aucune copie ne peut remplir, et l'aire change." }, { t: "Couper une courbe du côté du haut et la coller aussi sur le côté du haut.", fb: "Ajouter au même côté laisse le côté du bas droit, donc les bosses rencontrent les bosses et les copies ne peuvent pas s'ajuster." }, { t: "Étirer le parallélogramme au double de sa largeur et couper un morceau d'un coin.", fb: "Étirer change les angles de la forme, donc les copies ne se rencontrent plus nettement autour de chaque point." }],
+      [{ t: "Couper une courbe du côté du haut et la jeter, puis répéter les copies par glissement sur tout le plancher de la pièce.", fb: "Jeter le morceau laisse un espace qu'aucune copie ne peut remplir, et l'aire change." }, { t: "Couper une courbe du côté du haut et la coller aussi sur le côté du haut du même parallélogramme d'origine.", fb: "Ajouter au même côté laisse le côté du bas droit, donc les bosses rencontrent les bosses et les copies ne peuvent pas s'ajuster." }, { t: "Étirer le parallélogramme au double de sa largeur et couper un morceau d'un coin du parallélogramme d'origine.", fb: "Étirer change les angles de la forme, donc les copies ne se rencontrent plus nettement autour de chaque point." }],
       "Les morceaux déplacés entre les côtés opposés d'une forme qui forme un dallage gardent l'ajustement par un glissement et conservent l'aire. Donc la méthode qui fonctionne est de <b>couper une courbe du côté du haut et coller la même courbe sur le côté du bas, puis répéter les copies par glissement</b>.",
       { mode: "new-parallelogram" });
   },
   function () {
     return mcq("Après avoir modifié un hexagone qui forme un dallage, une élève vérifie sa nouvelle forme et trouve que son aire est plus grande que l'aire de l'hexagone. Qu'est-ce qui a dû arriver dans sa modification ?",
       { t: "Elle a ajouté un morceau sans couper le même morceau ailleurs.", fb: "Exact. L'aire grandit seulement quand du matériau est ajouté sans qu'un morceau égal soit enlevé." },
-      [{ t: "Elle a déplacé un morceau d'un côté au côté opposé.", fb: "Déplacer un morceau garde la quantité totale de matériau, et donc l'aire, la même." }, { t: "Elle a retourné la forme avant de la copier.", fb: "Retourner est une réflexion; cela ne change pas l'aire." }, { t: "Elle a tourné chaque copie de 60 degrés dans le motif.", fb: "Tourner les copies ne change pas l'aire de la forme elle-même." }],
+      [{ t: "Elle a déplacé un morceau d'un côté au côté opposé de la forme.", fb: "Déplacer un morceau garde la quantité totale de matériau, et donc l'aire, la même." }, { t: "Elle a retourné la forme entière avant de la copier dans le motif.", fb: "Retourner est une réflexion; cela ne change pas l'aire." }, { t: "Elle a tourné chaque copie de 60 degrés dans le motif du dallage.", fb: "Tourner les copies ne change pas l'aire de la forme elle-même." }],
       "Les transformations et les déplacements de morceaux conservent l'aire; l'aire peut grandir seulement quand du matériau supplémentaire est ajouté. Donc <b>elle a ajouté un morceau sans couper le même morceau ailleurs</b>.",
       { mode: "new-area-check" });
   }
