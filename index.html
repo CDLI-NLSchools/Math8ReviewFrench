@@ -3695,16 +3695,18 @@ E("u6-solve-div-plus", 6, ["8.4"], 2, "gen", function () {
     { mode: "solve-div-plus", a: a, b: b, d: d });
 }, ["Travaille dans l'ordre inverse : occupe-toi du nombre ajouté avant la division.", "Soustrais la constante des deux côtés, puis multiplie les deux côtés par le diviseur."]);
 
-// 11. L2, 7.3, CR 2: missing value in an ordered pair.
+// 11. L1, 7.3: missing y value in an ordered pair (forward mode; split under ruling 18, Nov 9, 2026).
 E("u6-missing-ordered-pair", 6, ["7.3"], 1, "gen", function () {
   var m = ri(2, 7), b = ri(-4, 9);
-  var dir = pick(["findy", "findx"]);
-  if (dir === "findy") {
-    var x = ri(1, 9), y = m * x + b;
-    var sol = "Remplace \\(x = " + x + "\\) dans l'équation : \\[ \\begin{aligned} y &= " + fmtD(m) + "(" + x + ")" + u6sgn(b) + " \\\\ &= " + fmtD(m * x) + u6sgn(b) + " \\\\ &= " + fmtD(y) + " \\end{aligned} \\] Donc la valeur manquante dans le couple \\((" + x + ", \\ ?)\\) est <b>" + fmtD(y) + "</b>.";
-    return numq("Le couple ordonné \\((" + x + ", \\ ?)\\) se trouve sur la relation \\(y = " + fmtD(m) + "x" + u6sgn(b) + "\\). Quelle est la valeur manquante de y ?", y, 0.01, sol,
-      { mode: "missing-pair-y", m: m, b: b, x: x });
-  }
+  var x = ri(1, 9), y = m * x + b;
+  var sol = "Remplace \\(x = " + x + "\\) dans l'équation : \\[ \\begin{aligned} y &= " + fmtD(m) + "(" + x + ")" + u6sgn(b) + " \\\\ &= " + fmtD(m * x) + u6sgn(b) + " \\\\ &= " + fmtD(y) + " \\end{aligned} \\] Donc la valeur manquante dans le couple \\((" + x + ", \\ ?)\\) est <b>" + fmtD(y) + "</b>.";
+  return numq("Le couple ordonné \\((" + x + ", \\ ?)\\) se trouve sur la relation \\(y = " + fmtD(m) + "x" + u6sgn(b) + "\\). Quelle est la valeur manquante de y ?", y, 0.01, sol,
+    { mode: "missing-pair-y", m: m, b: b, x: x });
+}, ["Un couple ordonné sur une relation doit satisfaire son équation quand la valeur connue est remplacée.", "Remplace la coordonnée connue, puis résous la petite équation qui reste."]);
+
+// 11b. L2, 7.3, CR 2: missing x value in an ordered pair (backward mode; split from u6-missing-ordered-pair under ruling 18, Nov 9, 2026).
+E("u6-missing-ordered-pair-backward", 6, ["7.3"], 2, "gen", function () {
+  var m = ri(2, 7), b = ri(-4, 9);
   var xt = ri(2, 10), yt = m * xt + b;
   var sol2 = "Remplace \\(y = " + yt + "\\) et résous pour \\(x\\) : \\[ \\begin{aligned} " + fmtD(yt) + " &= " + fmtD(m) + "x" + u6sgn(b) + " \\\\ " + fmtD(yt) + (b >= 0 ? " - " + fmtD(b) : " + " + fmtD(-b)) + " &= " + fmtD(m) + "x \\\\ " + fmtD(yt - b) + " &= " + fmtD(m) + "x \\\\ x &= " + fmtD(xt) + " \\end{aligned} \\] Donc la valeur manquante dans le couple \\((?, " + fmtD(yt) + ")\\) est <b>" + fmtD(xt) + "</b>.";
   return numq("Le couple ordonné \\((?, " + fmtD(yt) + ")\\) se trouve sur la relation \\(y = " + fmtD(m) + "x" + u6sgn(b) + "\\). Quelle est la valeur manquante de x ?", xt, 0.01, sol2,
@@ -5658,6 +5660,7 @@ var CR_MARKS={
  "u5-ratio-problem-solve": 2,
  "u6-graph-extend-pair": 2,
  "u6-missing-ordered-pair": 2,
+ "u6-missing-ordered-pair-backward": 2,
  "u6-solve-context-problem": 3,
  "u6-solve-distributive": 3,
  "u6-solve-div-plus": 2,
