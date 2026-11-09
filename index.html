@@ -759,7 +759,7 @@ E("u1-is-perfect-square", 1, ["3.20"], 1, "gen", function(){
     {mode:"no", n:n});
 }, ["Un carré parfait est un nombre entier multiplié par lui-même.", "Écris les carrés près de chaque valeur et vérifie quelles valeurs sont dans la liste."]);
 
-E("u1-factors-root", 1, ["5.1"], 2, "gen", function(){
+E("u1-factors-root", 1, ["5.1"], 1, "gen", function(){
   var r=ri(4,16); var n=r*r;
   var facs=[]; for(var d=1;d<=n;d++){ if(n%d===0){facs.push(d);} }
   var others=facs.filter(function(d){return d!==r;});
@@ -778,7 +778,7 @@ E("u1-factors-root", 1, ["5.1"], 2, "gen", function(){
     {r:r, n:n});
 }, ["Une racine carrée est le facteur qui se multiplie par lui-même pour donner le nombre.", "Écris les paires de facteurs et trouve la paire où les deux facteurs sont les mêmes."]);
 
-E("u1-estimate-between", 1, ["6.30"], 2, "gen", function(){
+E("u1-estimate-between", 1, ["6.30"], 1, "gen", function(){
   var n=u1nonSquare(10,200); var k=Math.floor(Math.sqrt(n));
   var pairs=[[k,k+1],[k-1,k],[k+1,k+2],[k+2,k+3]];
   var opts=pairs.slice(1).map(function(pr){return {t:pr[0]+" et "+pr[1], fb:"Mets les deux nombres au carré : "+n+" ne se trouve pas entre leurs carrés."};});
@@ -789,7 +789,7 @@ E("u1-estimate-between", 1, ["6.30"], 2, "gen", function(){
   return q;
 }, ["Trouve les carrés parfaits juste en dessous et juste au-dessus du nombre.", "Mets les nombres entiers au carré dans l'ordre jusqu'à ce que leurs carrés encadrent le nombre."]);
 
-E("u1-root-between-numbers", 1, ["6.31"], 2, "gen", function(){
+E("u1-root-between-numbers", 1, ["6.31"], 1, "gen", function(){
   var a=ri(2,14); var b=a+ri(1,2);
   var m=a*a+ri(1,(b*b-a*a)-1);
   var opts=[{t:String(a*a), fb:"Sa racine carrée est exactement "+a+", une borne, pas une valeur entre les deux."},
@@ -800,7 +800,7 @@ E("u1-root-between-numbers", 1, ["6.31"], 2, "gen", function(){
     {a:a, b:b, m:m});
 }, ["Mets les deux nombres donnés au carré pour obtenir un intervalle pour le nombre lui-même.", "Vérifie quel candidat se trouve entre les deux carrés."]);
 
-E("u1-calc-approx", 1, ["6.32"], 2, "gen", function(){
+E("u1-calc-approx", 1, ["6.32"], 1, "gen", function(){
   var n=u1nonSquare(11,300);
   var ans=u1r1(Math.sqrt(n));
   return numq("Utilise une calculatrice pour trouver \\(\\sqrt{"+n+"}\\), avec une décimale.", ans, 0.05,
@@ -808,7 +808,7 @@ E("u1-calc-approx", 1, ["6.32"], 2, "gen", function(){
     {n:n});
 }, ["Entre le nombre et utilise la touche racine carrée d'une calculatrice.", "Lis l'écran, puis arrondis à une décimale."]);
 
-E("u1-why-approx", 1, ["6.33"], 2, "var", varset([
+E("u1-why-approx", 1, ["6.33"], 1, "var", varset([
   function(){
     return mcq("Une calculatrice montre \\(\\sqrt{5} \\approx 2,2360679\\). Pourquoi la valeur à l'écran est-elle une approximation ?",
       {t:"Mettre 2,2360679 au carré ne donne pas exactement 5, seulement très proche de 5", fb:"Exact : l'affichage est arrondi, donc son carré n'atteint pas tout à fait 5."},
@@ -838,7 +838,7 @@ E("u1-why-approx", 1, ["6.33"], 2, "var", varset([
   }
 ]), ["Demande-toi si mettre la valeur montrée au carré redonne exactement le nombre de départ.", "Mets la valeur montrée au carré et compare-la au nombre sous le signe de racine."]);
 
-E("u1-pythag-model", 1, ["9.1"], 2, "gen", function(){
+E("u1-pythag-model", 1, ["9.1"], 1, "gen", function(){
   var base=pick([[3,4,5],[5,12,13],[8,15,17],[7,24,25],[20,21,29]]);
   var kk=ri(1,4); var tr=[base[0]*kk,base[1]*kk,base[2]*kk];
   if(pick(["ab","ba"])==="ba"){ var tmp=tr[0]; tr[0]=tr[1]; tr[1]=tmp; }
@@ -1168,7 +1168,7 @@ E("u2-quotient-sign-apply", 2, ["6.22"], 1, "gen", function () {
 }, ["Décide d'abord du signe : les mêmes signes donnent un positif, les signes différents donnent un négatif.", "Divise le premier nombre, sans son signe, par le deuxième, sans son signe, puis ajoute le signe."]);
 
 // 4. L2, 6.21: model division with chips or sharing, described in words.
-E("u2-div-model-groups", 2, ["6.21"], 2, "gen", function () {
+E("u2-div-model-groups", 2, ["6.21"], 1, "gen", function () {
   var g = ri(2, 8), per = ri(2, 9);
   var total = -g * per;
   if (Math.random() < 0.5) {
@@ -1196,7 +1196,7 @@ E("u2-div-model-groups", 2, ["6.21"], 2, "gen", function () {
 }, ["Partager également et compter des groupes égaux sont deux formes de division.", "Écris la division que le modèle montre, puis utilise la règle des signes."]);
 
 // 5. L2, 6.19: which context matches a given product.
-E("u2-mult-context-match", 2, ["6.19"], 2, "gen", function () {
+E("u2-mult-context-match", 2, ["6.19"], 1, "gen", function () {
   var r = ri(2, 9), n = ri(3, 8);
   var scens = [
     {
@@ -1238,7 +1238,7 @@ E("u2-mult-context-match", 2, ["6.19"], 2, "gen", function () {
 }, ["Un produit avec un facteur négatif veut dire un changement négatif répété plusieurs fois.", "Vérifie chaque situation : le changement est-il négatif, et est-il répété ou partagé ?"]);
 
 // 6. L2, 6.20, CR 3: solve a multiplication problem in context (start plus repeated change).
-E("u2-mult-problem", 2, ["6.20"], 2, "gen", function () {
+E("u2-mult-problem", 2, ["6.20"], 1, "gen", function () {
   var mode = ri(0, 2);
   if (mode === 0) {
     var start = ri(-6, 8), r = ri(2, 6), h = ri(3, 7);
@@ -1262,7 +1262,7 @@ E("u2-mult-problem", 2, ["6.20"], 2, "gen", function () {
 }, ["Trouve d'abord le changement total répété : cette partie est une multiplication.", "Multiplie le changement à chaque étape par le nombre d'étapes, puis combine-le avec la valeur de départ."]);
 
 // 7. L2, 6.23: which context matches a given quotient.
-E("u2-div-context-match", 2, ["6.23"], 2, "gen", function () {
+E("u2-div-context-match", 2, ["6.23"], 1, "gen", function () {
   var per = ri(2, 9), n = ri(3, 8), total = per * n;
   var scens = [
     {
@@ -1298,7 +1298,7 @@ E("u2-div-context-match", 2, ["6.23"], 2, "gen", function () {
 }, ["Un quotient partage un total en parts égales.", "Vérifie chaque situation : un total est-il partagé également, et le changement est-il négatif ?"]);
 
 // 8. L2, 6.24, CR 3: division of a 2-digit integer by a 1-digit integer in a problem.
-E("u2-div-2by1", 2, ["6.24"], 2, "gen", function () {
+E("u2-div-2by1", 2, ["6.24"], 1, "gen", function () {
   var P = null;
   for (var tries = 0; tries < 300 && !P; tries++) {
     var d = ri(2, 9);
@@ -1314,7 +1314,7 @@ E("u2-div-2by1", 2, ["6.24"], 2, "gen", function () {
 }, ["Le dividende a deux chiffres et le diviseur a un chiffre.", "Divise d'abord les nombres sans leurs signes, puis utilise la règle des signes pour le quotient."]);
 
 // 9. L2, 6.25, CR 3: division of a 2-digit integer by a 2-digit integer.
-E("u2-div-2by2", 2, ["6.25"], 2, "gen", function () {
+E("u2-div-2by2", 2, ["6.25"], 1, "gen", function () {
   var P = null;
   for (var tries = 0; tries < 300 && !P; tries++) {
     var d = ri(11, 25) * (Math.random() < 0.5 ? -1 : 1);
@@ -1330,7 +1330,7 @@ E("u2-div-2by2", 2, ["6.25"], 2, "gen", function () {
 }, ["Les deux nombres ont deux chiffres ici ; le quotient a un seul chiffre.", "Divise d'abord les nombres sans leurs signes, puis utilise la règle des signes pour le quotient."]);
 
 // 10. L2, 6.26: identify the operation (expression) that solves a problem.
-E("u2-identify-operation", 2, ["6.26"], 2, "gen", function () {
+E("u2-identify-operation", 2, ["6.26"], 1, "gen", function () {
   if (Math.random() < 0.5) {
     var r = ri(2, 8), h = ri(3, 9);
     var prompt = "Chaque heure, le niveau de l'eau dans un réservoir du port baisse de " + r + " cm. Quelle expression donne le changement total du niveau de l'eau après " + h + " heures ?";
@@ -1432,7 +1432,7 @@ E("u2-ooo-num", 2, ["6.27"], 2, "gen", function () {
 }, ["La multiplication et la division se font avant l'addition et la soustraction.", "Calcule le produit et le quotient séparément, puis combine-les."]);
 
 // 13. L2, 6.18 and 6.20, CR 2: signed per-round change applied in a game problem.
-E("u2-sign-product-problem", 2, ["6.18", "6.20"], 2, "gen", function () {
+E("u2-sign-product-problem", 2, ["6.18", "6.20"], 1, "gen", function () {
   var start = ri(20, 90);
   var per = 0;
   while (per === 0 || Math.abs(per) < 2) per = ri(-9, 9);
@@ -1702,7 +1702,7 @@ E("u3-area-model-product", 3, ["6.5"], 2, "gen", function () {
 }, ["Le chevauchement est là où l'ombrage des rangées et celui des colonnes se croisent.", "Compte les cellules du chevauchement, puis compte toutes les cellules du rectangle."]);
 
 // 6. L2, 6.6: provide a context, choose the multiplication expression.
-E("u3-context-multiply-expression", 3, ["6.6"], 2, "gen", function () {
+E("u3-context-multiply-expression", 3, ["6.6"], 1, "gen", function () {
   var tmpls = [
     function (a, b) { return "Une recette utilise " + a + " d'un sac de farine, et on prépare " + b + " de la recette. Quelle expression donne la fraction du sac entier utilisée ?"; },
     function (a, b) { return "Dans un jardin, " + a + " du terrain est planté. Dans la partie plantée, " + b + " est en tomates. Quelle expression donne la fraction du terrain entier en tomates ?"; },
@@ -1765,7 +1765,7 @@ E("u3-estimate-quotient-benchmark", 3, ["6.11"], 2, "gen", function () {
 }, ["Demande-toi combien de fois le diviseur entre dans le dividende.", "Si le diviseur est plus petit que le dividende, le quotient est plus grand que 1."]);
 
 // 9. L2, 6.12: divide a proper fraction by a proper fraction.
-E("u3-divide-frac-by-frac", 3, ["6.12"], 2, "gen", function () {
+E("u3-divide-frac-by-frac", 3, ["6.12"], 1, "gen", function () {
   var P = null;
   for (var t = 0; t < 300 && !P; t++) {
     var d1 = ri(2, 9), n1 = ri(1, d1 - 1), d2 = ri(2, 9), n2 = ri(1, d2 - 1);
@@ -1790,7 +1790,7 @@ E("u3-divide-frac-by-frac", 3, ["6.12"], 2, "gen", function () {
 }, ["Diviser par une fraction veut dire multiplier par sa réciproque.", "Inverse seulement la deuxième fraction, le diviseur."]);
 
 // 10. L2, 6.10, CR 3: model fraction divided by fraction with a bar figure (typed answer).
-E("u3-model-division-bar", 3, ["6.10"], 2, "gen", function () {
+E("u3-model-division-bar", 3, ["6.10"], 1, "gen", function () {
   var P = null;
   for (var t = 0; t < 400 && !P; t++) {
     var d1 = pick([2, 3, 4, 5, 6, 8]), n1 = ri(1, d1 - 1), d2 = pick([2, 3, 4, 5, 6, 8]);
@@ -1831,7 +1831,7 @@ E("u3-divide-mixed-cr", 3, ["6.13"], 2, "gen", function () {
 }, ["Transforme d'abord le nombre fractionnaire en fraction impropre.", "Diviser par la longueur d'un morceau, c'est demander combien de morceaux entrent, donc inverse le diviseur et multiplie."]);
 
 // 12. L2, 6.14: provide a context, choose the division expression.
-E("u3-context-divide-expression", 3, ["6.14"], 2, "gen", function () {
+E("u3-context-divide-expression", 3, ["6.14"], 1, "gen", function () {
   var tmpls = [
     function (a, b) { return "Un ruban de " + a + " m est coupé en morceaux de " + b + " m chacun. Quelle expression donne le nombre de morceaux ?"; },
     function (a, b) { return "Une cruche contient " + a + " L de jus. On le verse également dans des bouteilles qui contiennent chacune " + b + " L. Quelle expression donne le nombre de bouteilles remplies ?"; },
@@ -1873,7 +1873,7 @@ E("u3-order-of-ops-fractions", 3, ["6.16"], 2, "gen", function () {
 }, ["La multiplication vient avant l'addition dans la priorité des opérations.", "Calcule d'abord la fraction fois le nombre entier."]);
 
 // 14. L2, 6.15: identify the operation a context requires.
-E("u3-identify-operation", 3, ["6.15"], 2, "gen", function () {
+E("u3-identify-operation", 3, ["6.15"], 1, "gen", function () {
   var dens = [3, 4, 5, 6, 8];
   function F() { var d = pick(dens); return u3disp(ri(1, d - 1), d); }
   function G() { var d = pick(dens); var n = ri(1, d - 1); return u3disp(d + n, d); }
@@ -1899,7 +1899,7 @@ E("u3-identify-operation", 3, ["6.15"], 2, "gen", function () {
 }, ["Décide ce que la réponse mesure : un total, un reste, une partie d'une partie ou un nombre de groupes.", "Associe l'histoire à l'opération avant de regarder les nombres."]);
 
 // 15. L2, 6.12, CR 2: solve a division problem in context (typed answer).
-E("u3-divide-word-cr", 3, ["6.12"], 2, "gen", function () {
+E("u3-divide-word-cr", 3, ["6.12"], 1, "gen", function () {
   var P = null;
   for (var t = 0; t < 400 && !P; t++) {
     var d1 = ri(3, 9), n1 = ri(1, d1 - 1), d2 = ri(3, 9), n2 = ri(1, d2 - 1);
@@ -2223,7 +2223,7 @@ E("u4-sa-from-net", 4, ["9.3"], 1, "gen", function(){
     {mode:"net-areas", l:l, w:w, h:h});
 }, ["L'aire totale est la somme des aires de toutes les faces planes du développement.", "Additionne les trois aires de faces différentes, puis double le total parce que chaque face a une face correspondante."]);
 
-E("u4-net-choose", 4, ["10.11"], 2, "gen", function(){
+E("u4-net-choose", 4, ["10.11"], 1, "gen", function(){
   var target=pick(["rect","tri","cyl"]);
   var names={rect:"prisme droit à base rectangulaire", tri:"prisme droit à base triangulaire", cyl:"cylindre droit"};
   var kinds=[target].concat(["rect","tri","cyl","pyr"].filter(function(k){return k!==target;})).slice(0,4);
@@ -2243,7 +2243,7 @@ E("u4-net-choose", 4, ["10.11"], 2, "gen", function(){
   return q;
 }, ["Dresse la liste des faces dont l'objet nommé a besoin, puis vérifie chaque développement pour ces formes.", "Un cylindre a besoin de cercles, un prisme triangulaire a besoin de triangles, et un prisme rectangulaire a besoin seulement de rectangles."]);
 
-E("u4-net-predict", 4, ["10.2","10.1"], 2, "var", varset([
+E("u4-net-predict", 4, ["10.2","10.1"], 1, "var", varset([
   function(){
     return mcq("Un développement plat est formé de 2 triangles et de 3 rectangles joints bord à bord. Quel objet peut-on former en pliant ce développement ?",
       {t:"Prisme droit à base triangulaire", fb:"Oui : les triangles deviennent les extrémités et les rectangles s'enroulent autour pour former les côtés."},
@@ -2273,7 +2273,7 @@ E("u4-net-predict", 4, ["10.2","10.1"], 2, "var", varset([
   }
 ]), ["Trie d'abord les formes plates : les triangles, les rectangles et les cercles pointent chacun vers un solide différent.", "Fais correspondre les formes des extrémités du développement aux extrémités de l'objet qu'il formera."]);
 
-E("u4-net-build-parts", 4, ["10.12"], 2, "gen", function(){
+E("u4-net-build-parts", 4, ["10.12"], 1, "gen", function(){
   var mode=pick(["tri","cyl","rect","incomplete-tri","incomplete-cyl"]);
   if(mode==="tri"){
     var Lt=ri(5,18), at=ri(3,12), bt=ri(3,12);
@@ -2373,7 +2373,7 @@ E("u4-sa-problem-wrap", 4, ["9.5"], 2, "gen", function(){
     {mode:"wrap-paper", l:l2, w:w2, h:h2});
 }, ["Calcule l'aire totale avant d'utiliser la surface couverte ou de finir le problème.", "Divise l'aire totale par la surface couverte par pot et arrondis vers le haut, car on ne peut pas acheter un pot partiel."]);
 
-E("u4-vol-rect-prism", 4, ["9.11"], 2, "gen", function(){
+E("u4-vol-rect-prism", 4, ["9.11"], 1, "gen", function(){
   var l=ri(3,13), w=ri(2,11), h=ri(2,10);
   var V=l*w*h;
   var sa=2*(l*w+l*h+w*h);
@@ -2401,7 +2401,7 @@ E("u4-vol-tri-prism", 4, ["9.7","9.11"], 2, "gen", function(){
   return q;
 }, ["Le volume d'un prisme est l'aire de la base multipliée par la longueur sur laquelle elle se prolonge.", "Calcule l'aire du triangle : la moitié du produit des cathètes, puis multiplie par la longueur du prisme."]);
 
-E("u4-vol-cylinder", 4, ["9.9"], 2, "gen", function(){
+E("u4-vol-cylinder", 4, ["9.9"], 1, "gen", function(){
   var r=ri(2,10), h=ri(3,15);
   var V=u4r1(3.14*r*r*h);
   var q=numq("Trouve le volume du cylindre droit montré. Utilise \\(\\pi = 3,14\\) et donne ta réponse en centimètres cubes, avec une décimale.", V, 0.6,
@@ -2411,7 +2411,7 @@ E("u4-vol-cylinder", 4, ["9.9"], 2, "gen", function(){
   return q;
 }, ["Traite le cylindre comme un prisme dont la base est un cercle.", "Trouve l'aire du cercle avec pi fois le rayon au carré, puis multiplie par la hauteur."]);
 
-E("u4-vol-missing-height", 4, ["9.7"], 2, "gen", function(){
+E("u4-vol-missing-height", 4, ["9.7"], 1, "gen", function(){
   var h=ri(2,15), B=pick([6,8,10,12,14,15,16,18,20,24,25,28,30,35,40,50]);
   var V=B*h;
   var kind=pick(["prism","tri","cylinder"]);
@@ -2424,7 +2424,7 @@ E("u4-vol-missing-height", 4, ["9.7"], 2, "gen", function(){
     {mode:kind, B:B, h:h});
 }, ["Le volume égale l'aire de la base multipliée par la hauteur, donc une de ces valeurs manque ici.", "Divise le volume par l'aire de la base pour défaire la multiplication."]);
 
-E("u4-base-volume-link", 4, ["9.8"], 2, "var", varset([
+E("u4-base-volume-link", 4, ["9.8"], 1, "var", varset([
   function(){
     return mcq("Un prisme droit a une aire de base de 24 cm\\(^{2}\\). Des couches de la forme de la base, chacune de 1 cm d'épaisseur, sont empilées jusqu'à une hauteur de 5 cm. Quelle phrase explique le volume ?",
       {t:"Chaque couche contient 24 cm\\(^{3}\\), donc 5 couches contiennent 120 cm\\(^{3}\\) en tout", fb:"Exact : l'aire de la base donne le volume d'une couche, et la hauteur compte les couches."},
@@ -2776,7 +2776,7 @@ E("u5-express-rate", 5, ["3.16"], 1, "gen", function () {
 }, ["Un taux compare deux unités différentes, et les deux unités restent dans le taux écrit.", "Écris d'abord le montant mesuré avec son unité, puis une barre oblique, puis le deuxième montant avec son unité."]);
 
 // 7. L2, 3.2: represent a fractional percent on a grid.
-E("u5-grid-fractional-percent", 5, ["3.2"], 2, "gen", function () {
+E("u5-grid-fractional-percent", 5, ["3.2"], 1, "gen", function () {
   var fracs = [{ v: 0.25, w: "un quart" }, { v: 0.5, w: "une moitié" }, { v: 0.75, w: "trois quarts" }];
   var f = pick(fracs), base = pick([0, 1, 2, 3, 5, 6, 8, 9, 12, 15, 17, 21, 24, 28, 31, 35, 38, 42, 45, 52, 57, 63, 68, 74, 81, 90]);
   var p = base + f.v, pStr = fmtD(p, 2);
@@ -2797,7 +2797,7 @@ E("u5-grid-fractional-percent", 5, ["3.2"], 2, "gen", function () {
 }, ["Partage le pourcentage en sa partie entière et sa partie fractionnaire avant de penser aux carrés.", "Compte d'abord les carrés entiers à partir de la partie entière du pourcentage."]);
 
 // 8. L2, 3.3: represent a percent over 100 using grids.
-E("u5-grid-over-100", 5, ["3.3"], 2, "gen", function () {
+E("u5-grid-over-100", 5, ["3.3"], 1, "gen", function () {
   var grids = ri(1, 2), extra = ri(3, 95), p = grids * 100 + extra;
   var gw = grids === 1 ? "une grille entière" : "deux grilles entières";
   var corr = "Ombrer " + gw + " et " + extra + " carrés d'une autre grille";
@@ -2813,7 +2813,7 @@ E("u5-grid-over-100", 5, ["3.3"], 2, "gen", function () {
 }, ["Compte d'abord les centaines entières, car chaque grille contient exactement 100 carrés.", "Trouve d'abord combien de grilles entières les centaines du pourcentage remplissent."]);
 
 // 9. L2, 3.4: read a shaded grid in percent, decimal and fraction form.
-E("u5-shaded-grid-read", 5, ["3.4"], 2, "gen", function () {
+E("u5-shaded-grid-read", 5, ["3.4"], 1, "gen", function () {
   var k = ri(4, 96); if (k === 50) k = 54;
   var g = u5gcd(k, 100), fn = k / g, fd = 100 / g;
   var u = 100 - k, gu = u5gcd(u, 100);
@@ -2832,7 +2832,7 @@ E("u5-shaded-grid-read", 5, ["3.4"], 2, "gen", function () {
 }, ["Compte d'abord les carrés ombrés ; sur 100, ce nombre est le pourcentage lui-même.", "Compte d'abord les carrés ombrés, puis divise par 100 pour le nombre décimal et réduis pour la fraction."]);
 
 // 10. L2, 6.1, CR 3: percent of a number in context.
-E("u5-percent-of-number", 5, ["6.1"], 2, "gen", function () {
+E("u5-percent-of-number", 5, ["6.1"], 1, "gen", function () {
   var mode = ri(0, 2);
   if (mode === 0) {
     var pairs = [[20, 150], [25, 240], [30, 120], [40, 250], [50, 180], [60, 350], [75, 160], [80, 450], [15, 200], [35, 300], [90, 600], [10, 480], [45, 220], [55, 400], [65, 500], [70, 320], [85, 700], [95, 900], [5, 640], [12, 350], [18, 450], [22, 550]];
@@ -2862,7 +2862,7 @@ E("u5-percent-of-number", 5, ["6.1"], 2, "gen", function () {
 }, ["Change d'abord le pourcentage en nombre décimal, puis multiplie par le montant total.", "Écris d'abord le pourcentage en nombre décimal en le divisant par 100."]);
 
 // 11. L2, 6.1, CR 3: find the whole given a part and a percent.
-E("u5-find-the-whole", 5, ["6.1"], 2, "gen", function () {
+E("u5-find-the-whole", 5, ["6.1"], 1, "gen", function () {
   var pool = [[25, 60], [20, 80], [30, 90], [40, 150], [50, 70], [75, 120], [80, 200], [10, 240], [60, 300], [90, 400], [15, 200], [35, 260], [12, 250], [16, 150], [18, 200], [22, 150], [28, 250], [32, 200], [38, 150], [42, 200], [48, 250], [52, 200], [56, 150], [64, 200], [72, 250], [84, 150], [88, 200], [45, 180], [65, 140], [85, 220], [55, 160], [95, 300]];
   var pr = pick(pool), p = pr[0], W = pr[1], part = W * p / 100;
   var ctxs = [
@@ -2885,7 +2885,7 @@ E("u5-discount-then-tax", 5, ["6.2"], 2, "gen", function () {
 }, ["Les pourcentages combinés agissent l'un après l'autre, et le deuxième pourcentage agit sur le nouveau montant.", "Enlève d'abord le rabais du plein prix pour obtenir le prix de solde."]);
 
 // 13. L2, 6.3: percent of a percent.
-E("u5-percent-of-percent", 5, ["6.3"], 2, "gen", function () {
+E("u5-percent-of-percent", 5, ["6.3"], 1, "gen", function () {
   var A = pick([20, 30, 40, 50, 60, 70, 80, 90]), B = pick([20, 30, 40, 50, 60, 70, 80, 90]);
   var ans = A * B / 100;
   var ctxs = [
@@ -2906,7 +2906,7 @@ E("u5-percent-of-percent", 5, ["6.3"], 2, "gen", function () {
 }, ["Le deuxième pourcentage agit seulement sur le groupe que le premier pourcentage a choisi.", "Change d'abord les deux pourcentages en nombres décimaux, puis multiplie-les."]);
 
 // 14. L2, 3.9: express a three-term ratio from a context.
-E("u5-three-term-ratio", 5, ["3.9"], 2, "gen", function () {
+E("u5-three-term-ratio", 5, ["3.9"], 1, "gen", function () {
   var ctxs = [
     { n: ["pots de peinture rouge", "pots de peinture jaune", "pots de peinture blanche"] }, { n: ["pièces de 5 cents", "pièces de 10 cents", "pièces de 25 cents"] },
     { n: ["pommes", "poires", "prunes"] }, { n: ["tambours", "guitares", "violons"] },
@@ -2963,7 +2963,7 @@ E("u5-three-term-ratio", 5, ["3.9"], 2, "gen", function () {
    Unsure about: nothing blocking. "Entier" for whole and "facteur"
    for scale are working choices where the glossary is silent.
 */
-E("u5-part-to-whole-fraction", 5, ["3.10"], 2, "gen", function () {
+E("u5-part-to-whole-fraction", 5, ["3.10"], 1, "gen", function () {
   var ctxs = [
     { a: "jetons rouges", b: "jetons bleus", first: "les jetons rouges" }, { a: "garçons", b: "filles", first: "les garçons" },
     { a: "victoires", b: "défaites", first: "les victoires" }, { a: "livres de fiction", b: "livres documentaires", first: "les livres de fiction" }
@@ -2985,7 +2985,7 @@ E("u5-part-to-whole-fraction", 5, ["3.10"], 2, "gen", function () {
 }, ["Partie à entier veut dire que le dénominateur est la somme des deux parties, pas l'autre partie.", "Additionne d'abord les deux termes du rapport pour obtenir l'entier."]);
 
 // 16. L2, 3.11: express a ratio as a percent.
-E("u5-ratio-as-percent", 5, ["3.11"], 2, "gen", function () {
+E("u5-ratio-as-percent", 5, ["3.11"], 1, "gen", function () {
   var ctxs = [
     { a: "victoires", b: "défaites", first: "les victoires" }, { a: "billes rouges", b: "billes vertes", first: "les billes rouges" },
     { a: "jours ensoleillés", b: "jours nuageux", first: "les jours ensoleillés" }, { a: "choix de fiction", b: "choix documentaires", first: "les choix de fiction" }
@@ -3008,7 +3008,7 @@ E("u5-ratio-as-percent", 5, ["3.11"], 2, "gen", function () {
 }, ["Un terme du rapport devient un pourcentage seulement après comparaison avec l'entier, pas avec l'autre terme.", "Additionne d'abord les termes pour obtenir l'entier, puis divise le premier terme par l'entier."]);
 
 // 17. L2, 3.13, var: explain the meaning of a/b in a ratio context.
-E("u5-meaning-of-ratio-ab", 5, ["3.13"], 2, "var", varset([
+E("u5-meaning-of-ratio-ab", 5, ["3.13"], 1, "var", varset([
   function () {
     var sol = "Sous forme de rapport, les deux nombres comparent deux quantités distinctes : \\[ \\begin{aligned} " + FR(2, 3) + " &\\text{ veut dire } 2 \\text{ pour } 3 \\end{aligned} \\] Donc cela veut dire <b>pour chaque 2 tasses de sirop, il y a 3 tasses d'eau</b>.";
     return mcq("Dans un mélange de jus, le rapport du sirop à l'eau est écrit \\(" + FR(2, 3) + "\\). Que veut dire ce rapport ?", { t: "Pour chaque 2 tasses de sirop, il y a 3 tasses d'eau.", fb: "Exact : le numérateur et le dénominateur sont les deux quantités comparées, dans l'ordre." }, [
@@ -3052,7 +3052,7 @@ E("u5-meaning-of-ratio-ab", 5, ["3.13"], 2, "var", varset([
 ]), ["Dans un rapport, une fraction compare deux quantités entre elles, pas une partie avec un entier.", "Nomme d'abord à quelle quantité appartient le nombre du haut et à quelle quantité appartient le nombre du bas."]);
 
 // 18. L2, 3.15, var: provide a context where a/b represents a ratio.
-E("u5-context-for-ratio-ab", 5, ["3.15"], 2, "var", varset([
+E("u5-context-for-ratio-ab", 5, ["3.15"], 1, "var", varset([
   function () {
     var sol = "Un rapport compare deux quantités distinctes de même nature : \\[ \\begin{aligned} " + FR(3, 4) + " &\\text{ comme rapport veut dire } 3 \\text{ pour } 4 \\end{aligned} \\] Donc le contexte de rapport est <b>un bac avec 3 stylos rouges pour chaque 4 stylos bleus</b>.";
     return mcq("Dans quel contexte \\(" + FR(3, 4) + "\\) représente-t-il un rapport ?", { t: "Un bac contient 3 stylos rouges pour chaque 4 stylos bleus.", fb: "Exact : deux groupes distincts, les stylos rouges et les stylos bleus, sont comparés entre eux." }, [
@@ -3096,7 +3096,7 @@ E("u5-context-for-ratio-ab", 5, ["3.15"], 2, "var", varset([
 ]), ["Un contexte de rapport compare deux quantités distinctes. Une partie d'un entier et une comparaison d'unités différentes sont des idées différentes.", "Vérifie d'abord ce que les deux nombres décrivent : deux groupes, un entier, ou deux unités différentes."]);
 
 // 19. L2, 3.12: identify a ratio from a real-life example and record it in simplest form.
-E("u5-identify-ratio-simplest", 5, ["3.12"], 2, "gen", function () {
+E("u5-identify-ratio-simplest", 5, ["3.12"], 1, "gen", function () {
   var ctxs = [
     { s: "Un comptage de plateaux de cafétéria trouve {A} boîtes de jus et {B} cartons de lait sur la ligne du dîner.", a: "boîtes de jus", b: "cartons de lait" },
     { s: "Un sondage sur les animaux compte {A} chiens et {B} chats dans un quartier.", a: "chiens", b: "chats" },
@@ -3146,7 +3146,7 @@ E("u5-ratio-problem-solve", 5, ["6.28"], 2, "gen", function () {
 }, ["Trouve d'abord la valeur d'une partie du rapport. Chaque partie du rapport a cette même valeur.", "Trouve d'abord le facteur ou la valeur d'une partie à partir de la quantité donnée."]);
 
 // 21. L2, 3.17: identify and describe a rate from a real-life example.
-E("u5-identify-rate-example", 5, ["3.17"], 2, "gen", function () {
+E("u5-identify-rate-example", 5, ["3.17"], 1, "gen", function () {
   var tmpls = [
     { s: "Maya a parcouru {A} km en {B} h sur un sentier côtier et a payé des frais de sentier de 12 $.", A: [12, 60], B: [2, 6], corr: function (A, B) { return A + " km en " + B + " h"; }, rev: function (A, B) { return B + " h en " + A + " km"; }, wrong: "12 dollars pour les frais de sentier", wfb: "Les frais sont un seul montant, sans deuxième montant à comparer, donc ce n'est pas le taux dans cet exemple." },
     { s: "Une pompe a déplacé {A} L d'eau en {B} min pendant qu'une équipe de 6 travailleurs regardait.", A: [20, 90], B: [2, 9], corr: function (A, B) { return A + " L en " + B + " min"; }, rev: function (A, B) { return B + " min en " + A + " L"; }, wrong: "6 travailleurs dans l'équipe", wfb: "La taille de l'équipe est un seul nombre, sans comparaison, donc ce n'est pas le taux dans cet exemple." },
@@ -3166,7 +3166,7 @@ E("u5-identify-rate-example", 5, ["3.17"], 2, "gen", function () {
 }, ["Un taux dans un exemple est une paire de quantités avec des unités différentes qui vont ensemble.", "Cherche d'abord deux quantités mesurées en unités différentes qui décrivent la même activité."]);
 
 // 22. L2, 3.14, var: provide a context where a/b represents a rate.
-E("u5-context-for-rate-ab", 5, ["3.14"], 2, "var", varset([
+E("u5-context-for-rate-ab", 5, ["3.14"], 1, "var", varset([
   function () {
     var sol = "Un taux compare des quantités en deux unités différentes : \\[ \\begin{aligned} " + FR(5, 2) + " &\\text{ comme taux relie } 5 \\text{ cm à } 2 \\text{ semaines} \\end{aligned} \\] Donc le contexte de taux est <b>une plante qui pousse de 5 cm en 2 semaines</b>.";
     return mcq("Dans quel contexte \\(" + FR(5, 2) + "\\) représente-t-il un taux ?", { t: "Une plante pousse de 5 cm en 2 semaines.", fb: "Exact : les centimètres et les semaines sont des unités différentes, donc la comparaison est un taux." }, [
@@ -3210,7 +3210,7 @@ E("u5-context-for-rate-ab", 5, ["3.14"], 2, "var", varset([
 ]), ["Un contexte de taux associe deux unités différentes. Un contexte de rapport associe des quantités de même nature.", "Vérifie d'abord les unités des deux nombres : des unités différentes indiquent un taux."]);
 
 // 23. L2, 3.18, var: explain why a rate cannot be represented as a percent.
-E("u5-why-rate-not-percent", 5, ["3.18"], 2, "var", varset([
+E("u5-why-rate-not-percent", 5, ["3.18"], 1, "var", varset([
   function () {
     var sol = "Un pourcentage compare une partie avec un entier mesuré de la même façon, alors qu'un taux garde deux unités différentes : \\[ \\begin{aligned} 60 \\text{ km/h} &\\text{ compare km et h} \\end{aligned} \\] Donc la raison est que <b>un taux compare deux unités différentes, et un pourcentage compare une partie avec un entier de même nature</b>.";
     return mcq("Une vitesse est notée 60 km/h. Pourquoi ce taux ne peut-il pas s'écrire comme un pourcentage ?", { t: "Il compare deux unités différentes, les kilomètres et les heures, alors qu'un pourcentage compare une partie avec un entier de même nature.", fb: "Exact : les deux quantités ont des unités différentes, donc il n'y a pas un seul entier dont on peut prendre un pourcentage." }, [
@@ -3562,7 +3562,7 @@ E("u6-solve-two-step", 6, ["8.4"], 2, "gen", function () {
 }, ["Défais ce qui a été fait à x dans l'ordre inverse : le nombre ajouté part en premier.", "Soustrais la constante des deux côtés, puis divise les deux côtés par le coefficient de x."]);
 
 // 5. L2, 8.1: model a context with an equation of the form ax + b = c.
-E("u6-model-equation", 6, ["8.1"], 2, "gen", function () {
+E("u6-model-equation", 6, ["8.1"], 1, "gen", function () {
   for (var att = 0; att < 300; att++) {
     var a = ri(2, 9), b = ri(3, 20), x = ri(3, 12), c = a * x + b;
     if (a === b) continue;
@@ -3696,7 +3696,7 @@ E("u6-solve-div-plus", 6, ["8.4"], 2, "gen", function () {
 }, ["Travaille dans l'ordre inverse : occupe-toi du nombre ajouté avant la division.", "Soustrais la constante des deux côtés, puis multiplie les deux côtés par le diviseur."]);
 
 // 11. L2, 7.3, CR 2: missing value in an ordered pair.
-E("u6-missing-ordered-pair", 6, ["7.3"], 2, "gen", function () {
+E("u6-missing-ordered-pair", 6, ["7.3"], 1, "gen", function () {
   var m = ri(2, 7), b = ri(-4, 9);
   var dir = pick(["findy", "findx"]);
   if (dir === "findy") {
@@ -4280,7 +4280,7 @@ E("u7-context-for-probability", 7, ["12.2"], 2, "var", varset([
   }
 ]), ["Calcule la probabilité dans chaque contexte ; un seul contexte correspondra à la valeur énoncée.", "Pour deux événements indépendants, multiplie les deux probabilités simples avant de comparer."]);
 
-E("u7-two-draws-percent", 7, ["12.1"], 2, "gen", function () {
+E("u7-two-draws-percent", 7, ["12.1"], 1, "gen", function () {
   var triples = [["rouge", "bleue", "verte"], ["rouge", "jaune", "bleue"], ["blanche", "noire", "orange"], ["violette", "verte", "jaune"], ["bleue", "orange", "rose"]];
   var pair = null;
   for (var t = 0; t < 60 && !pair; t++) {
@@ -4297,7 +4297,7 @@ E("u7-two-draws-percent", 7, ["12.1"], 2, "gen", function () {
   return numq(prompt, ans, 0.01, sol, { mode: "two-draws", a: pair[0], b: pair[1] });
 }, ["La remise garde le sac pareil pour le deuxième tirage, donc les deux tirages sont indépendants.", "Écris chaque tirage comme une fraction sur 10, multiplie, puis convertis en pourcentage."]);
 
-E("u7-two-spinners-decimal", 7, ["12.4"], 2, "gen", function () {
+E("u7-two-spinners-decimal", 7, ["12.4"], 1, "gen", function () {
   var S1 = pick([4, 5, 10, 20]), S2 = pick([4, 5, 10, 20]);
   var F1 = ri(1, S1 - 1), F2 = ri(1, S2 - 1);
   var c1 = pick(["rouge", "bleue", "verte", "dorée"]), c2 = pick(["violette", "orange", "blanche", "noire"]);
@@ -4308,7 +4308,7 @@ E("u7-two-spinners-decimal", 7, ["12.4"], 2, "gen", function () {
   return numq(prompt, ans, 0.0001, sol, { mode: "two-spinners", S1: S1, F1: F1, S2: S2, F2: F2 });
 }, ["Deux tours ne s'influencent pas, donc c'est un produit de deux probabilités simples.", "Écris d'abord la probabilité pour chaque roulette, puis multiplie et convertis en nombre décimal."]);
 
-E("u7-apply-rule-percent", 7, ["12.3"], 2, "gen", function () {
+E("u7-apply-rule-percent", 7, ["12.3"], 1, "gen", function () {
   var S = pick([4, 5, 8, 10]);
   var F = ri(1, S - 1);
   var colour = pick(["rouge", "bleue", "verte", "dorée", "violette", "orange"]);
@@ -4673,7 +4673,7 @@ E("u8-env-tess-var", 8, ["10.6"], 1, "var", varset([
 ]), ["Vérifie les deux conditions : aucun espace, et aucun chevauchement.", "Nomme la forme qui fait le recouvrement et la façon dont elle se répète."]);
 
 // 5. 10.15 L2 gen MC with figure: pick the front view from four drawn silhouettes.
-E("u8-front-view-choice", 8, ["10.15"], 2, "gen", function () {
+E("u8-front-view-choice", 8, ["10.15"], 1, "gen", function () {
   for (var att = 0; att < 200; att++) {
     var hm = u8RandHM(2, 3, 3, 5, 9);
     var front = u8FrontProf(hm), side = u8SideProf(hm);
@@ -4846,7 +4846,7 @@ E("u8-build-from-views", 8, ["10.17"], 2, "gen", function () {
 }, ["Utilise les trois vues ensemble : le dessus pour l'empreinte, la face pour les hauteurs des colonnes, le côté pour les hauteurs des rangées.", "Teste d'abord chaque carte candidate contre la vue de face; la plupart des mauvaises cartes échouent là."]);
 
 // 10. 10.17 L2 gen num, CR 3: total cubes in the object shown as a height map.
-E("u8-cubes-total-num", 8, ["10.17"], 2, "gen", function () {
+E("u8-cubes-total-num", 8, ["10.17"], 1, "gen", function () {
   var hm = u8RandHM(2, 3, 3, 7, 12);
   var tot = u8Sum(hm);
   var cell = 26, body = u8T(160, 14, "Construis cet objet (nombres = cubes sur chaque case)", 11, true);
@@ -4862,7 +4862,7 @@ E("u8-cubes-total-num", 8, ["10.17"], 2, "gen", function () {
 }, ["Chaque nombre du plan est une pile de cubes dans l'objet fini.", "Additionne d'abord les nombres de la rangée arrière, puis ceux de la rangée avant."]);
 
 // 11. 10.9 L2 gen num, CR 3: squares showing in the front view.
-E("u8-front-squares-num", 8, ["10.9"], 2, "gen", function () {
+E("u8-front-squares-num", 8, ["10.9"], 1, "gen", function () {
   var hm = u8RandHM(2, 3, 3, 7, 12);
   var prof = u8FrontProf(hm), ans = u8SumArr(prof), tot = u8Sum(hm);
   var cell = 26, body = u8T(160, 14, "Objet (nombres = cubes sur chaque case)", 11, true);
@@ -4877,7 +4877,7 @@ E("u8-front-squares-num", 8, ["10.9"], 2, "gen", function () {
 }, ["Une vue montre des silhouettes, pas chaque cube; les cubes cachés n'ajoutent pas de cases.", "Pour chaque colonne, compare les nombres arrière et avant et garde le plus grand, puis additionne les trois résultats."]);
 
 // 12. 10.4 L2 gen num, CR 3: angles around a point with regular tiles.
-E("u8-around-point-num", 8, ["10.4"], 2, "gen", function () {
+E("u8-around-point-num", 8, ["10.4"], 1, "gen", function () {
   var mode = ri(0, 2), n, ang, k, ans, prompt, sol;
   var R = ri(24, 34), rot = ri(0, 50);
   if (mode === 0) {
@@ -4905,7 +4905,7 @@ E("u8-around-point-num", 8, ["10.4"], 2, "gen", function () {
 }, ["Les angles autour d'un point totalisent exactement 360 degrés.", "Multiplie l'angle intérieur par le nombre de tuiles placées, puis compare avec 360."]);
 
 // 13. 10.5 L2 gen num, CR 2: the missing angle of an irregular quadrilateral, and tessellating.
-E("u8-irregular-angle-num", 8, ["10.5"], 2, "gen", function () {
+E("u8-irregular-angle-num", 8, ["10.5"], 1, "gen", function () {
   for (var att = 0; att < 100; att++) {
     var a = ri(55, 130), b = ri(55, 130), c = ri(55, 130);
     var d = 360 - a - b - c;
@@ -4926,7 +4926,7 @@ E("u8-irregular-angle-num", 8, ["10.5"], 2, "gen", function () {
 }, ["Les angles intérieurs d'un quadrilatère totalisent toujours 360 degrés.", "Additionne d'abord les trois angles donnés, puis soustrais de 360."]);
 
 // 14. 10.7 L2 gen MC with figure: which single transformation maps tile 1 to tile 2.
-E("u8-tess-transform", 8, ["10.7"], 2, "gen", function () {
+E("u8-tess-transform", 8, ["10.7"], 1, "gen", function () {
   var mode = pick(["translation", "reflection", "rotation"]);
   var s = ri(26, 34), gap = ri(14, 22);
   // Asymmetric tile: a right triangle with a dot near its right-angle corner.
@@ -4964,7 +4964,7 @@ E("u8-tess-transform", 8, ["10.7"], 2, "gen", function () {
 }, ["Suis un élément marqué, comme le point, de la première tuile à la deuxième.", "Un glissement garde la tuile dans le même sens, un retournement la reflète, et un tour la fait tourner."]);
 
 // 15. 10.13 L2 var: which plan creates a tessellation.
-E("u8-create-tess-var", 8, ["10.13"], 2, "var", varset([
+E("u8-create-tess-var", 8, ["10.13"], 1, "var", varset([
   function () {
     return mcq("Un élève crée un dallage à partir de copies d'une tuile carrée. Quel plan fonctionne, et pourquoi ?",
       { t: "Glisser les copies de côté et vers le bas dans une grille; l'aire couverte est le nombre de tuiles fois l'aire d'une tuile.", fb: "Exact. Glisser (translater) des carrés remplit le plan, et le glissement garde l'aire de chaque tuile inchangée." },
