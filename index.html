@@ -857,7 +857,7 @@ E("u1-pythag-model", 1, ["9.1"], 1, "gen", function(){
   return q;
 }, ["L'hypoténuse est le côté le plus long, en face de l'angle droit.", "Mets chaque cathète au carré, additionne-les, et mets la somme égale au carré de l'hypoténuse."]);
 
-E("u1-hypotenuse", 1, ["9.12"], 2, "gen", function(){
+E("u1-hypotenuse", 1, ["9.12"], 1, "gen", function(){
   var base=pick([[3,4,5],[5,12,13],[8,15,17],[7,24,25],[20,21,29],[9,40,41],[12,35,37]]);
   var kk=ri(1,4); var tr=[base[0]*kk,base[1]*kk,base[2]*kk];
   var a=tr[0], b=tr[1], c=tr[2];
@@ -869,7 +869,7 @@ E("u1-hypotenuse", 1, ["9.12"], 2, "gen", function(){
   return q;
 }, ["L'hypoténuse est en face de l'angle droit et se trouve à partir des deux cathètes.", "Mets les deux cathètes au carré et additionne, puis prends la racine carrée de la somme."]);
 
-E("u1-missing-leg", 1, ["9.12"], 2, "gen", function(){
+E("u1-missing-leg", 1, ["9.12"], 1, "gen", function(){
   var base=pick([[3,4,5],[5,12,13],[8,15,17],[7,24,25],[20,21,29],[9,40,41]]);
   var kk=ri(1,4); var tr=[base[0]*kk,base[1]*kk,base[2]*kk];
   var a=tr[0], b=tr[1], c=tr[2];
@@ -883,7 +883,7 @@ E("u1-missing-leg", 1, ["9.12"], 2, "gen", function(){
   return q;
 }, ["Une cathète manquante se trouve en soustrayant les carrés, pas en les additionnant.", "Mets l'hypoténuse au carré, soustrais le carré de la cathète connue, puis prends la racine carrée."]);
 
-E("u1-is-right", 1, ["9.13"], 2, "gen", function(){
+E("u1-is-right", 1, ["9.13"], 1, "gen", function(){
   var isRight=pick([true,false]);
   var a,b,c;
   if(isRight){ var tr=pick([[3,4,5],[6,8,10],[5,12,13],[9,12,15],[8,15,17]]); a=tr[0]; b=tr[1]; c=tr[2]; }
@@ -936,7 +936,7 @@ E("u1-only-right", 1, ["9.2"], 2, "var", varset([
   }
 ]), ["Teste d'abord la relation des carrés avant de faire confiance au théorème.", "Mets les deux côtés les plus courts au carré et compare avec le carré du côté le plus long."]);
 
-E("u1-triple-find", 1, ["9.14"], 2, "gen", function(){
+E("u1-triple-find", 1, ["9.14"], 1, "gen", function(){
   var base=pick([[3,4,5],[5,12,13],[8,15,17],[7,24,25],[20,21,29],[9,40,41]]);
   var k=ri(2,5); var a=base[0]*k, b=base[1]*k, c=base[2]*k;
   var miss=pick(["a","b","c"]); var ans=(miss==="a")?a:(miss==="b")?b:c;
@@ -946,7 +946,7 @@ E("u1-triple-find", 1, ["9.14"], 2, "gen", function(){
     {base:base, k:k, miss:miss});
 }, ["Mettre un triplet à l'échelle par le même facteur garde un triplet.", "Multiplie chaque côté du triplet de base par le facteur d'échelle."]);
 
-E("u1-ladder-context", 1, ["9.12"], 2, "gen", function(){
+E("u1-ladder-context", 1, ["9.12"], 1, "gen", function(){
   var mode=pick(["reach","distance","foot"]);
   if(mode==="reach"){
     var base=pick([[3,4,5],[5,12,13],[8,15,17],[7,24,25]]);
@@ -1678,7 +1678,7 @@ E("u3-multiply-two-fractions", 3, ["6.8"], 1, "gen", function () {
 }, ["Pour multiplier, aucun dénominateur commun n'est nécessaire.", "Simplifie un numérateur avec un dénominateur avant de multiplier."]);
 
 // 5. L2, 6.5: area model product with a partitioned rectangle figure.
-E("u3-area-model-product", 3, ["6.5"], 2, "gen", function () {
+E("u3-area-model-product", 3, ["6.5"], 1, "gen", function () {
   var P = null;
   for (var t = 0; t < 200 && !P; t++) {
     var d1 = ri(3, 5), n1 = ri(1, d1 - 1), d2 = ri(3, 6), n2 = ri(1, d2 - 1);
@@ -2390,7 +2390,7 @@ E("u4-vol-rect-prism", 4, ["9.11"], 1, "gen", function(){
   return q;
 }, ["Le volume compte l'espace à l'intérieur du prisme, donc on utilise les trois dimensions.", "Multiplie la longueur par la largeur par la hauteur."]);
 
-E("u4-vol-tri-prism", 4, ["9.7","9.11"], 2, "gen", function(){
+E("u4-vol-tri-prism", 4, ["9.7","9.11"], 1, "gen", function(){
   var tr=pick([[3,4,5],[5,12,13],[6,8,10],[8,15,17],[9,12,15],[12,16,20]]);
   var a=tr[0], b=tr[1], c=tr[2]; var L=ri(4,16);
   var B=a*b/2; var V=B*L;
@@ -3643,7 +3643,7 @@ E("u6-identify-error", 6, ["8.6"], 2, "gen", function () {
 }, ["Compare la première ligne de l'élève avec l'équation de départ, terme par terme.", "Demande-toi ce que l'élève a fait à chaque terme, et si la même chose a été faite à chaque terme."]);
 
 // 8. L2, 8.2: visual (tile/balance) representation of a solving step.
-E("u6-visual-step", 6, ["8.2"], 2, "gen", function () {
+E("u6-visual-step", 6, ["8.2"], 1, "gen", function () {
   for (var att = 0; att < 300; att++) {
     var a = ri(2, 6), b = ri(2, 12), x = ri(2, 11), c = a * x + b;
     var step = pick(["remove", "split"]);
@@ -3747,7 +3747,7 @@ E("u6-describe-graph", 6, ["7.1"], 2, "gen", function () {
 }, ["Commence par le point où x vaut 0 : c'est la valeur de départ de la relation.", "Compare deux points voisins pour trouver de combien y change pour chaque pas de 1 de x."]);
 
 // 13. L2, 7.4: construct the graph (choose the correct set of plotted points) for an equation.
-E("u6-construct-graph-points", 6, ["7.4"], 2, "gen", function () {
+E("u6-construct-graph-points", 6, ["7.4"], 1, "gen", function () {
   for (var att = 0; att < 300; att++) {
     var m = ri(2, 6), b = ri(1, 8);
     if (m === b) continue;
@@ -4024,7 +4024,7 @@ E("u7-product-rule-intro", 7, ["12.3"], 1, "gen", function () {
   function F2B(c) { return u7red(c.F * 6 + c.G * c.S, c.S * 6)[1]; }
 }, ["Des événements indépendants ne s'influencent pas, donc la probabilité que les deux arrivent est un produit.", "Trouve d'abord la probabilité de chaque événement seul, puis multiplie les deux fractions."]);
 
-E("u7-advantages-disadvantages", 7, ["11.2"], 2, "var", varset([
+E("u7-advantages-disadvantages", 7, ["11.2"], 1, "var", varset([
   function(){
     return mcq("Une gérante a besoin du nombre exact de billets vendus dans chacune de six sections de places, pour comparer les sections avec précision. Quel énoncé donne un avantage et un désavantage d'utiliser un diagramme circulaire pour ces données ?",
       {t:"Avantage : il montre d'un coup d'oeil la part de chaque section dans les ventes totales. Désavantage : les nombres exacts sont difficiles à lire à partir de la taille des tranches", fb:"Exact : les tranches mettent l'accent sur les parts, mais les nombres précis sont justement ce que les tranches montrent mal."},
@@ -4072,7 +4072,7 @@ E("u7-advantages-disadvantages", 7, ["11.2"], 2, "var", varset([
   }
 ]), ["Juge le diagramme selon le travail : que doit faire le lecteur avec ces données, comparer exactement, voir des parts ou suivre une tendance ?", "Vérifie les deux moitiés de chaque énoncé ; une bonne réponse demande un avantage vrai et un désavantage vrai."]);
 
-E("u7-misleading-format", 7, ["11.4"], 2, "var", varset([
+E("u7-misleading-format", 7, ["11.4"], 1, "var", varset([
   function(){
     var q = mcq("Une affiche d'aréna utilise ce diagramme à bandes pour affirmer que la patinoire Sud est beaucoup plus occupée que la patinoire Nord. Quel élément du format du diagramme peut mener les lecteurs à mal interpréter les données ?",
       {t:"L'axe vertical commence à 80 au lieu de 0, donc une petite différence de fréquentation semble grande", fb:"Exact : les deux bandes sont mesurées à partir de 80, donc les hauteurs visibles exagèrent l'écart entre 92 et 96."},
@@ -4124,7 +4124,7 @@ E("u7-misleading-format", 7, ["11.4"], 2, "var", varset([
   }
 ]), ["Regarde comment l'image est construite : où l'axe commence, comment ses pas sont espacés, et si des effets de taille ajoutent de l'aire.", "Compare la taille visuelle des bandes ou des tranches avec les nombres qu'elles représentent ; un écart nomme le défaut."]);
 
-E("u7-name-the-trick", 7, ["11.5"], 2, "var", varset([
+E("u7-name-the-trick", 7, ["11.5"], 1, "var", varset([
   function(){
     return textq("Un diagramme à bandes montre des moyennes de quiz de 48, 52 et 55 pour trois classes. Son axe vertical commence à 40, donc la bande pour 55 domine celle pour 48. Nomme le choix de format qui représente mal les données.",
       ["axe tronqué", "axe vertical tronqué", "l'axe est tronqué", "l'axe ne commence pas à zéro", "axe qui ne commence pas à zéro", "l'axe commence à 40", "axe qui commence à 40", "l'axe commence au-dessus de zéro", "axe brisé", "ne commence pas à zéro", "commencer l'axe à 40", "l'axe ne commence pas à 0", "axe qui commence à une valeur non nulle", "axe tronque", "l'axe ne commence pas a zero"],
@@ -4205,7 +4205,7 @@ E("u7-false-conclusion", 7, ["11.6"], 2, "var", varset([
   }
 ]), ["Teste chaque conclusion contre chaque nombre donné, pas seulement les premiers que tu remarques.", "Surveille les mots forts comme la plupart, toujours et chaque ; ils demandent plus de la moitié, ou chaque cas, pour tenir."]);
 
-E("u7-fix-the-graph", 7, ["11.4"], 2, "var", varset([
+E("u7-fix-the-graph", 7, ["11.4"], 1, "var", varset([
   function(){
     return textq("Un diagramme à bandes des points d'équipes commence son axe vertical à 60, ce qui fait paraître une équipe loin devant les autres. Quel seul changement rendrait le diagramme fidèle aux données ? Réponds par une courte phrase.",
       ["commencer l'axe à zéro", "commencer l'axe vertical à zéro", "commencer l'axe à 0", "débuter l'axe à zéro", "commencer à zéro", "faire commencer l'axe à zéro", "partir de zéro", "commencer l'échelle à zéro", "commencer l'axe a zero", "commencer l'axe à zero"],
