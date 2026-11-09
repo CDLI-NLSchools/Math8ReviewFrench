@@ -906,7 +906,7 @@ E("u1-is-right", 1, ["9.13"], 1, "gen", function(){
   return q;
 }, ["Mets les deux côtés les plus courts au carré et compare leur somme avec le carré du côté le plus long.", "Additionne d'abord les carrés des deux côtés les plus courts."]);
 
-E("u1-only-right", 1, ["9.2"], 2, "var", varset([
+E("u1-only-right", 1, ["9.2"], 1, "var", varset([
   function(){
     return mcq("Un triangle a des côtés de 4 cm, 6 cm et 8 cm. Un élève utilise \\(4^{2} + 6^{2} = 8^{2}\\) pour trouver un côté et obtient une mauvaise réponse. Pourquoi la méthode a-t-elle échoué ?",
       {t:"Le théorème fonctionne seulement pour les triangles rectangles, et ce triangle n'est pas rectangle", fb:"Exact : 16 + 36 donne 52, pas 64, donc le triangle n'a pas d'angle droit."},
