@@ -1612,7 +1612,7 @@ E("u3-model-frac-times-whole", 3, ["6.4"], 1, "gen", function () {
 }, ["Multiplier par un nombre entier veut dire additionner la fraction le même nombre de fois.", "Écris d'abord le total comme une addition répétée de la fraction."]);
 
 // 2. L1, 6.7: estimate a product against benchmarks 0, 1/2, 1.
-E("u3-estimate-product-benchmark", 3, ["6.7"], 1, "gen", function () {
+E("u3-estimate-product-benchmark", 3, ["6.7"], 2, "gen", function () {
   var P = null;
   for (var t = 0; t < 300 && !P; t++) {
     var d1 = ri(3, 10), n1 = ri(1, d1 - 1), d2 = ri(3, 10), n2 = ri(1, d2 - 1);
@@ -2223,7 +2223,7 @@ E("u4-sa-from-net", 4, ["9.3"], 1, "gen", function(){
     {mode:"net-areas", l:l, w:w, h:h});
 }, ["L'aire totale est la somme des aires de toutes les faces planes du développement.", "Additionne les trois aires de faces différentes, puis double le total parce que chaque face a une face correspondante."]);
 
-E("u4-net-choose", 4, ["10.11"], 1, "gen", function(){
+E("u4-net-choose", 4, ["10.11"], 2, "gen", function(){
   var target=pick(["rect","tri","cyl"]);
   var names={rect:"prisme droit à base rectangulaire", tri:"prisme droit à base triangulaire", cyl:"cylindre droit"};
   var kinds=[target].concat(["rect","tri","cyl","pyr"].filter(function(k){return k!==target;})).slice(0,4);
@@ -2862,7 +2862,7 @@ E("u5-percent-of-number", 5, ["6.1"], 1, "gen", function () {
 }, ["Change d'abord le pourcentage en nombre décimal, puis multiplie par le montant total.", "Écris d'abord le pourcentage en nombre décimal en le divisant par 100."]);
 
 // 11. L2, 6.1, CR 3: find the whole given a part and a percent.
-E("u5-find-the-whole", 5, ["6.1"], 1, "gen", function () {
+E("u5-find-the-whole", 5, ["6.1"], 2, "gen", function () {
   var pool = [[25, 60], [20, 80], [30, 90], [40, 150], [50, 70], [75, 120], [80, 200], [10, 240], [60, 300], [90, 400], [15, 200], [35, 260], [12, 250], [16, 150], [18, 200], [22, 150], [28, 250], [32, 200], [38, 150], [42, 200], [48, 250], [52, 200], [56, 150], [64, 200], [72, 250], [84, 150], [88, 200], [45, 180], [65, 140], [85, 220], [55, 160], [95, 300]];
   var pr = pick(pool), p = pr[0], W = pr[1], part = W * p / 100;
   var ctxs = [
