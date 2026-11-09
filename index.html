@@ -3562,7 +3562,7 @@ E("u6-solve-two-step", 6, ["8.4"], 2, "gen", function () {
 }, ["Défais ce qui a été fait à x dans l'ordre inverse : le nombre ajouté part en premier.", "Soustrais la constante des deux côtés, puis divise les deux côtés par le coefficient de x."]);
 
 // 5. L2, 8.1: model a context with an equation of the form ax + b = c.
-E("u6-model-equation", 6, ["8.1"], 1, "gen", function () {
+E("u6-model-equation", 6, ["8.1"], 2, "gen", function () {
   for (var att = 0; att < 300; att++) {
     var a = ri(2, 9), b = ri(3, 20), x = ri(3, 12), c = a * x + b;
     if (a === b) continue;
